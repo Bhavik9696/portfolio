@@ -1,5 +1,8 @@
 import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function Contect() {
  const formRef = useRef();
@@ -35,31 +38,34 @@ function Contect() {
       'jVQkhPxJlBL7NP-E5'       // Public key
     )
       .then(() => {
-        alert("Message sent successfully!");
-        setFormData({
-          name: '',
-          email: '',
-          subject: 'General Inquiry',
-          message: '',
-          contactMethod: 'Email',
-          heardAbout: '',
-          isHuman: false
-        });
-      })
-      .catch((err) => {
-        console.error("EmailJS Error:", err);
-        alert("Something went wrong.");
-      });
+  toast.success("Message sent successfully!");
+  setFormData({
+    name: '',
+    email: '',
+    subject: 'General Inquiry',
+    message: '',
+    contactMethod: 'Email',
+    heardAbout: '',
+    isHuman: false
+  });
+})
+.catch((err) => {
+  console.error("EmailJS Error:", err);
+  toast.error("Something went wrong. Please try again.");
+});
+
   };
 
   return (
-    <div className="bg-[#0a192f] text-white min-h-screen flex items-center justify-center p-6">
+    <div className="text-white min-h-screen flex items-center justify-center p-6">
+      
       <form
         ref={formRef}
         onSubmit={handleSubmit}
-        className="w-full max-w-4xl space-y-6 p-8 rounded-xl shadow-xl bg-[#0a192f]"
+        className="w-full max-w-4xl space-y-6 p-8 rounded-xl shadow-xl"
       >
         <h2 className="text-3xl font-bold mb-6">Let's Connect</h2>
+        
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
@@ -168,6 +174,7 @@ function Contect() {
           Send Message
         </button>
       </form>
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 }
