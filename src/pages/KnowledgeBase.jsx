@@ -23,19 +23,22 @@ const KnowledgeBase = () => {
   ];
 
   return (
-    <section className="max-w-4xl mx-auto my-12 px-4">
-      <h2 className="text-3xl font-bold mb-8">educational Background</h2>
-      <div className="relative border-l-2 border-gray-300 ml-6">
+    <section className="mx-auto my-12 px-4 max-w-3xl">
+      <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">Educational Background</h2>
+      <div className="relative border-l-2 border-gray-300 pl-6">
         {educationData.map((edu, index) => (
-          <div key={index} className="mb-8 ml-6 relative">
-            <div className="absolute -left-6 top-0 w-12 h-12 rounded-full flex items-center justify-center shadow-md">
-              <img src={edu.logo} alt={edu.title} className="w-8 h-8 mr-14" />
+          <div
+            key={index}
+            className="mb-8 flex flex-col md:flex-row md:items-center relative"
+          >
+            <div className="absolute -left-6 top-0 w-12 h-12 rounded-full flex items-center justify-center shadow-md bg-white">
+              <img src={edu.logo} alt={edu.title} className="w-8 h-8 object-contain" />
             </div>
-            <div>
-              <h3 className="text-lg font-semibold mr-96">{edu.title}</h3>
-              <p className="text-gray-500">{edu.degree}</p>
+            <div className="flex-1 md:ml-8">
+              <h3 className="text-base md:text-lg font-semibold">{edu.title}</h3>
+              <p className="text-gray-500 text-sm md:text-base">{edu.degree}</p>
             </div>
-            <div className="text-gray-400 absolute right-0 top-0 text-right">
+            <div className="text-gray-400 mt-2 md:mt-0 md:ml-auto text-right text-xs md:text-base">
               <p>{edu.year}</p>
             </div>
           </div>
