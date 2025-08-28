@@ -1,5 +1,6 @@
 import profile from "../assets/images/myimge.jpg"
 import TextType from '../components/TextType';
+import KnowledgeBase from './KnowledgeBase'
 
 export default function HomePage() {
   return (
@@ -170,7 +171,7 @@ export default function HomePage() {
     </div>
   </div>
 </section>
-
+ <KnowledgeBase/>
     </div>
   );
 }
