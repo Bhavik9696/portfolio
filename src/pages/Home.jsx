@@ -40,13 +40,14 @@ export default function HomePage() {
           className="w-36 h-36 rounded-full mx-auto shadow-lg border-4 border-purple-400 object-cover"
         />
         <h2 className="text-2xl font-semibold mt-6">About Me</h2>
-        <p className="text-gray-300 mt-3 max-w-xl mx-auto">
+        <p className="text-gray-300 mt-3 max-w-xl mx-auto text-xl">
           I'm a{" "}
           <span className="text-purple-400 font-medium">
             full-stack developer
           </span>{" "}
           passionate about building scalable web applications and solving
           algorithmic challenges.
+          My expertise spans across MERN stack (MongoDB, Express, React, Node.js), REST APIs, and database design. I love crafting performant systems and clean, maintainable code.
         </p>
       </section>
 
