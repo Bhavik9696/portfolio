@@ -21,11 +21,11 @@ function Navbar() {
                 ? "text-orange-500 rounded hover:bg-blue-600 transition lg:ml-9"
                 : "text-white rounded hover:bg-blue-600 transition lg:ml-9 "
             }>Home</NavLink>
-          <NavLink to="/about"  className={({ isActive }) =>
+          <NavLink to="/knowledge"  className={({ isActive }) =>
               isActive
                 ? "text-orange-500 rounded hover:bg-blue-600 transition lg:ml-9"
                 : "text-white rounded hover:bg-blue-600 transition lg:ml-9 "
-            }>About me</NavLink>
+            }>Educational Background</NavLink>
           <NavLink to="/projects"  className={({ isActive }) =>
               isActive
                 ? "text-orange-500 rounded hover:bg-blue-600 transition lg:ml-9"
@@ -36,6 +36,7 @@ function Navbar() {
                 ? "text-orange-500 rounded hover:bg-blue-600 transition lg:ml-9"
                 : "text-white rounded hover:bg-blue-600 transition lg:ml-9 "
             }>Contact</NavLink>
+            
         </ul>
 
         {/* Mobile Hamburger */}
@@ -58,11 +59,11 @@ function Navbar() {
                 ? "text-orange-500 rounded hover:bg-blue-600 transition lg:ml-9"
                 : "text-white rounded hover:bg-blue-600 transition lg:ml-9 "
             } onClick={() => setIsOpen(false)}>Home</NavLink>
-          <NavLink to="/about"  className={({ isActive }) =>
+          <NavLink to="/knowledge"  className={({ isActive }) =>
               isActive
                 ? "text-orange-500 rounded hover:bg-blue-600 transition lg:ml-9"
                 : "text-white rounded hover:bg-blue-600 transition lg:ml-9 "
-            } onClick={() => setIsOpen(false)}>About me</NavLink>
+            } onClick={() => setIsOpen(false)}>Educational Background</NavLink>
           <NavLink to="/projects"  className={({ isActive }) =>
               isActive
                 ? "text-orange-500 rounded hover:bg-blue-600 transition lg:ml-9"

@@ -4,9 +4,11 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
+import knowledge from "./pages/KnowledgeBase";
 
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import KnowledgeBase from "./pages/KnowledgeBase";
 
 function App() {
   return (
@@ -17,7 +19,7 @@ function App() {
         <main className="min-h-screen pt-16 px-6">
           <Routes>
             <Route path="/" element={<Home />} /> {/* Homepage */}
-            <Route path="/about" element={<About />} />
+            <Route path="/knowledge" element={<KnowledgeBase />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>

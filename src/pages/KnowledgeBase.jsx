@@ -24,7 +24,7 @@ const KnowledgeBase = () => {
 
   return (
     <section className="mx-auto my-12 px-4 max-w-3xl">
-      <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-purple-600">Educational Background</h2>
+      <h2 className="text-3xl md:text-5xl font-bold mb-8 text-center text-blue-700">Educational Background</h2>
       <div className="relative border-l-2 border-gray-300 pl-8">
         {educationData.map((edu, index) => (
           <div

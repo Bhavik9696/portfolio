@@ -12,10 +12,10 @@ function Footer() {
 
         {/* Social Links */}
         <div className="flex space-x-6 mb-4 md:mb-0">
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400">
+          <a href="https://www.linkedin.com/in/bhavik-rai-438a70294?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400">
             <FaLinkedin size={24} />
           </a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400">
+          <a href="https://github.com/Bhavik9696" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400">
             <FaGithub size={24} />
           </a>
           <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400">
