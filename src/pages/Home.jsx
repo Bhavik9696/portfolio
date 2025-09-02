@@ -7,12 +7,12 @@ import SkillCard from "../components/SkillCard";
 
 export default function HomePage() {
   return (
-    <div className=" dark:text-white min-h-screen flex flex-col items-center justify-center px-6 py-12 relative z-0">
+    <div className=" text-black dark:text-white min-h-screen flex flex-col items-center justify-center px-6 py-12 relative z-0">
       <section className="text-black  text-center max-w-3xl">
         <h1 className="text-black text-4xl md:text-6xl font-bold mb-4 dark:text-white">
           Hi, I'm <span className="text-purple-400">Bhavik Rai</span> 👋
           <h1>{" "}</h1>
-          <span className="text-gray-900 dark:text-gray-300 text-4xl md:text-4xl font-normal">
+          <span className="bg-purple-400 text-black dark:bg-transparent dark:text-gray-300 text-4xl md:text-4xl font-normal">
             <TextType
               text={[
                 "a MERN Stack Developer",
