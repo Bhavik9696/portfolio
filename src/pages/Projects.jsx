@@ -51,10 +51,10 @@ function Projects() {
         {projects.map((project, index) => (
           <div
             key={index}
-            className="bg-gray-800 rounded-2xl p-6 shadow-lg hover:scale-105 transform transition"
+            className="text-black bg-gray-200 dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:scale-105 transform transition"
           >
             <h2 className="text-2xl font-semibold mb-2">{project.title}</h2>
-            <p className="text-gray-300 mb-4">{project.description}</p>
+            <p className="text-black mb-4">{project.description}</p>
             <div className="flex gap-4">
               <a
                 href={project.liveLink}

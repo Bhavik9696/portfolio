@@ -57,7 +57,7 @@ function Contect() {
   };
 
   return (
-    <div className="text-white min-h-screen flex items-center justify-center p-6">
+    <div className="dark:text-white min-h-screen flex items-center justify-center p-6">
       
       <form
         ref={formRef}
@@ -96,7 +96,7 @@ function Contect() {
             <label className="block mb-1">Subject *</label>
             <select
               name="subject"
-              className="w-full p-3 rounded bg-gray-800 border border-gray-600"
+              className="text-white w-full p-3 rounded bg-gray-800 border border-gray-600"
               value={formData.subject}
               onChange={handleChange}
               required
@@ -112,7 +112,7 @@ function Contect() {
             <label className="block mb-1">Message *</label>
             <textarea
               name="message"
-              className="w-full p-3 h-32 rounded bg-gray-800 border border-gray-600"
+              className="text-white w-full p-3 h-32 rounded bg-gray-800 border border-gray-600"
               value={formData.message}
               onChange={handleChange}
               required
@@ -151,7 +151,7 @@ function Contect() {
           <input
             type="text"
             name="heardAbout"
-            className="w-full p-3 rounded bg-gray-800 border border-gray-600"
+            className="text-white w-full p-3 rounded bg-gray-800 border border-gray-600"
             value={formData.heardAbout}
             onChange={handleChange}
           />

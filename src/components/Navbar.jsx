@@ -20,23 +20,23 @@ function Navbar() {
         <ul className="hidden md:flex gap-8 text-gray-700 font-medium">
           <NavLink to="/"  className={({ isActive }) =>
               isActive
-                ? "text-orange-500 rounded hover:bg-blue-600 transition lg:ml-9"
-                : "text-white rounded hover:bg-blue-600 transition lg:ml-9 "
+                ? "text-orange-500 rounded  transition lg:ml-9"
+                : "dark:text-white rounded  transition lg:ml-9 "
             }>Home</NavLink>
           <NavLink to="/knowledge"  className={({ isActive }) =>
               isActive
-                ? "text-orange-500 rounded hover:bg-blue-600 transition lg:ml-9"
-                : "text-white rounded hover:bg-blue-600 transition lg:ml-9 "
+                ? "text-orange-500 rounded  transition lg:ml-9"
+                : "text-black dark:text-white rounded  transition lg:ml-9 "
             }>Educational Background</NavLink>
           <NavLink to="/projects"  className={({ isActive }) =>
               isActive
-                ? "text-orange-500 rounded hover:bg-blue-600 transition lg:ml-9"
-                : "text-white rounded hover:bg-blue-600 transition lg:ml-9 "
+                ? "text-orange-500 rounded  transition lg:ml-9"
+                : "text-black dark:text-white rounded  transition lg:ml-9 "
             }>Projects</NavLink>
           <NavLink to="/contact"  className={({ isActive }) =>
               isActive
-                ? "text-orange-500 rounded hover:bg-blue-600 transition lg:ml-9"
-                : "text-white rounded hover:bg-blue-600 transition lg:ml-9 "
+                ? "text-orange-500 rounded  transition lg:ml-9"
+                : "text-black dark:text-white rounded  transition lg:ml-9 "
             }>Contact</NavLink>
             <button
       onClick={toggleTheme}
@@ -58,29 +58,29 @@ function Navbar() {
       {/* Mobile Menu (Dropdown with animation) */}
       <div
         className={`md:hidden  from-slate-800 via-slate-600 to-slate-900 shadow-md transition-all duration-500 ease-in-out overflow-hidden ${
-          isOpen ? "max-h-60 opacity-100" : "max-h-0 opacity-0"
+          isOpen ? "max-h-90 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <ul className="flex flex-col items-center gap-6 py-6 text-gray-700 font-medium">
           <NavLink to="/"  className={({ isActive }) =>
               isActive
-                ? "text-orange-500 rounded hover:bg-blue-600 transition lg:ml-9"
-                : "text-white rounded hover:bg-blue-600 transition lg:ml-9 "
+                ? "text-orange-500 rounded  transition lg:ml-9"
+                : "text-black dark:text-white rounded  transition lg:ml-9 "
             } onClick={() => setIsOpen(false)}>Home</NavLink>
           <NavLink to="/knowledge"  className={({ isActive }) =>
               isActive
-                ? "text-orange-500 rounded hover:bg-blue-600 transition lg:ml-9"
-                : "text-white rounded hover:bg-blue-600 transition lg:ml-9 "
+                ? "text-orange-500 rounded  transition lg:ml-9"
+                : "text-black dark:text-white rounded  transition lg:ml-9 "
             } onClick={() => setIsOpen(false)}>Educational Background</NavLink>
           <NavLink to="/projects"  className={({ isActive }) =>
               isActive
-                ? "text-orange-500 rounded hover:bg-blue-600 transition lg:ml-9"
-                : "text-white rounded hover:bg-blue-600 transition lg:ml-9 "
+                ? "text-orange-500 rounded  transition lg:ml-9"
+                : "text-black dark:text-white rounded  transition lg:ml-9 "
             } onClick={() => setIsOpen(false)}>Projects</NavLink>
           <NavLink to="/contact"  className={({ isActive }) =>
               isActive
-                ? "text-orange-500 rounded hover:bg-blue-600 transition lg:ml-9"
-                : "text-white rounded hover:bg-blue-600 transition lg:ml-9 "
+                ? "text-orange-500 rounded  transition lg:ml-9"
+                : "text-black dark:text-white rounded  transition lg:ml-9 "
             } onClick={() => setIsOpen(false)}>Contact</NavLink>
              <button
       onClick={toggleTheme}
