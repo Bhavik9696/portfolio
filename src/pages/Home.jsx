@@ -1,6 +1,7 @@
 import profile from "../assets/images/myimge.jpg"
 import TextType from '../components/TextType';
 import KnowledgeBase from './KnowledgeBase'
+import Button from "../components/Button";
 
 export default function HomePage() {
   return (
@@ -9,7 +10,7 @@ export default function HomePage() {
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
           Hi, I'm <span className="text-purple-400">Bhavik Rai</span> 👋
           <h1>{" "}</h1>
-          <span className=" text-4xl md:text-4xl font-normal text-gray-300">
+          <span className=" text-4xl md:text-4xl font-normal text-gray-300 ">
             <TextType
               text={[
                 "a MERN Stack Developer",
@@ -23,13 +24,7 @@ export default function HomePage() {
             />
           </span>
         </h1>
-        <a
-          href="/Bhavik_Rai_Resume.pdf" 
-          download="Bhavik_Rai_Resume.pdf"
-          className=" bg-purple-500 hover:bg-green-600 text-white font-medium px-6 py-3 rounded-xl shadow-md transition duration-300"
-        >
-          Download Resume
-        </a>
+        <Button btntext=" Download Resume"/>
       </section>
 
       {/* Profile Section */}
