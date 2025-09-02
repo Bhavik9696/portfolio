@@ -7,12 +7,12 @@ import SkillCard from "../components/SkillCard";
 
 export default function HomePage() {
   return (
-    <div className=" text-white min-h-screen flex flex-col items-center justify-center px-6 py-12 relative z-0">
-      <section className="text-center max-w-3xl">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
+    <div className=" dark:text-white min-h-screen flex flex-col items-center justify-center px-6 py-12 relative z-0">
+      <section className="text-black  text-center max-w-3xl">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 dark:text-white">
           Hi, I'm <span className="text-purple-400">Bhavik Rai</span> 👋
           <h1>{" "}</h1>
-          <span className=" text-4xl md:text-4xl font-normal text-gray-300 ">
+          <span className="text-gray-900 dark:text-gray-300 text-4xl md:text-4xl font-normal">
             <TextType
               text={[
                 "a MERN Stack Developer",
@@ -37,7 +37,7 @@ export default function HomePage() {
           className="w-36 h-36 rounded-full mx-auto shadow-lg border-4 border-purple-400 object-cover"
         />
         <h2 className="text-2xl font-semibold mt-6">About Me</h2>
-        <p className="text-gray-300 mt-3 max-w-xl mx-auto text-xl">
+        <p className="dark:text-gray-300 mt-3 max-w-xl mx-auto text-xl">
           I'm a{" "}
           <span className="text-purple-400 font-medium">
             full-stack developer

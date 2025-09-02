@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { NavLink } from "react-router-dom"; 
+import { useTheme } from "../context/ThemeContext";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+   const { theme, toggleTheme } = useTheme();
 
   return (
     <nav className=" shadow-md fixed top-0 left-0 w-full z-50 backdrop-blur-sm">
@@ -36,6 +38,12 @@ function Navbar() {
                 ? "text-orange-500 rounded hover:bg-blue-600 transition lg:ml-9"
                 : "text-white rounded hover:bg-blue-600 transition lg:ml-9 "
             }>Contact</NavLink>
+            <button
+      onClick={toggleTheme}
+      className="px-4 py-2 rounded-lg border bg-gray-200 dark:bg-gray-800 dark:text-white"
+    >
+      {theme === "light" ? "🌙 Dark" : "☀️ Light"}
+    </button>
             
         </ul>
 
@@ -74,8 +82,15 @@ function Navbar() {
                 ? "text-orange-500 rounded hover:bg-blue-600 transition lg:ml-9"
                 : "text-white rounded hover:bg-blue-600 transition lg:ml-9 "
             } onClick={() => setIsOpen(false)}>Contact</NavLink>
+             <button
+      onClick={toggleTheme}
+      className="px-4 py-2 rounded-lg border bg-gray-200 dark:bg-gray-800 dark:text-white"
+    >
+      {theme === "light" ? "🌙 Dark" : "☀️ Light"}
+    </button>
         </ul>
       </div>
+      
     </nav>
   );
 }

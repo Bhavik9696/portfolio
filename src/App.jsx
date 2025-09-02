@@ -13,7 +13,8 @@ import KnowledgeBase from "./pages/KnowledgeBase";
 function App() {
   return (
     <Router>
-      <div className="w-screen min-h-screen bg-gradient-to-b from-slate-800 via-slate-600 to-slate-900 text-white">
+      <div className="w-screen min-h-screen 
+      dark:bg-gradient-to-b from-slate-800 via-slate-600 to-slate-900 dark:text-white">
         <Navbar />
 
         <main className="min-h-screen pt-16 px-6">
