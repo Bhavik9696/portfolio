@@ -40,9 +40,9 @@ const KnowledgeBase = () => {
             </div>
             <div className="flex-1 md:ml-8 mt-8 md:mt-0">
               <h3 className="text-base md:text-lg font-semibold">{edu.title}</h3>
-              <p className="text-gray-500 text-sm md:text-base">{edu.degree}</p>
+              <p className="text-purple-500 text-sm md:text-base">{edu.degree}</p>
             </div>
-            <div className="text-gray-400 mt-2 md:mt-0 md:ml-auto text-right text-xs md:text-base">
+            <div className="text-purple-400 mt-2 md:mt-0 md:ml-auto text-right text-xs md:text-base">
               <p>{edu.year}</p>
             </div>
           </div>
