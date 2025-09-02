@@ -59,7 +59,7 @@ export default function HomePage() {
   <h3 className="text-xl font-semibold text-purple-400 mb-4">Languages</h3>
   
   <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform">
+    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform hover:rounded-3xl">
   <img 
     src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
     alt="HTML" 
@@ -69,7 +69,7 @@ export default function HomePage() {
   <p className="text-gray-400 text-sm mt-2">The backbone of web pages, providing structure and semantics.</p>
 </div>
 
-<div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform">
+<div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform hover:rounded-3xl">
   <img 
     src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
     alt="CSS" 
@@ -79,14 +79,14 @@ export default function HomePage() {
   <p className="text-gray-400 text-sm mt-2">Styles web pages with layouts, colors, and responsive design.</p>
 </div>
 
-    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform">
+    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform hover:rounded-3xl">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
            alt="JavaScript" className="w-12 h-12 mx-auto mb-3" />
       <span className="text-purple-400 font-medium">JavaScript</span>
       <p className="text-gray-400 text-sm mt-2">Core programming language for web interactivity.</p>
     </div>
 
-    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform">
+    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform hover:rounded-3xl">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
            alt="Java" className="w-12 h-12 mx-auto mb-3" />
       <span className="text-purple-400 font-medium">Java</span>
@@ -97,28 +97,28 @@ export default function HomePage() {
   {/* Frameworks & Libraries */}
   <h3 className="text-xl font-semibold text-purple-400 mb-4">Frameworks & Libraries</h3>
   <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform">
+    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform hover:rounded-3xl">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
            alt="React" className="w-12 h-12 mx-auto mb-3" />
       <span className="text-purple-400 font-medium">React</span>
       <p className="text-gray-400 text-sm mt-2">JS library for building fast & scalable UIs.</p>
     </div>
 
-    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform">
+    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform hover:rounded-3xl">
       <img src="https://tse4.mm.bing.net/th/id/OIP.WzIshFoNdagNNG_GG7CajwHaCk?pid=Api&P=0&h=180"
            alt="Tailwind CSS" className="w-12 h-12 mx-auto mb-3" />
       <span className="text-purple-400 font-medium">Tailwind CSS</span>
       <p className="text-gray-400 text-sm mt-2">Utility-first CSS framework for modern responsive designs.</p>
     </div>
 
-    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform">
+    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform hover:rounded-3xl">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
            alt="Node.js" className="w-12 h-12 mx-auto mb-3" />
       <span className="text-purple-400 font-medium">Node.js</span>
       <p className="text-gray-400 text-sm mt-2">Backend runtime for building scalable apps.</p>
     </div>
 
-    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform">
+    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform hover:rounded-3xl">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
            alt="Express.js" className="w-12 h-12 mx-auto mb-3 invert" />
       <span className="text-purple-400 font-medium">Express.js</span>
@@ -129,42 +129,42 @@ export default function HomePage() {
   {/* Databases & Tools */}
   <h3 className="text-xl font-semibold text-purple-400 mb-4">Databases & Tools</h3>
   <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform">
+    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform hover:rounded-3xl">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
            alt="MongoDB" className="w-12 h-12 mx-auto mb-3" />
       <span className="text-purple-400 font-medium">MongoDB</span>
       <p className="text-gray-400 text-sm mt-2">NoSQL database for modern web applications.</p>
     </div>
 
-    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform">
+    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform hover:rounded-3xl">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
            alt="Git" className="w-12 h-12 mx-auto mb-3" />
       <span className="text-purple-400 font-medium">Git & GitHub</span>
       <p className="text-gray-400 text-sm mt-2">Version control and collaboration tool.</p>
     </div>
 
-    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform">
+    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform hover:rounded-3xl">
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
          alt="GitHub" className="w-12 h-12 mx-auto mb-3 invert" />
     <span className="text-purple-400 font-medium">GitHub</span>
     <p className="text-gray-400 text-sm mt-2">Cloud-based platform for collaboration and code hosting.</p>
   </div>
 
-   <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform">
+   <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform hover:rounded-3xl">
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"
          alt="VS Code" className="w-12 h-12 mx-auto mb-3" />
     <span className="text-purple-400 font-medium">VS Code</span>
     <p className="text-gray-400 text-sm mt-2">Lightweight yet powerful code editor for all projects.</p>
   </div>
   
-  <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform">
+  <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform hover:rounded-3xl">
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
          alt="Firebase" className="w-12 h-12 mx-auto mb-3" />
     <span className="text-purple-400 font-medium">Firebase</span>
     <p className="text-gray-400 text-sm mt-2">Backend-as-a-Service for authentication, database & hosting.</p>
   </div>
 
-    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform">
+    <div className="bg-[#112240] p-4 rounded-xl shadow-md hover:scale-105 transition-transform hover:rounded-3xl">
       <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg"
            alt="Postman" className="w-12 h-12 mx-auto mb-3" />
       <span className="text-purple-400 font-medium">Postman</span>
@@ -172,7 +172,6 @@ export default function HomePage() {
     </div>
   </div>
 </section>
- <KnowledgeBase/>
     </div>
   );
 }
