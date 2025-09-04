@@ -8,10 +8,10 @@ function About() {
     >
       <div className="max-w-5xl w-full grid md:grid-cols-2 gap-12 items-center">
         
-        {/* Profile Image */}
+        
         <div className="flex justify-center">
           <img
-            src="/profile.jpg" // <-- replace with your image
+            src="/profile.jpg" 
             alt="Bhavik Rai"
             className="rounded-2xl shadow-lg w-72 md:w-96 hover:scale-105 transition-transform duration-300"
           />

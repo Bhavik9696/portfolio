@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import Aside from '../components/Aside';
 
 function Contect() {
  const formRef = useRef();
@@ -58,7 +58,7 @@ function Contect() {
 
   return (
     <div className="dark:text-white min-h-screen flex items-center justify-center p-6">
-      
+      <Aside/>
       <form
         ref={formRef}
         onSubmit={handleSubmit}

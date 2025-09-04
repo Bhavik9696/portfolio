@@ -4,15 +4,21 @@ import KnowledgeBase from './KnowledgeBase'
 import Button from "../components/Button";
 import { skillsData } from "../data/skillsData";
 import SkillCard from "../components/SkillCard";
+import Aside from "../components/Aside";
+
 
 export default function HomePage() {
   return (
-    <div className=" text-black dark:text-white min-h-screen flex flex-col items-center justify-center px-6 py-12 relative z-0">
+    <div className=" text-black dark:text-white min-h-screen flex flex-col items-center justify-center px-6 py-12 relative z-0 overflow-hidden">
+      <Aside/>
+      
+      
       <section className="text-black  text-center max-w-3xl">
+        
         <h1 className="text-black text-4xl md:text-6xl font-bold mb-4 dark:text-white">
           Hi, I'm <span className="text-purple-400">Bhavik Rai</span> 👋
           <h1>{" "}</h1>
-          <span className="bg-purple-400 text-black dark:bg-transparent dark:text-gray-300 text-4xl md:text-4xl font-normal">
+          <span className="bg-gray-600 text-black dark:bg-transparent dark:text-gray-300 text-4xl md:text-4xl font-normal">
             <TextType
               text={[
                 "a MERN Stack Developer",
@@ -76,6 +82,7 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import Aside from "../components/Aside";
 
 const KnowledgeBase = () => {
   const educationData = [
@@ -24,12 +25,13 @@ const KnowledgeBase = () => {
 
   return (
     <section className="mx-auto my-12 px-4 max-w-3xl">
+      <Aside/>
       <h2 className="text-3xl md:text-5xl font-bold mb-8 text-center text-blue-700">Educational Background</h2>
       <div className="relative border-l-2 border-gray-300 pl-8">
         {educationData.map((edu, index) => (
           <div
             key={index}
-            className="mb-8 flex flex-col md:flex-row md:items-center relative"
+            className="mb-28 flex flex-col md:flex-row md:items-center relative"
           >
             <div className="absolute -left-14 top-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-md bg-white mr-80">
               <img
