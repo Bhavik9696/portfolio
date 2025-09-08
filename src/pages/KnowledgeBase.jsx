@@ -1,6 +1,6 @@
 import React from "react";
 import Aside from "../components/Aside";
-
+import DotsBackground from "../components/DotsBackground";
 const KnowledgeBase = () => {
   const educationData = [
     {
@@ -24,7 +24,8 @@ const KnowledgeBase = () => {
   ];
 
   return (
-    <section className="mx-auto my-12 px-4 max-w-3xl">
+    <section className="relative mx-auto my-12 px-4 max-w-3xl z-[9]">
+      <DotsBackground/>
       <Aside/>
       <h2 className="text-3xl md:text-5xl font-bold mb-8 text-center text-blue-700">Educational Background</h2>
       <div className="relative border-l-2 border-gray-300 pl-8">

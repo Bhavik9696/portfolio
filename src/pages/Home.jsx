@@ -7,6 +7,7 @@ import Aside from "../components/Aside";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
+import DotsBackground from "../components/DotsBackground"; 
 
 // Reusable Animated Section Component
 function AnimatedSection({ children, delay = 0 }) {
@@ -37,6 +38,7 @@ function AnimatedSection({ children, delay = 0 }) {
 export default function HomePage() {
   return (
     <div className="text-black dark:text-white min-h-screen flex flex-col items-center justify-center px-6 py-12 relative z-0 overflow-hidden">
+      <DotsBackground />
       <Aside />
 
       {/* Intro Section */}

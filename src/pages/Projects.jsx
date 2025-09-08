@@ -1,5 +1,6 @@
 import React from "react";
 import Aside from "../components/Aside";
+import DotsBackground from "../components/DotsBackground";
 
 function Projects() {
   const projects = [
@@ -45,7 +46,9 @@ function Projects() {
   ];
 
   return (
-    <div className="min-h-screen text-white p-8">
+     <div className="relative min-h-screen text-white p-8 overflow-hidden z-[9]">
+
+      <DotsBackground/>
       <Aside/>
       <h1 className="text-4xl font-bold text-center mb-12">My Projects</h1>
 

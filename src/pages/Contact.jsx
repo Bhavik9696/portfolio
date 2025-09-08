@@ -3,6 +3,8 @@ import emailjs from '@emailjs/browser';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Aside from '../components/Aside';
+import DotsBackground from '../components/DotsBackground';
+
 
 function Contect() {
  const formRef = useRef();
@@ -57,7 +59,8 @@ function Contect() {
   };
 
   return (
-    <div className="dark:text-white min-h-screen flex items-center justify-center p-6">
+    <div className="relative dark:text-white min-h-screen flex items-center justify-center p-6 z-[9]">
+      <DotsBackground/>
       <Aside/>
       <form
         ref={formRef}
