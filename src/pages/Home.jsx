@@ -8,6 +8,7 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import DotsBackground from "../components/DotsBackground"; 
+import CursorGlow from "../components/CursorGlow";
 
 // Reusable Animated Section Component
 function AnimatedSection({ children, delay = 0 }) {
@@ -19,7 +20,7 @@ function AnimatedSection({ children, delay = 0 }) {
   }, [inView, controls]);
 
   const fadeInUp = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 60,scale: 0.95 },
     visible: { opacity: 1, y: 0, transition: { delay, duration: 0.6, ease: "easeOut" } }
   };
 
@@ -39,6 +40,7 @@ export default function HomePage() {
   return (
     <div className="text-black dark:text-white min-h-screen flex flex-col items-center justify-center px-6 py-12 relative z-0 overflow-hidden">
       <DotsBackground />
+      <CursorGlow />
       <Aside />
 
       {/* Intro Section */}
