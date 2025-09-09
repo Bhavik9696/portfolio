@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Aside from '../components/Aside';
 import DotsBackground from '../components/DotsBackground';
+import CursorGlow from '../components/CursorGlow';
 
 
 function Contect() {
@@ -61,6 +62,7 @@ function Contect() {
   return (
     <div className="relative dark:text-white min-h-screen flex items-center justify-center p-6 z-[9]">
       <DotsBackground/>
+      <CursorGlow/>
       <Aside/>
       <form
         ref={formRef}

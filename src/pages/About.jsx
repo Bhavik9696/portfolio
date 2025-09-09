@@ -6,13 +6,10 @@ function About() {
       id="about"
       className="min-h-screen flex items-center justify-center text-white px-6 py-16"
     >
-    
       <div className="max-w-5xl w-full grid md:grid-cols-2 gap-12 items-center">
-        
-        
         <div className="flex justify-center">
           <img
-            src="/profile.jpg" 
+            src="/profile.jpg"
             alt="Bhavik Rai"
             className="rounded-2xl shadow-lg w-72 md:w-96 hover:scale-105 transition-transform duration-300"
           />
@@ -20,15 +17,15 @@ function About() {
 
         {/* About Text */}
         <div>
-          <h2 className="text-4xl font-bold mb-6 text-purple-400">
-            About Me
-          </h2>
+          <h2 className="text-4xl font-bold mb-6 text-purple-400">About Me</h2>
           <p className="text-lg leading-relaxed text-gray-300 mb-6">
-            Hi 👋 I'm <span className="font-semibold text-purple-400">Bhavik Rai</span>, 
-            a passionate <span className="font-semibold">MERN Stack Developer</span> 
-            who loves solving real-world problems through code. 
-            I enjoy building full-stack applications, learning new technologies, 
-            and working on projects that make life easier for people. 🚀
+            Hi 👋 I'm{" "}
+            <span className="font-semibold text-purple-400">Bhavik Rai</span>, a
+            passionate{" "}
+            <span className="font-semibold">MERN Stack Developer</span>
+            who loves solving real-world problems through code. I enjoy building
+            full-stack applications, learning new technologies, and working on
+            projects that make life easier for people. 🚀
           </p>
 
           {/* Skills / Highlights */}

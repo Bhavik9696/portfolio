@@ -1,7 +1,7 @@
 import React from "react";
 import Aside from "../components/Aside";
 import DotsBackground from "../components/DotsBackground";
-
+import CursorGlow from "../components/CursorGlow";
 function Projects() {
   const projects = [
     {
@@ -49,6 +49,7 @@ function Projects() {
      <div className="relative min-h-screen text-white p-8 overflow-hidden z-[9]">
 
       <DotsBackground/>
+      <CursorGlow/>
       <Aside/>
       <h1 className="text-4xl font-bold text-center mb-12">My Projects</h1>
 
