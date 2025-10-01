@@ -78,4 +78,16 @@ export const skillsData = {
       desc: "API testing, debugging, and collaboration tool.",
     },
   ],
+  CurrentlyLearning: [
+    {
+    name: "App Development",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg",
+    desc: "Building mobile apps with modern frameworks & tools.",
+  },
+  {
+    name: "DSA using Java",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+    desc: "Learning data structures & algorithms using Java.",
+  },
+  ],
 };

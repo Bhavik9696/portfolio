@@ -121,6 +121,18 @@ export default function HomePage() {
               </AnimatedSection>
             ))}
           </div>
+
+
+
+
+          <h3 className="text-xl font-semibold text-purple-400 mb-4">Currently Learning</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {skillsData.CurrentlyLearning.map((skill, idx) => (
+              <AnimatedSection key={idx} delay={idx * 0.1}>
+                <SkillCard {...skill} />
+              </AnimatedSection>
+            ))}
+          </div>
         </section>
       </AnimatedSection>
     </div>
