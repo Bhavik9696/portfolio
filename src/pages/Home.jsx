@@ -1,4 +1,4 @@
-import profile from "../assets/images/myimge.jpg"
+import profile from "../assets/images/myimggg.jpg"
 import TextType from '../components/TextType';
 import Button from "../components/Button";
 import { skillsData } from "../data/skillsData";
@@ -70,11 +70,18 @@ export default function HomePage() {
       {/* Profile Section */}
       <AnimatedSection delay={0.2}>
         <section className="mt-12 text-center">
-          <img
-            src={profile} 
-            alt="Bhavik Rai"
-            className="w-36 h-36 rounded-full mx-auto shadow-lg border-4 border-purple-400 object-cover"
-          />
+          <motion.div
+            className="inline-block rounded-full border-4 border-purple-400 p-1"
+            initial={{ boxShadow: "0 0 0 0 #a78bfa" }}
+            animate={{ boxShadow: "0 0 24px 4px #a78bfa" }}
+            transition={{ duration: 0.8, ease: "easeOut", repeat: Infinity, repeatType: "reverse" }}
+          >
+            <img
+              src={profile}
+              alt="Bhavik Rai"
+              className="w-40 h-40 rounded-full object-cover"
+            />
+          </motion.div>
           <h2 className="text-2xl font-semibold mt-6">About Me</h2>
           <p className="dark:text-gray-300 mt-3 max-w-xl mx-auto text-xl">
             I'm a{" "}
@@ -86,13 +93,9 @@ export default function HomePage() {
           </p>
         </section>
       </AnimatedSection>
-
-      {/* Skills Section */}
       <AnimatedSection delay={0.4}>
         <section className="mt-12 text-center w-full max-w-5xl">
           <h2 className="text-2xl font-semibold mb-6">Skills</h2>
-
-          {/* Languages */}
           <h3 className="text-xl font-semibold text-purple-400 mb-4">Languages</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
             {skillsData.languages.map((skill, idx) => (

@@ -54,7 +54,7 @@ function Projects() {
     },
     {
       title: "Portfolio Website",
-      description: "A personal portfolio website built with React and Tailwind CSS.",
+      description: "A responsive personal portfolio built with React and Tailwind CSS, showcasing projects, skills, and experience with interactive UI and smooth navigation.",
       liveLink: "https://bhavikrai-portfolio.netlify.app",
       codeLink: "https://github.com/Bhavik9696/portfolio.git",
     },
