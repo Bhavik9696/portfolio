@@ -2,6 +2,7 @@ import React from "react";
 import Aside from "../components/Aside";
 import DotsBackground from "../components/DotsBackground";
 import CursorGlow from "../components/CursorGlow";
+import { useEffect } from "react";
 
 const currentlyWorking = [
   {
@@ -86,7 +87,8 @@ function Projects() {
         {projects.map((project, index) => (
           <div
             key={index}
-            className="text-black bg-gray-200 dark:bg-gray-800 dark:text-white rounded-2xl p-6 shadow-lg hover:scale-105 transform transition"
+            className="text-black bg-gray-200 dark:bg-gray-800 dark:text-white rounded-2xl p-6 shadow-lg hover:scale-105 transform transition duration-300 opacity-0 translate-y-8 animate-fade-in"
+            style={{ animationDelay: `${index * 0.15}s` }}
           >
             <h2 className="text-2xl font-semibold mb-2">{project.title}</h2>
             <p className="text-black mb-4 dark:text-white">{project.description}</p>
@@ -125,7 +127,8 @@ function Projects() {
           {currentlyWorking.map((project, index) => (
             <div
               key={index}
-              className="border-2 border-purple-500 text-black bg-gray-200 dark:bg-gray-800 dark:text-white rounded-2xl p-6 shadow-lg hover:scale-105 transform transition"
+              className="border-2 border-purple-500 text-black bg-gray-200 dark:bg-gray-800 dark:text-white rounded-2xl p-6 shadow-lg hover:scale-105 transform transition duration-300 opacity-0 translate-y-8 animate-fade-in"
+              style={{ animationDelay: `${index * 0.15}s` }}
             >
               <h2 className="text-2xl font-semibold mb-2">{project.title}</h2>
               <p className="text-black mb-4 dark:text-white">{project.description}</p>
@@ -157,6 +160,19 @@ function Projects() {
           ))}
         </div>
       </div>
+      <style>
+        {`
+          @keyframes fade-in {
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          .animate-fade-in {
+            animation: fade-in 0.8s cubic-bezier(.4,0,.2,1) forwards;
+          }
+        `}
+      </style>
     </div>
   );
 }
