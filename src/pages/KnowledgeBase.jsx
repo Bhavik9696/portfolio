@@ -25,29 +25,29 @@ const KnowledgeBase = () => {
   ];
 
   return (
-    <section className="relative mx-auto my-12 px-4 max-w-3xl z-[9]">
+    <section className="relative mx-auto my-12 px-2 sm:px-4 max-w-3xl z-[9]">
       <DotsBackground/>
       <CursorGlow/>
       <Aside/>
-      <h2 className="text-3xl md:text-5xl font-bold mb-8 text-center text-blue-700">Educational Background</h2>
-      <div className="relative border-l-2 border-gray-300 pl-8">
+      <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-8 text-center text-blue-700">Educational Background</h2>
+      <div className="relative border-l-2 border-gray-300 pl-6 sm:pl-8">
         {educationData.map((edu, index) => (
           <div
             key={index}
-            className="mb-28 flex flex-col md:flex-row md:items-center relative"
+            className="mb-16 sm:mb-28 flex flex-col sm:flex-row sm:items-center relative"
           >
-            <div className="absolute -left-14 top-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-md bg-white mr-80">
+            <div className="absolute -left-8 sm:-left-14 top-0 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-md bg-white">
               <img
                 src={edu.logo}
                 alt={edu.title}
-                className="w-6 h-6 md:w-8 md:h-8 object-contain"
+                className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 object-contain"
               />
             </div>
-            <div className="flex-1 md:ml-8 mt-8 md:mt-0">
-              <h3 className="text-base md:text-lg font-semibold">{edu.title}</h3>
-              <p className="text-purple-500 text-sm md:text-base">{edu.degree}</p>
+            <div className="flex-1 sm:ml-8 mt-8 sm:mt-0">
+              <h3 className="text-sm sm:text-base md:text-lg font-semibold">{edu.title}</h3>
+              <p className="text-purple-500 text-xs sm:text-sm md:text-base">{edu.degree}</p>
             </div>
-            <div className="text-purple-400 mt-2 md:mt-0 md:ml-auto text-right text-xs md:text-base">
+            <div className="text-purple-400 mt-2 sm:mt-0 sm:ml-auto text-right text-xs sm:text-base">
               <p>{edu.year}</p>
             </div>
           </div>
