@@ -3,6 +3,16 @@ import Aside from "../components/Aside";
 import DotsBackground from "../components/DotsBackground";
 import CursorGlow from "../components/CursorGlow";
 
+const currentlyWorking = [
+  {
+    title: "Queue-SWAP",
+    description:
+      "Queue-SWAP is an innovative Mern-Stack web-based platform designed to bridge the gap between people who want to avoid long queues and individuals willing to stand in line on their behalf. The system connects customers with queue helpers in real time, helping users save valuable hours while providing income opportunities for gig workers. It includes features like booking, live tracking, secure payments, and a rating system for trust and reliability.",
+    liveLink: null,
+    codeLink: "https://github.com/Bhavik9696/Queue-Swap.git",
+  },
+];
+
 function Projects() {
   const projects = [
     {
@@ -12,6 +22,7 @@ function Projects() {
       liveLink: "https://bbcdclg.netlify.app",
       codeLink: "https://github.com/Bhavik9696/college-website.git",
     },
+    // Remove Queue-SWAP from here to avoid duplication
     {
       title: "React Password Generator",
       description:
@@ -54,6 +65,8 @@ function Projects() {
       <CursorGlow />
       <Aside />
       <h1 className="text-4xl font-bold text-center mb-12">My Projects</h1>
+
+      {/* Other Projects Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {projects.map((project, index) => (
           <div
@@ -88,6 +101,46 @@ function Projects() {
             </div>
           </div>
         ))}
+      </div>
+      
+      {/* Currently Working Projects Section */}
+      <div className="mb-12 mt-12">
+        <h2 className="text-2xl font-bold mb-6 text-purple-500 text-center">Currently Working On</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {currentlyWorking.map((project, index) => (
+            <div
+              key={index}
+              className="border-2 border-purple-500 text-black bg-gray-200 dark:bg-gray-800 dark:text-white rounded-2xl p-6 shadow-lg hover:scale-105 transform transition"
+            >
+              <h2 className="text-2xl font-semibold mb-2">{project.title}</h2>
+              <p className="text-black mb-4 dark:text-white">{project.description}</p>
+              <div className="flex gap-4">
+                {project.liveLink ? (
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-purple-600 px-4 py-2 rounded hover:bg-purple-700 transition-colors"
+                  >
+                    Live Demo
+                  </a>
+                ) : (
+                  <span className="bg-gray-400 text-white px-4 py-2 rounded cursor-not-allowed opacity-70">
+                    Live Demo Unavailable
+                  </span>
+                )}
+                <a
+                  href={project.codeLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-transparent border border-purple-600 px-4 py-2 rounded hover:bg-purple-700 transition-colors"
+                >
+                  GitHub
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
