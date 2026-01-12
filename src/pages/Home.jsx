@@ -79,7 +79,7 @@ export default function HomePage() {
             <img
               src={profile}
               alt="Bhavik Rai"
-              className="w-40 h-40 rounded-full object-cover"
+              className="w-50 h-50 rounded-full object-cover"
             />
           </motion.div>
           <h2 className="text-2xl font-semibold mt-6">About Me</h2>
