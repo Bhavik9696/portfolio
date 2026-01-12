@@ -1,4 +1,4 @@
-import profile from "../assets/images/myimggg.jpg"
+import profile from "../assets/images/myimageupdated.jpeg"
 import TextType from '../components/TextType';
 import Button from "../components/Button";
 import { skillsData } from "../data/skillsData";
