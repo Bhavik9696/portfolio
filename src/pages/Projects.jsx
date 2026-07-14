@@ -27,6 +27,14 @@ function Projects() {
       codeLink: "https://github.com/Bhavik9696/secure-project-intelligence.git",
     },
     {
+      title: "Silent Emergency Communication System",
+      description:
+        "A production-grade AI-powered emergency communication platform built with Python, FastAPI, React, and OpenCV. Detects emergency hand gestures and body falls in real time, instantly triggering SMS, email, and dashboard alerts. Features a scalable FastAPI backend with low-latency notification pipelines and a real-time React monitoring dashboard for rapid emergency response.",
+      liveLink: null,
+      codeLink:
+        "https://github.com/Bhavik9696/Silent-Emergency-Communication-System.git", // Replace with your actual repository
+    },
+    {
       title: "Queue-SWAP",
       description:
         "Queue-SWAP is an innovative Mern-Stack web-based platform designed to bridge the gap between people who want to avoid long queues and individuals willing to stand in line on their behalf. The system connects customers with queue helpers in real time, helping users save valuable hours while providing income opportunities for gig workers. It includes features like booking, live tracking, secure payments, and a rating system for trust and reliability.",
