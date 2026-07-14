@@ -5,32 +5,41 @@ import CursorGlow from "../components/CursorGlow";
 import { useEffect } from "react";
 
 const currentlyWorking = [
-  {
-    title: "Queue-SWAP",
-    description:
-      "Queue-SWAP is an innovative Mern-Stack web-based platform designed to bridge the gap between people who want to avoid long queues and individuals willing to stand in line on their behalf. The system connects customers with queue helpers in real time, helping users save valuable hours while providing income opportunities for gig workers. It includes features like booking, live tracking, secure payments, and a rating system for trust and reliability.",
-    liveLink: null,
-    codeLink: "https://github.com/Bhavik9696/Queue-Swap.git",
-  },
-  {
-  title: "Healthcare Coding Integration (SIH25026)",
-  description:
-    "A Smart India Hackathon project that integrates NAMASTE and ICD-11 codes into EMR/EHR systems. Features dual-coding for interoperability, smart search with auto-complete, terminology services for code mapping, and analytics dashboards for hospitals and insurers. Helps clinicians quickly record traditional + biomedical diagnoses while ensuring compliance with Indian EHR standards.",
-  liveLink: null,
-  codeLink: "https://docs.google.com/presentation/d/1uggpBFjk9YCVOsJkKr17Zs93roJ-J57s/edit?usp=sharing&ouid=103575647141063325562&rtpof=true&sd=true",
-},
+
 
 ];
 
 function Projects() {
   const projects = [
     {
-  title: "MERN Fitness Tracker",
-  description:
-    "A full-stack fitness tracking app built with the MERN stack. Users can sign up, log in, and securely manage their workout routines with JWT-based authentication., React Context for state management, and CRUD features for managing workouts with MongoDB Atlas.",
-  liveLink: null,
-  codeLink: "https://github.com/Bhavik9696/Gym-buddy.git",
-},
+      title: "ALLYVEX – AI Sales Intelligence Engine",
+      description:
+        "A multi-agent AI sales intelligence platform built using Python, FastAPI, React, Groq LLaMA, Mistral, and Server-Sent Events (SSE). Architected Bull, Bear, Detective, and Orchestrator agents that research companies, generate customer-vs-partner sales verdicts with confidence scores, and automatically draft outreach emails. Implemented real-time SSE streaming and scale-adaptive evaluation logic for both startup and enterprise use cases.",
+      liveLink: null,
+      codeLink: "https://github.com/Bhavik9696/ALLYVEX.git", // Replace with your actual repo
+    },
+
+    {
+      title: "AI-Based Project Failure Analysis System",
+      description:
+        "A secure RAG-powered platform built with FastAPI, React, and MongoDB that classifies project reports as Passed or Failed and generates evidence-based root cause analysis. Designed a chunked document ingestion pipeline with vector search to retrieve only relevant sections, reducing LLM context usage while improving analysis accuracy.",
+      liveLink: null,
+      codeLink: "https://github.com/Bhavik9696/secure-project-intelligence.git",
+    },
+    {
+      title: "Queue-SWAP",
+      description:
+        "Queue-SWAP is an innovative Mern-Stack web-based platform designed to bridge the gap between people who want to avoid long queues and individuals willing to stand in line on their behalf. The system connects customers with queue helpers in real time, helping users save valuable hours while providing income opportunities for gig workers. It includes features like booking, live tracking, secure payments, and a rating system for trust and reliability.",
+      liveLink: null,
+      codeLink: "https://github.com/Bhavik9696/Queue-Swap.git",
+    },
+    {
+      title: "MERN Fitness Tracker",
+      description:
+        "A full-stack fitness tracking app built with the MERN stack. Users can sign up, log in, and securely manage their workout routines with JWT-based authentication., React Context for state management, and CRUD features for managing workouts with MongoDB Atlas.",
+      liveLink: null,
+      codeLink: "https://github.com/Bhavik9696/Gym-buddy.git",
+    },
 
     {
       title: "College Official Website",
@@ -55,7 +64,8 @@ function Projects() {
     },
     {
       title: "Portfolio Website",
-      description: "A responsive personal portfolio built with React and Tailwind CSS, showcasing projects, skills, and experience with interactive UI and smooth navigation.",
+      description:
+        "A responsive personal portfolio built with React and Tailwind CSS, showcasing projects, skills, and experience with interactive UI and smooth navigation.",
       liveLink: "https://bhavikrai-portfolio.netlify.app",
       codeLink: "https://github.com/Bhavik9696/portfolio.git",
     },
@@ -122,7 +132,7 @@ function Projects() {
       
       {/* Currently Working Projects Section */}
       <div className="mb-12 mt-12">
-        <h2 className="text-3xl font-bold mb-6 text-white text-center">Currently Working On</h2>
+        {/* <h2 className="text-3xl font-bold mb-6 text-white text-center">Currently Working On</h2> */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {currentlyWorking.map((project, index) => (
             <div
