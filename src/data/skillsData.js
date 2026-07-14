@@ -21,6 +21,11 @@ export const skillsData = {
       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
       desc: "Strong OOP foundation, used for backend and Android apps.",
     },
+    {
+      name: "SQL",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+      desc: "Structured Query Language for designing, managing, and querying relational databases.",
+    },
   ],
   frameworks: [
     {
@@ -80,14 +85,14 @@ export const skillsData = {
   ],
   CurrentlyLearning: [
     {
-    name: "App Development",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg",
-    desc: "Building mobile apps with modern frameworks & tools.",
-  },
-  {
-    name: "DSA using Java",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-    desc: "Learning data structures & algorithms using Java.",
-  },
+      name: "App Development",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg",
+      desc: "Building mobile apps with modern frameworks & tools.",
+    },
+    {
+      name: "DSA using Java",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+      desc: "Learning data structures & algorithms using Java.",
+    },
   ],
 };
