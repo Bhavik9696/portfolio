@@ -4,12 +4,30 @@ import DotsBackground from "../components/DotsBackground";
 import CursorGlow from "../components/CursorGlow";
 import { useEffect } from "react";
 
-const currentlyWorking = [
-
-
-];
+const currentlyWorking = [];
 
 function Projects() {
+  const freelanceProjects = [
+    {
+      title: "Career Recruit AI",
+      subtitle: "Full-Stack & AI Developer — Freelance Project",
+      description:
+        "AI-driven campus placement platform with Student, Admin, and Alumni portals, ML-based placement prediction, resume parsing, and automated shortlisting — serving 200+ students.",
+      liveLink: null,
+      codeLink:
+        "https://github.com/Bhavik9696/AI-Based-Smart-Campus-Placement-and-Career-Intelligence-System-.git",
+    },
+    {
+      title: "Silent Emergency Communication System",
+      subtitle: "Freelance Project",
+      description:
+        "AI-powered emergency alert platform using hand-gesture and fall detection via OpenCV, triggering instant SMS/email alerts with 95% real-time accuracy.",
+      liveLink: null,
+      codeLink:
+        "https://github.com/Bhavik9696/Silent-Emergency-Communication-System.git",
+    },
+  ];
+
   const projects = [
     {
       title: "ALLYVEX – AI Sales Intelligence Engine",
@@ -27,12 +45,11 @@ function Projects() {
       codeLink: "https://github.com/Bhavik9696/secure-project-intelligence.git",
     },
     {
-      title: "Silent Emergency Communication System",
+      title: "CertiShield – AI & QR Code Certificate Fraud Verification",
       description:
-        "A production-grade AI-powered emergency communication platform built with Python, FastAPI, React, and OpenCV. Detects emergency hand gestures and body falls in real time, instantly triggering SMS, email, and dashboard alerts. Features a scalable FastAPI backend with low-latency notification pipelines and a real-time React monitoring dashboard for rapid emergency response.",
+        "An automated academic certificate verification and fraud detection platform for university faculty. Performs deep QR-code payload extraction (jsQR + Jimp), multi-portal API validation, and OCR/Vision cross-checks (Tesseract + Gemini 2.5 Vision) to catch name tampering, serial forgery, and stolen QR credentials across issuers like NPTEL, Infosys Springboard, Coursera, and Cisco. Includes a 4-step audit trail and a lecturer analytics dashboard built with React, Vite, and Node/Express.",
       liveLink: null,
-      codeLink:
-        "https://github.com/Bhavik9696/Silent-Emergency-Communication-System.git", // Replace with your actual repository
+      codeLink: "https://github.com/Bhavik9696/SecureCert-Verify",
     },
     {
       title: "Queue-SWAP",
@@ -100,44 +117,99 @@ function Projects() {
       <Aside />
       <h1 className="text-4xl font-bold text-center mb-12">My Projects</h1>
 
-      {/* Other Projects Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            className="text-black bg-gray-200 dark:bg-gray-800 dark:text-white rounded-2xl p-6 shadow-lg hover:scale-105 transform transition duration-300 opacity-0 translate-y-8 animate-fade-in"
-            style={{ animationDelay: `${index * 0.15}s` }}
-          >
-            <h2 className="text-2xl font-semibold mb-2">{project.title}</h2>
-            <p className="text-black mb-4 dark:text-white">{project.description}</p>
-            <div className="flex gap-4">
-              {project.liveLink ? (
+      {/* Freelance Projects Section */}
+      <div className="mb-16">
+        <h2 className="text-3xl font-bold mb-8 text-white text-center">
+          Freelance Projects
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {freelanceProjects.map((project, index) => (
+            <div
+              key={index}
+              className="border-2 border-purple-500 text-black bg-gray-200 dark:bg-gray-800 dark:text-white rounded-2xl p-6 shadow-lg hover:scale-105 transform transition duration-300 opacity-0 translate-y-8 animate-fade-in"
+              style={{ animationDelay: `${index * 0.15}s` }}
+            >
+              <h2 className="text-2xl font-semibold mb-1">{project.title}</h2>
+              <p className="text-sm font-medium text-purple-600 dark:text-purple-400 mb-3">
+                {project.subtitle}
+              </p>
+              <p className="text-black mb-4 dark:text-white">
+                {project.description}
+              </p>
+              <div className="flex gap-4">
+                {project.liveLink ? (
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-purple-600 px-4 py-2 rounded hover:bg-purple-700 transition-colors"
+                  >
+                    Live Demo
+                  </a>
+                ) : (
+                  <span className="bg-gray-400 text-white px-4 py-2 rounded cursor-not-allowed opacity-70">
+                    Live Demo Unavailable
+                  </span>
+                )}
                 <a
-                  href={project.liveLink}
+                  href={project.codeLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-purple-600 px-4 py-2 rounded hover:bg-purple-700 transition-colors"
+                  className="bg-transparent border border-purple-600 px-4 py-2 rounded hover:bg-purple-700 transition-colors"
                 >
-                  Live Demo
+                  GitHub
                 </a>
-              ) : (
-                <span className="bg-gray-400 text-white px-4 py-2 rounded cursor-not-allowed opacity-70">
-                  Live Demo Unavailable
-                </span>
-              )}
-              <a
-                href={project.codeLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-transparent border border-purple-600 px-4 py-2 rounded hover:bg-purple-700 transition-colors"
-              >
-                GitHub
-              </a>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-      
+
+      {/* Other Projects Section */}
+      <div className="mb-16">
+        <h2 className="text-3xl font-bold mb-8 text-white text-center">
+          Other Projects
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className="text-black bg-gray-200 dark:bg-gray-800 dark:text-white rounded-2xl p-6 shadow-lg hover:scale-105 transform transition duration-300 opacity-0 translate-y-8 animate-fade-in"
+              style={{ animationDelay: `${index * 0.15}s` }}
+            >
+              <h2 className="text-2xl font-semibold mb-2">{project.title}</h2>
+              <p className="text-black mb-4 dark:text-white">
+                {project.description}
+              </p>
+              <div className="flex gap-4">
+                {project.liveLink ? (
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-purple-600 px-4 py-2 rounded hover:bg-purple-700 transition-colors"
+                  >
+                    Live Demo
+                  </a>
+                ) : (
+                  <span className="bg-gray-400 text-white px-4 py-2 rounded cursor-not-allowed opacity-70">
+                    Live Demo Unavailable
+                  </span>
+                )}
+                <a
+                  href={project.codeLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-transparent border border-purple-600 px-4 py-2 rounded hover:bg-purple-700 transition-colors"
+                >
+                  GitHub
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Currently Working Projects Section */}
       <div className="mb-12 mt-12">
         {/* <h2 className="text-3xl font-bold mb-6 text-white text-center">Currently Working On</h2> */}
@@ -149,7 +221,9 @@ function Projects() {
               style={{ animationDelay: `${index * 0.15}s` }}
             >
               <h2 className="text-2xl font-semibold mb-2">{project.title}</h2>
-              <p className="text-black mb-4 dark:text-white">{project.description}</p>
+              <p className="text-black mb-4 dark:text-white">
+                {project.description}
+              </p>
               <div className="flex gap-4">
                 {project.liveLink ? (
                   <a
