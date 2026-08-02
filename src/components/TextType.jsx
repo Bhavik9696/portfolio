@@ -41,7 +41,7 @@ const TextType = ({
   }, [variableSpeed, typingSpeed]);
 
   const getCurrentTextColor = () => {
-    if (textColors.length === 0) return "#ffffff";
+    if (textColors.length === 0) return "inherit";
     return textColors[currentTextIndex % textColors.length];
   };
 
@@ -161,13 +161,14 @@ const TextType = ({
       className: `inline-block whitespace-pre-wrap tracking-tight ${className}`,
       ...props,
     },
-    <span className="inline" style={{ color: getCurrentTextColor() }}>
+    <span className="inline" style={{ color: getCurrentTextColor() !== "inherit" ? getCurrentTextColor() : undefined }}>
       {displayedText}
     </span>,
     showCursor && (
       <span
         ref={cursorRef}
         className={`ml-1 inline-block opacity-100 ${shouldHideCursor ? "hidden" : ""} ${cursorClassName}`}
+        style={{ color: "var(--cyan)" }}
       >
         {cursorCharacter}
       </span>

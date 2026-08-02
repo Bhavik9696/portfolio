@@ -1,94 +1,130 @@
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "./context/ThemeContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import KnowledgeBase from "./pages/KnowledgeBase";
+import LoadingScreen from "./components/LoadingScreen";
+import CustomCursor from "./components/CustomCursor";
+import ParticleBackground from "./components/ParticleBackground";
+import ScrollProgress from "./components/ScrollProgress";
 
 function App() {
+  const [loaded, setLoaded] = useState(false);
+
   return (
-    <Router>
-      {/* ── Google Font: Cinzel + Lato ── */}
+    <ThemeProvider>
+      {/* Google Fonts */}
       <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet"
       />
 
-      <div
-        className="w-screen min-h-screen relative overflow-x-hidden"
-        style={{
-          background: "#050505",
-          color: "#f0e6c8",
-          fontFamily: "'Lato', sans-serif",
-        }}
-      >
-        {/* ── Ambient gold radial blobs ── */}
+      {/* ── Loading screen (renders on top, self-removes) ── */}
+      <LoadingScreen onComplete={() => setLoaded(true)} />
+
+      {/* ── Custom cursor ── */}
+      <CustomCursor />
+
+      {/* ── Scroll progress bar ── */}
+      <ScrollProgress />
+
+      {/* ── App shell ── */}
+      <Router>
+        {/* Fixed full-page canvas background */}
+        <ParticleBackground />
+
         <div
-          aria-hidden="true"
           style={{
-            position: "fixed",
-            top: "-15%",
-            left: "-10%",
-            width: 700,
-            height: 700,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle, rgba(255,193,7,0.13), transparent 70%)",
-            filter: "blur(80px)",
-            pointerEvents: "none",
-            zIndex: 0,
+            width: "100%",
+            minHeight: "100vh",
+            background: "var(--bg-primary)",
+            color: "var(--text)",
+            fontFamily: "'Inter', sans-serif",
+            position: "relative",
+            zIndex: 1,
+            transition: "background-color 0.4s ease, color 0.4s ease",
           }}
-        />
-        <div
-          aria-hidden="true"
-          style={{
-            position: "fixed",
-            bottom: "-10%",
-            right: "-8%",
-            width: 500,
-            height: 500,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle, rgba(255,160,0,0.10), transparent 70%)",
-            filter: "blur(80px)",
-            pointerEvents: "none",
-            zIndex: 0,
-          }}
-        />
+        >
+          {/* Global luxury ambient blobs */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: "fixed",
+              top: "-15%",
+              left: "-5%",
+              width: 700,
+              height: 700,
+              borderRadius: "50%",
+              background: "radial-gradient(circle, rgba(59,130,246,0.035) 0%, transparent 65%)",
+              filter: "blur(90px)",
+              pointerEvents: "none",
+              zIndex: 0,
+              animation: "aurora 22s ease-in-out infinite",
+            }}
+          />
+          <div
+            aria-hidden="true"
+            style={{
+              position: "fixed",
+              bottom: "-15%",
+              right: "-5%",
+              width: 650,
+              height: 650,
+              borderRadius: "50%",
+              background: "radial-gradient(circle, rgba(168,85,247,0.035) 0%, transparent 65%)",
+              filter: "blur(90px)",
+              pointerEvents: "none",
+              zIndex: 0,
+              animation: "aurora 26s ease-in-out infinite reverse",
+            }}
+          />
+          <div
+            aria-hidden="true"
+            style={{
+              position: "fixed",
+              top: "45%",
+              left: "50%",
+              transform: "translate(-50%,-50%)",
+              width: 550,
+              height: 550,
+              borderRadius: "50%",
+              background: "radial-gradient(circle, rgba(16,185,129,0.02) 0%, transparent 65%)",
+              filter: "blur(90px)",
+              pointerEvents: "none",
+              zIndex: 0,
+              animation: "aurora 30s ease-in-out infinite",
+            }}
+          />
 
-        {/* ── Fine dot-grid texture overlay ── */}
-        <div
-          aria-hidden="true"
-          style={{
-            position: "fixed",
-            inset: 0,
-            backgroundImage:
-              "radial-gradient(rgba(255,193,7,0.07) 1px, transparent 1px)",
-            backgroundSize: "30px 30px",
-            pointerEvents: "none",
-            zIndex: 0,
-          }}
-        />
+          {/* ── Content layers ── */}
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <Navbar />
 
-        {/* ── Content layers ── */}
-        <div className="relative" style={{ zIndex: 1 }}>
-          <Navbar />
+            <main
+              id="main-content"
+              style={{
+                minHeight: "100vh",
+                paddingTop: "1rem",
+                overflow: "hidden",
+              }}
+            >
+              <Routes>
+                <Route path="/"          element={<Home />} />
+                <Route path="/knowledge" element={<KnowledgeBase />} />
+                <Route path="/projects"  element={<Projects />} />
+                <Route path="/contact"   element={<Contact />} />
+              </Routes>
+            </main>
 
-          <main className="min-h-screen pt-16 px-6">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/knowledge" element={<KnowledgeBase />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
-          </main>
-
-          <Footer />
+            <Footer />
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </ThemeProvider>
   );
 }
 

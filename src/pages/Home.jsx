@@ -1,98 +1,32 @@
+import { useRef, useState, useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView as useIOInView } from "react-intersection-observer";
 import profile from "../assets/images/myimageupdated.jpeg";
 import TextType from "../components/TextType";
-import Button from "../components/Button";
 import { skillsData } from "../data/skillsData";
 import SkillCard from "../components/SkillCard";
-import Aside from "../components/Aside";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { useEffect } from "react";
-import DotsBackground from "../components/DotsBackground";
-import CursorGlow from "../components/CursorGlow";
+import SkillsDialpad from "../components/SkillsDialpad";
+import FloatingDock from "../components/FloatingDock";
+import SectionHeading from "../components/SectionHeading";
 
 import {
-  SiReact,
-  SiNodedotjs,
-  SiMongodb,
-  SiExpress,
-  SiTailwindcss,
-  SiGithub,
+  SiReact, SiNodedotjs, SiMongodb, SiExpress, SiTailwindcss, SiPython,
 } from "react-icons/si";
+import { FaDownload, FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
-/* ─── CSS Variables (inject once via a style tag or global CSS) ─── */
-const globalStyles = `
-  :root {
-    --gold-100: #fff8e1;
-    --gold-300: #ffd54f;
-    --gold-400: #ffca28;
-    --gold-500: #ffc107;
-    --gold-600: #ffb300;
-    --gold-900: #7a5700;
-    --black:    #050505;
-    --black-80: rgba(5,5,5,0.80);
-    --glass-bg: rgba(255, 195, 7, 0.06);
-    --glass-border: rgba(255, 195, 7, 0.22);
-    --glass-shadow: 0 8px 40px rgba(255, 180, 0, 0.18);
-  }
-
-  /* ── Glassmorphism card ── */
-  .glass {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(18px) saturate(1.4);
-    -webkit-backdrop-filter: blur(18px) saturate(1.4);
-    box-shadow: var(--glass-shadow);
-    border-radius: 1rem;
-  }
-
-  /* ── Gold glow text ── */
-  .gold-text {
-    color: var(--gold-400);
-    text-shadow: 0 0 18px rgba(255, 193, 7, 0.55);
-  }
-
-  /* ── Animated gold underline ── */
-  .gold-line::after {
-    content: '';
-    display: block;
-    margin: 0.35rem auto 0;
-    width: 3rem;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--gold-500), transparent);
-  }
-
-  /* ── Background radial shimmer ── */
-  .gold-radial {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(90px);
-    opacity: 0.12;
-    pointer-events: none;
-  }
-`;
-
-/* ─── Inject global styles ─── */
-function GlobalStyles() {
-  return <style dangerouslySetInnerHTML={{ __html: globalStyles }} />;
-}
-
-/* ─── Animated Section ─── */
-function AnimatedSection({ children, delay = 0 }) {
+/* ─── Scroll reveal wrapper ─── */
+function Reveal({ children, delay = 0, direction = "up" }) {
   const controls = useAnimation();
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
-
+  const [ref, inView] = useIOInView({ triggerOnce: true, threshold: 0.08 });
   useEffect(() => {
     if (inView) controls.start("visible");
   }, [inView, controls]);
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 60, scale: 0.96 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { delay, duration: 0.65, ease: "easeOut" },
-    },
+  const offsets = {
+    up:    { y: 40, x: 0 },
+    down:  { y: -40, x: 0 },
+    left:  { y: 0, x: 40 },
+    right: { y: 0, x: -40 },
   };
 
   return (
@@ -100,321 +34,445 @@ function AnimatedSection({ children, delay = 0 }) {
       ref={ref}
       initial="hidden"
       animate={controls}
-      variants={fadeInUp}
+      variants={{
+        hidden: { opacity: 0, ...offsets[direction] },
+        visible: {
+          opacity: 1, y: 0, x: 0,
+          transition: { delay, duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] },
+        },
+      }}
     >
       {children}
     </motion.div>
   );
 }
 
-/* ─── Tech Icon ─── */
-const TechIcon = ({ Icon }) => (
-  <motion.div
-    animate={{ y: [0, -6, 0] }}
-    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-    whileHover={{ scale: 1.25, rotate: 6 }}
-    className="w-14 h-14 flex items-center justify-center rounded-full glass"
-    style={{
-      boxShadow:
-        "0 0 22px rgba(255,193,7,0.45), inset 0 0 8px rgba(255,193,7,0.1)",
-    }}
-  >
-    <Icon style={{ color: "var(--gold-400)", fontSize: "1.7rem" }} />
-  </motion.div>
-);
+/* ─── Floating tech icon ─── */
+const TECH_ICONS = [
+  { Icon: SiReact,       color: "#61DAFB", label: "React",     delay: 0 },
+  { Icon: SiNodedotjs,   color: "#68A063", label: "Node.js",   delay: 0.4 },
+  { Icon: SiMongodb,     color: "#47A248", label: "MongoDB",   delay: 0.8 },
+  { Icon: SiExpress,     color: "#fff",    label: "Express",   delay: 1.2 },
+  { Icon: SiTailwindcss, color: "#06B6D4", label: "Tailwind",  delay: 1.6 },
+  { Icon: SiPython,      color: "#3776AB", label: "Python",    delay: 2.0 },
+];
 
-/* ─── Section Heading ─── */
-const SectionHeading = ({ children }) => (
-  <h2
-    className="text-2xl font-semibold mb-6 gold-line tracking-wide uppercase"
-    style={{
-      fontFamily: "'Cinzel', serif",
-      color: "var(--gold-300)",
-      letterSpacing: "0.12em",
-      textShadow: "0 0 20px rgba(255,193,7,0.4)",
-    }}
-  >
-    {children}
-  </h2>
-);
-
-const SubHeading = ({ children }) => (
-  <h3
-    className="text-lg font-semibold mb-4"
-    style={{
-      fontFamily: "'Cinzel', serif",
-      color: "var(--gold-500)",
-      letterSpacing: "0.08em",
-      textShadow: "0 0 12px rgba(255,193,7,0.35)",
-    }}
-  >
-    {children}
-  </h3>
-);
-
-/* ─── Home Page ─── */
-export default function HomePage() {
+function TechIcon({ Icon, color, label, delay }) {
   return (
-    <>
-      {/* Google Font — Cinzel (display) */}
-      <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap"
-        rel="stylesheet"
-      />
-      <GlobalStyles />
-
-      <div
-        className="min-h-screen flex flex-col items-center justify-center px-6 py-12 relative overflow-hidden"
+    <motion.div
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: 1 + delay * 0.12, type: "spring", stiffness: 200 }}
+      title={label}
+      aria-label={label}
+    >
+      <motion.div
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 3 + delay * 0.4, repeat: Infinity, ease: "easeInOut", delay }}
+        whileHover={{ scale: 1.3, rotate: 10 }}
         style={{
-          background: "var(--black)",
-          color: "#f0e6c8",
-          fontFamily: "'Lato', sans-serif",
+          width: 44,
+          height: 44,
+          borderRadius: "50%",
+          background: "rgba(11,17,32,0.8)",
+          border: "1px solid rgba(255,255,255,0.1)",
+          backdropFilter: "blur(12px)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          boxShadow: `0 0 14px ${color}33`,
+          color,
+          fontSize: "1.3rem",
         }}
       >
-        {/* ── Background shimmer blobs ── */}
-        <div
-          className="gold-radial"
+        <Icon />
+      </motion.div>
+    </motion.div>
+  );
+}
+
+/* ─── Skill Category Filter ─── */
+const SKILL_CATS = [
+  { key: "languages",         label: "Languages" },
+  { key: "frameworks",        label: "Frameworks" },
+  { key: "tools",             label: "Tools & DB" },
+  { key: "ai",                label: "AI / Python" },
+  { key: "CurrentlyLearning", label: "Learning" },
+];
+
+/* ─── Profile Card (desktop) ─── */
+function ProfileCard({ size = 240 }) {
+  const cardRef = useRef(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  const onMouseMove = (e) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    setTilt({
+      x: -((e.clientY - cy) / (rect.height / 2)) * 8,
+      y:  ((e.clientX - cx) / (rect.width / 2)) * 8,
+    });
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      onMouseMove={onMouseMove}
+      onMouseLeave={() => setTilt({ x: 0, y: 0 })}
+      initial={{ opacity: 0, scale: 0.8, y: 30 }}
+      animate={{ opacity: 1, scale: 1, y: 0, rotateX: tilt.x, rotateY: tilt.y }}
+      transition={{ delay: 0.5, duration: 0.8, ease: [0.34, 1.56, 0.64, 1] }}
+      style={{ perspective: 1000, transformStyle: "preserve-3d", position: "relative", display: "inline-block" }}
+    >
+      {/* Spinning gradient ring */}
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+        style={{
+          position: "absolute",
+          inset: -4,
+          borderRadius: "50%",
+          background: "conic-gradient(from 0deg, #00F5FF, #7C3AED, #14F195, #00F5FF)",
+          filter: "blur(4px)",
+          opacity: 0.7,
+        }}
+      />
+      <motion.div
+        animate={{
+          boxShadow: [
+            "0 0 30px rgba(0,245,255,0.3)",
+            "0 0 55px rgba(0,245,255,0.6)",
+            "0 0 30px rgba(0,245,255,0.3)",
+          ],
+        }}
+        transition={{ duration: 3, repeat: Infinity }}
+        style={{ position: "relative", zIndex: 1, borderRadius: "50%", padding: 4, background: "#050816" }}
+      >
+        <img
+          src={profile}
+          alt="Bhavik Rai — Full-Stack Developer & AI Engineer"
           style={{
-            width: 600,
-            height: 600,
-            background: "radial-gradient(circle, #ffc107, transparent 70%)",
-            top: "-10%",
-            left: "-10%",
+            width: size,
+            height: size,
+            borderRadius: "50%",
+            objectFit: "cover",
+            objectPosition: "top",
+            display: "block",
           }}
         />
-        <div
-          className="gold-radial"
-          style={{
-            width: 400,
-            height: 400,
-            background: "radial-gradient(circle, #ffb300, transparent 70%)",
-            bottom: "5%",
-            right: "-5%",
-            opacity: 0.09,
-          }}
-        />
+      </motion.div>
 
-        <DotsBackground />
-        <CursorGlow />
-        <Aside />
+      {/* Open to Work badge */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1.2, type: "spring" }}
+        style={{
+          position: "absolute",
+          bottom: 12,
+          right: -10,
+          background: "rgba(20,241,149,0.1)",
+          border: "1px solid rgba(20,241,149,0.4)",
+          borderRadius: 50,
+          padding: "4px 10px",
+          display: "flex",
+          alignItems: "center",
+          gap: "0.35rem",
+          backdropFilter: "blur(12px)",
+          zIndex: 2,
+        }}
+      >
+        <span style={{
+          width: 7, height: 7, borderRadius: "50%", background: "#14F195",
+          boxShadow: "0 0 8px rgba(20,241,149,0.8)", display: "inline-block",
+        }} />
+        <span style={{
+          fontFamily: "'Inter', sans-serif", fontSize: "0.65rem", fontWeight: 600,
+          color: "#14F195", letterSpacing: "0.04em", whiteSpace: "nowrap",
+        }}>
+          Open to Work
+        </span>
+      </motion.div>
+    </motion.div>
+  );
+}
 
-        {/* ── INTRO ── */}
-        <AnimatedSection delay={0}>
-          <section className="text-center max-w-3xl">
-            <h1
-              className="text-4xl md:text-6xl font-bold mb-4"
-              style={{ fontFamily: "'Cinzel', serif", letterSpacing: "0.04em" }}
-            >
-              Hi, I'm{" "}
-              <span
-                className="gold-text"
-                style={{
-                  background: "linear-gradient(135deg, #ffd54f, #ff8f00)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                Bhavik Rai
-              </span>{" "}
-              👋
-            </h1>
+/* ─── MAIN HOME PAGE ─── */
+export default function HomePage() {
+  const [activeSkillCat, setActiveSkillCat] = useState("languages");
 
-            {/* Typewriter badge */}
-            <div
-              className="glass inline-block px-5 py-2 mt-2"
-              style={{ borderRadius: "0.6rem" }}
-            >
-              <span
-                className="text-2xl md:text-3xl font-light"
-                style={{ color: "var(--gold-100)" }}
-              >
-                <TextType
-                  text={[
-                    "a MERN Stack Developer",
-                    "a Problem Solver",
-                    "always Learning 🚀",
-                  ]}
-                  typingSpeed={30}
-                  pauseDuration={1500}
-                  showCursor
-                  cursorCharacter="|"
-                />
-              </span>
-            </div>
+  return (
+    <div style={{ minHeight: "100vh", background: "transparent", fontFamily: "'Inter', sans-serif", position: "relative", zIndex: 1 }}>
+      <FloatingDock />
 
-            <div className="mt-8">
-              {/* Pass a className or style prop if Button supports it */}
-              <Button
-                btntext="⬇ Download Resume"
-                style={{
-                  background: "linear-gradient(135deg, #ffc107, #ff8f00)",
-                  color: "#0a0a0a",
-                  fontWeight: 700,
-                  border: "none",
-                  boxShadow: "0 0 24px rgba(255,193,7,0.5)",
-                  letterSpacing: "0.06em",
-                  fontFamily: "'Cinzel', serif",
-                }}
-              />
-            </div>
-          </section>
-        </AnimatedSection>
+      {/* ═══════════════════ HERO SECTION ═══════════════════ */}
+      <section
+        id="hero"
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "6rem 1.25rem 3rem",
+          position: "relative",
+        }}
+      >
+        {/* Background glow */}
+        <div style={{
+          position: "absolute", top: "20%", left: "50%", transform: "translateX(-50%)",
+          width: 600, height: 600, borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(0,245,255,0.05) 0%, transparent 65%)",
+          filter: "blur(40px)", pointerEvents: "none",
+        }} />
 
-        {/* ── PROFILE ── */}
-        <AnimatedSection delay={0.2}>
-          <section className="mt-20 text-center relative w-full max-w-6xl">
-            {/* MOBILE ICONS */}
-            <div className="flex lg:hidden flex-wrap justify-center gap-5 mb-8">
-              <TechIcon Icon={SiReact} />
-              <TechIcon Icon={SiNodedotjs} />
-              <TechIcon Icon={SiMongodb} />
-              <TechIcon Icon={SiExpress} />
-              <TechIcon Icon={SiTailwindcss} />
-              <TechIcon Icon={SiGithub} />
-            </div>
+        {/* HERO INNER — column on mobile, row on desktop */}
+        <div style={{
+          maxWidth: 1200,
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "2.5rem",
+        }}>
 
-            {/* LEFT ICONS */}
-            <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden lg:block">
-              <div className="relative w-24 h-64">
-                <div className="absolute top-0 left-6">
-                  <TechIcon Icon={SiReact} />
-                </div>
-                <div className="absolute top-20 left-0">
-                  <TechIcon Icon={SiNodedotjs} />
-                </div>
-                <div className="absolute top-40 left-6">
-                  <TechIcon Icon={SiMongodb} />
-                </div>
-              </div>
-            </div>
+          {/* Profile card — visible on MOBILE too, above text */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.7 }}
+            style={{ display: "flex", justifyContent: "center" }}
+          >
+            <ProfileCard size={200} />
+          </motion.div>
 
-            {/* PROFILE IMAGE */}
+          {/* Text content — centred on mobile */}
+          <div style={{ width: "100%", textAlign: "center", position: "relative", zIndex: 2 }}>
+
+            {/* Greeting chip */}
             <motion.div
-              className="inline-block rounded-full p-[3px] relative z-10"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
               style={{
-                background:
-                  "linear-gradient(135deg, #ffd54f, #ff8f00, #ffd54f)",
-              }}
-              animate={{
-                boxShadow: [
-                  "0 0 20px 4px rgba(255,193,7,0.4)",
-                  "0 0 48px 12px rgba(255,193,7,0.7)",
-                  "0 0 20px 4px rgba(255,193,7,0.4)",
-                ],
-              }}
-              transition={{
-                duration: 2.5,
-                repeat: Infinity,
-                ease: "easeInOut",
+                display: "inline-flex", alignItems: "center", gap: "0.5rem",
+                background: "rgba(0,245,255,0.06)", border: "1px solid rgba(0,245,255,0.2)",
+                borderRadius: 50, padding: "5px 14px", marginBottom: "1.25rem",
               }}
             >
-              <div
-                className="p-1 rounded-full"
-                style={{ background: "var(--black)" }}
-              >
-                <img
-                  src={profile}
-                  alt="Bhavik Rai"
-                  className="w-72 h-72 sm:w-80 sm:h-80 rounded-full object-cover object-top"
-                  style={{
-                    boxShadow: "inset 0 0 30px rgba(255,193,7,0.25)",
-                  }}
-                />
-              </div>
+              <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#14F195", boxShadow: "0 0 8px rgba(20,241,149,0.8)" }} />
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.72rem", fontWeight: 500, color: "#00F5FF", letterSpacing: "0.06em" }}>
+                AVAILABLE FOR OPPORTUNITIES
+              </span>
             </motion.div>
 
-            {/* RIGHT ICONS */}
-            <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden lg:block">
-              <div className="relative w-24 h-64">
-                <div className="absolute top-0 right-6">
-                  <TechIcon Icon={SiExpress} />
-                </div>
-                <div className="absolute top-20 right-0">
-                  <TechIcon Icon={SiTailwindcss} />
-                </div>
-                <div className="absolute top-40 right-6">
-                  <TechIcon Icon={SiGithub} />
-                </div>
-              </div>
-            </div>
-
-            {/* ABOUT */}
-            <div className="glass mt-10 mx-auto max-w-xl px-8 py-6">
-              <SectionHeading>About Me</SectionHeading>
-              <p
-                style={{
-                  color: "#d4c08a",
-                  fontSize: "1.1rem",
-                  lineHeight: 1.8,
-                }}
+            {/* Main heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.7 }}
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: "clamp(2rem, 8vw, 5rem)",
+                fontWeight: 700,
+                lineHeight: 1.1,
+                marginBottom: "1rem",
+                color: "var(--text)",
+              }}
+            >
+              Hi, I'm{" "}
+              <span className="hero-title-gradient">
+                Bhavik Rai
+              </span>
+              <motion.span
+                animate={{ rotate: [0, 20, 0, 20, 0] }}
+                transition={{ delay: 1.5, duration: 1.5 }}
+                style={{ display: "inline-block", marginLeft: "0.2em" }}
               >
-                I'm a{" "}
-                <span className="gold-text font-semibold">
-                  full-stack developer
-                </span>{" "}
-                passionate about building scalable web applications and solving
-                algorithmic challenges. I love crafting performant systems and
-                clean, maintainable code.
+                👋
+              </motion.span>
+            </motion.h1>
+
+            {/* Typewriter */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              style={{
+                display: "inline-block",
+                background: "var(--glass-bg)",
+                border: "1px solid var(--border)",
+                borderRadius: 10,
+                padding: "8px 16px",
+                marginBottom: "1.25rem",
+                maxWidth: "100%",
+              }}
+            >
+              <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.9rem, 3vw, 1.35rem)", fontWeight: 500, color: "var(--text)" }}>
+                <span style={{ color: "var(--cyan)", fontWeight: 700 }}>&gt; </span>
+                <TextType
+                  text={["a MERN Stack Developer", "an AI / ML Engineer", "a Problem Solver", "a Full-Stack Developer", "always Learning 🚀"]}
+                  typingSpeed={35}
+                  pauseDuration={1800}
+                  showCursor
+                  cursorCharacter="█"
+                />
+              </span>
+            </motion.div>
+
+            {/* About blurb */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.65, duration: 0.6 }}
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "clamp(0.85rem, 2vw, 1rem)",
+                color: "var(--muted)",
+                lineHeight: 1.8,
+                maxWidth: 560,
+                margin: "0 auto 1.75rem",
+              }}
+            >
+              Passionate about building{" "}
+              <span style={{ color: "var(--cyan)", fontWeight: 600 }}>scalable AI-powered systems</span> and
+              full-stack applications. I craft performant, maintainable code that{" "}
+              <span style={{ color: "var(--accent)", fontWeight: 600 }}>solves real-world problems</span>.
+            </motion.p>
+
+            {/* CTA buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "0.6rem",
+                marginBottom: "1.75rem",
+                justifyContent: "center",
+              }}
+            >
+              <a href="/Bhavik_Rai_Resume.pdf" download className="btn-primary" style={{ textDecoration: "none" }}>
+                <FaDownload size={13} /> Download Resume
+              </a>
+              <a href="https://github.com/Bhavik9696" target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ textDecoration: "none" }}>
+                <FaGithub size={13} /> GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/bhavik-rai-438a70294?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                target="_blank" rel="noopener noreferrer" className="btn-outline"
+                style={{ textDecoration: "none", borderColor: "#7C3AED", color: "#A855F7" }}
+              >
+                <FaLinkedin size={13} /> LinkedIn
+              </a>
+              <a href="/contact" className="btn-outline" style={{ textDecoration: "none", borderColor: "#14F195", color: "#14F195" }}>
+                <FaEnvelope size={13} /> Hire Me
+              </a>
+            </motion.div>
+
+            {/* Tech icons row */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+              style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", alignItems: "center", justifyContent: "center" }}
+            >
+              <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.68rem", color: "#94A3B8", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                Tech:
+              </span>
+              {TECH_ICONS.map((t) => (
+                <TechIcon key={t.label} {...t} />
+              ))}
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2 }}
+          style={{
+            position: "absolute", bottom: "1.5rem", left: "50%", transform: "translateX(-50%)",
+            display: "flex", flexDirection: "column", alignItems: "center", gap: "0.3rem",
+          }}
+        >
+          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.62rem", color: "#94A3B8", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+            Scroll
+          </span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            style={{ width: 1, height: 36, background: "linear-gradient(to bottom, #00F5FF, transparent)", borderRadius: 1 }}
+          />
+        </motion.div>
+      </section>
+
+      {/* ═══════════════════ ABOUT SECTION ═══════════════════ */}
+      <section id="about" style={{ padding: "4rem 1.25rem", maxWidth: 1100, margin: "0 auto" }}>
+        <SectionHeading label="Who I Am" title="About Me" />
+
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+          gap: "1rem",
+        }}>
+          {/* About text — spans full width */}
+          <Reveal delay={0.1}>
+            <div
+              className="glass"
+              style={{ padding: "1.75rem", gridColumn: "1 / -1" }}
+            >
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(0.9rem, 2vw, 1rem)", color: "var(--muted)", lineHeight: 1.9, margin: 0 }}>
+                I'm a <span style={{ color: "#00F5FF", fontWeight: 600 }}>full-stack developer</span> and{" "}
+                <span style={{ color: "#7C3AED", fontWeight: 600 }}>AI engineer</span> passionate about building
+                scalable web applications and solving algorithmic challenges. I love crafting performant systems
+                and clean, maintainable code. I have hands-on experience building{" "}
+                <span style={{ color: "#14F195" }}>multi-agent AI platforms, RAG systems, and real-time web apps</span>.
               </p>
             </div>
-          </section>
-        </AnimatedSection>
+          </Reveal>
 
-        {/* ── SKILLS ── */}
-        <AnimatedSection delay={0.4}>
-          <section className="mt-24 text-center w-full max-w-5xl">
-            <SectionHeading>Skills</SectionHeading>
-
-            {/* Languages */}
-            <div className="glass mb-10 px-6 py-8">
-              <SubHeading>Languages</SubHeading>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                {skillsData.languages.map((skill, idx) => (
-                  <AnimatedSection key={idx} delay={idx * 0.1}>
-                    <SkillCard {...skill} />
-                  </AnimatedSection>
-                ))}
+          {/* Stat cards */}
+          {[
+            { value: "10+", label: "Projects Built",     color: "#00F5FF" },
+            { value: "2+",  label: "Freelance Clients",  color: "#7C3AED" },
+            { value: "AI",  label: "Specialization",     color: "#14F195" },
+          ].map(({ value, label, color }, i) => (
+            <Reveal key={label} delay={0.15 + i * 0.1}>
+              <div
+                className="glass"
+                style={{ padding: "1.5rem", textAlign: "center", border: `1px solid ${color}22` }}
+              >
+                <div style={{
+                  fontFamily: "'Space Grotesk', sans-serif", fontSize: "2.2rem", fontWeight: 700,
+                  color, textShadow: `0 0 20px ${color}66`, lineHeight: 1, marginBottom: "0.4rem",
+                }}>
+                  {value}
+                </div>
+                <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", color: "#94A3B8", letterSpacing: "0.04em" }}>
+                  {label}
+                </div>
               </div>
-            </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
 
-            {/* Frameworks */}
-            <div className="glass mb-10 px-6 py-8">
-              <SubHeading>Frameworks & Libraries</SubHeading>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                {skillsData.frameworks.map((skill, idx) => (
-                  <AnimatedSection key={idx} delay={idx * 0.1}>
-                    <SkillCard {...skill} />
-                  </AnimatedSection>
-                ))}
-              </div>
-            </div>
+      {/* ═══════════════════ SKILLS SECTION (DIALPAD INTERFACE) ═══════════════════ */}
+      <section id="skills" style={{ padding: "4rem 1.25rem", maxWidth: 1100, margin: "0 auto" }}>
+        <SectionHeading label="What I Know" title="Skills & Expertise" />
 
-            {/* Tools */}
-            <div className="glass mb-10 px-6 py-8">
-              <SubHeading>Databases & Tools</SubHeading>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                {skillsData.tools.map((skill, idx) => (
-                  <AnimatedSection key={idx} delay={idx * 0.1}>
-                    <SkillCard {...skill} />
-                  </AnimatedSection>
-                ))}
-              </div>
-            </div>
-
-            {/* Currently Learning */}
-            <div className="glass px-6 py-8">
-              <SubHeading>Currently Learning</SubHeading>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                {skillsData.CurrentlyLearning.map((skill, idx) => (
-                  <AnimatedSection key={idx} delay={idx * 0.1}>
-                    <SkillCard {...skill} />
-                  </AnimatedSection>
-                ))}
-              </div>
-            </div>
-          </section>
-        </AnimatedSection>
-      </div>
-    </>
+        <SkillsDialpad
+          skills={activeSkillCat === "ai" ? skillsData.ai || [] : skillsData[activeSkillCat] || []}
+          activeCategory={activeSkillCat}
+          onSelectCategory={setActiveSkillCat}
+          categories={SKILL_CATS}
+        />
+      </section>
+    </div>
   );
 }

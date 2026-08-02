@@ -1,79 +1,156 @@
-const SkillCard = ({ icon, name, desc, invert }) => (
-  <div
-    className="group relative p-5 rounded-xl transition-all duration-300 cursor-default
-                hover:scale-105 hover:-translate-y-1"
-    style={{
-      background: "rgba(255, 193, 7, 0.05)",
-      border: "1px solid rgba(255, 193, 7, 0.18)",
-      backdropFilter: "blur(16px) saturate(1.3)",
-      WebkitBackdropFilter: "blur(16px) saturate(1.3)",
-      boxShadow: "0 4px 24px rgba(255, 160, 0, 0.10)",
-    }}
-    onMouseEnter={(e) => {
-      e.currentTarget.style.boxShadow =
-        "0 0 28px rgba(255, 193, 7, 0.35), inset 0 0 12px rgba(255, 193, 7, 0.07)";
-      e.currentTarget.style.borderColor = "rgba(255, 193, 7, 0.45)";
-    }}
-    onMouseLeave={(e) => {
-      e.currentTarget.style.boxShadow = "0 4px 24px rgba(255, 160, 0, 0.10)";
-      e.currentTarget.style.borderColor = "rgba(255, 193, 7, 0.18)";
-    }}
-  >
-    {/* Subtle top-edge gold shimmer line */}
-    <div
-      aria-hidden="true"
-      className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px rounded-full opacity-60"
-      style={{
-        background:
-          "linear-gradient(90deg, transparent, rgba(255,193,7,0.6), transparent)",
-      }}
-    />
+import { useState, useRef } from "react";
+import { motion } from "framer-motion";
 
-    {/* Icon */}
-    <div className="flex justify-center mb-3">
+export default function SkillCard({ icon, name, desc, invert }) {
+  const [hovered, setHovered] = useState(false);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const cardRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = ((e.clientX - cx) / (rect.width / 2)) * 10;
+    const dy = -((e.clientY - cy) / (rect.height / 2)) * 10;
+    setTilt({ x: dy, y: dx });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0 });
+    setHovered(false);
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={handleMouseLeave}
+      animate={{
+        rotateX: tilt.x,
+        rotateY: tilt.y,
+        scale: hovered ? 1.06 : 1,
+      }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      style={{
+        perspective: 1000,
+        transformStyle: "preserve-3d",
+        position: "relative",
+        background: hovered
+          ? "rgba(0,245,255,0.06)"
+          : "rgba(11,17,32,0.6)",
+        border: hovered
+          ? "1px solid rgba(0,245,255,0.3)"
+          : "1px solid rgba(255,255,255,0.07)",
+        borderRadius: 16,
+        padding: "1.4rem 1rem",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "0.6rem",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        boxShadow: hovered
+          ? "0 0 30px rgba(0,245,255,0.2), 0 0 60px rgba(0,245,255,0.05), inset 0 0 20px rgba(0,245,255,0.03)"
+          : "0 4px 24px rgba(0,0,0,0.2)",
+        transition: "background 0.25s, border 0.25s, box-shadow 0.25s",
+        cursor: "none",
+        overflow: "hidden",
+      }}
+    >
+      {/* Top shimmer line */}
       <div
-        className="w-14 h-14 flex items-center justify-center rounded-full"
         style={{
-          background: "rgba(255, 193, 7, 0.08)",
-          border: "1px solid rgba(255, 193, 7, 0.2)",
-          boxShadow: "0 0 16px rgba(255, 193, 7, 0.2)",
+          position: "absolute",
+          top: 0,
+          left: "20%",
+          width: "60%",
+          height: 1,
+          background: hovered
+            ? "linear-gradient(90deg, transparent, rgba(0,245,255,0.6), transparent)"
+            : "linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)",
+          transition: "background 0.3s",
+        }}
+      />
+
+      {/* Icon orb */}
+      <motion.div
+        animate={
+          hovered
+            ? { boxShadow: "0 0 24px rgba(0,245,255,0.5)", scale: 1.1 }
+            : { boxShadow: "0 0 12px rgba(0,245,255,0.1)", scale: 1 }
+        }
+        transition={{ duration: 0.25 }}
+        style={{
+          width: 56,
+          height: 56,
+          borderRadius: "50%",
+          background: "rgba(0,245,255,0.06)",
+          border: hovered
+            ? "1px solid rgba(0,245,255,0.4)"
+            : "1px solid rgba(0,245,255,0.15)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          transition: "border 0.25s",
         }}
       >
         <img
           src={icon}
           alt={name}
-          className={`w-8 h-8 object-contain ${invert ? "invert" : ""}`}
           style={{
+            width: 30,
+            height: 30,
+            objectFit: "contain",
             filter: invert
-              ? "invert(1)"
-              : "drop-shadow(0 0 6px rgba(255,193,7,0.4))",
+              ? "invert(1) brightness(0.9)"
+              : hovered
+              ? "drop-shadow(0 0 6px rgba(0,245,255,0.7))"
+              : "none",
+            transition: "filter 0.25s",
           }}
         />
-      </div>
-    </div>
+      </motion.div>
 
-    {/* Name */}
-    <p
-      className="font-semibold text-center text-sm tracking-wide"
-      style={{
-        fontFamily: "'Cinzel', serif",
-        color: "#ffd54f",
-        textShadow: "0 0 10px rgba(255, 193, 7, 0.4)",
-      }}
-    >
-      {name}
-    </p>
-
-    {/* Description */}
-    {desc && (
+      {/* Name */}
       <p
-        className="text-xs mt-2 text-center leading-relaxed"
-        style={{ color: "rgba(240, 230, 200, 0.6)" }}
+        style={{
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontWeight: 600,
+          fontSize: "0.85rem",
+          color: hovered ? "#00F5FF" : "#fff",
+          letterSpacing: "0.03em",
+          textAlign: "center",
+          transition: "color 0.25s",
+          textShadow: hovered ? "0 0 12px rgba(0,245,255,0.5)" : "none",
+          margin: 0,
+        }}
+      >
+        {name}
+      </p>
+
+      {/* Description — reveal on hover */}
+      <motion.p
+        initial={{ opacity: 0, height: 0 }}
+        animate={{
+          opacity: hovered ? 1 : 0,
+          height: hovered ? "auto" : 0,
+        }}
+        transition={{ duration: 0.25 }}
+        style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.72rem",
+          color: "#94A3B8",
+          textAlign: "center",
+          lineHeight: 1.5,
+          margin: 0,
+          overflow: "hidden",
+        }}
       >
         {desc}
-      </p>
-    )}
-  </div>
-);
-
-export default SkillCard;
+      </motion.p>
+    </motion.div>
+  );
+}
