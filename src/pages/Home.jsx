@@ -3,8 +3,6 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView as useIOInView } from "react-intersection-observer";
 import profile from "../assets/images/myimageupdated.jpeg";
 import TextType from "../components/TextType";
-import { skillsData } from "../data/skillsData";
-import SkillCard from "../components/SkillCard";
 import SkillsDialpad from "../components/SkillsDialpad";
 import FloatingDock from "../components/FloatingDock";
 import SectionHeading from "../components/SectionHeading";
@@ -91,14 +89,7 @@ function TechIcon({ Icon, color, label, delay }) {
   );
 }
 
-/* ─── Skill Category Filter ─── */
-const SKILL_CATS = [
-  { key: "languages",         label: "Languages" },
-  { key: "frameworks",        label: "Frameworks" },
-  { key: "tools",             label: "Tools & DB" },
-  { key: "ai",                label: "AI / Python" },
-  { key: "CurrentlyLearning", label: "Learning" },
-];
+
 
 /* ─── Profile Card (desktop) ─── */
 function ProfileCard({ size = 240 }) {
@@ -202,7 +193,6 @@ function ProfileCard({ size = 240 }) {
 
 /* ─── MAIN HOME PAGE ─── */
 export default function HomePage() {
-  const [activeSkillCat, setActiveSkillCat] = useState("languages");
 
   return (
     <div style={{ minHeight: "100vh", background: "transparent", fontFamily: "'Inter', sans-serif", position: "relative", zIndex: 1 }}>
@@ -462,16 +452,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════════════ SKILLS SECTION (DIALPAD INTERFACE) ═══════════════════ */}
+      {/* ═══════════════════ SKILLS SECTION ═══════════════════ */}
       <section id="skills" style={{ padding: "4rem 1.25rem", maxWidth: 1100, margin: "0 auto" }}>
         <SectionHeading label="What I Know" title="Skills & Expertise" />
-
-        <SkillsDialpad
-          skills={activeSkillCat === "ai" ? skillsData.ai || [] : skillsData[activeSkillCat] || []}
-          activeCategory={activeSkillCat}
-          onSelectCategory={setActiveSkillCat}
-          categories={SKILL_CATS}
-        />
+        <SkillsDialpad />
       </section>
     </div>
   );
