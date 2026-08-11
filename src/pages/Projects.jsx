@@ -1,8 +1,7 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt, FaBrain, FaLock, FaCode, FaGlobe } from "react-icons/fa";
 import SectionHeading from "../components/SectionHeading";
-import FloatingDock from "../components/FloatingDock";
 
 /* ─── Project Data (preserved exactly) ─── */
 const freelanceProjects = [
@@ -17,7 +16,7 @@ const freelanceProjects = [
     category: "ai",
     featured: true,
     icon: FaBrain,
-    accentColor: "#00F5FF",
+    accentColor: "#FF6B35",
   },
   {
     title: "Silent Emergency Communication System",
@@ -30,7 +29,7 @@ const freelanceProjects = [
     category: "ai",
     featured: true,
     icon: FaBrain,
-    accentColor: "#7C3AED",
+    accentColor: "#E8C547",
   },
 ];
 
@@ -44,7 +43,7 @@ const personalProjects = [
     tags: ["Python", "FastAPI", "React", "LLaMA", "Groq", "SSE"],
     category: "ai",
     icon: FaBrain,
-    accentColor: "#00F5FF",
+    accentColor: "#FF6B35",
   },
   {
     title: "AI-Based Project Failure Analysis System",
@@ -55,7 +54,7 @@ const personalProjects = [
     tags: ["RAG", "FastAPI", "React", "MongoDB", "LLM"],
     category: "ai",
     icon: FaBrain,
-    accentColor: "#14F195",
+    accentColor: "#E8C547",
   },
   {
     title: "CertiShield – AI & QR Certificate Fraud Verification",
@@ -66,7 +65,7 @@ const personalProjects = [
     tags: ["React", "Node.js", "Gemini", "OCR", "QR Code"],
     category: "ai",
     icon: FaLock,
-    accentColor: "#7C3AED",
+    accentColor: "#FF6B35",
   },
   {
     title: "Queue-SWAP",
@@ -77,7 +76,7 @@ const personalProjects = [
     tags: ["MongoDB", "Express", "React", "Node.js"],
     category: "fullstack",
     icon: FaCode,
-    accentColor: "#00F5FF",
+    accentColor: "#E8C547",
   },
   {
     title: "MERN Fitness Tracker",
@@ -88,7 +87,7 @@ const personalProjects = [
     tags: ["MongoDB", "Express", "React", "Node.js", "JWT"],
     category: "fullstack",
     icon: FaCode,
-    accentColor: "#14F195",
+    accentColor: "#FF6B35",
   },
   {
     title: "College Official Website",
@@ -99,7 +98,7 @@ const personalProjects = [
     tags: ["React", "Firebase", "Tailwind CSS"],
     category: "fullstack",
     icon: FaGlobe,
-    accentColor: "#7C3AED",
+    accentColor: "#E8C547",
   },
   {
     title: "React Password Generator",
@@ -110,7 +109,7 @@ const personalProjects = [
     tags: ["React", "Vite", "Hooks"],
     category: "frontend",
     icon: FaCode,
-    accentColor: "#00F5FF",
+    accentColor: "#FF6B35",
   },
   {
     title: "Responsive Landing Page for PW",
@@ -121,7 +120,7 @@ const personalProjects = [
     tags: ["HTML", "CSS", "Tailwind CSS"],
     category: "frontend",
     icon: FaGlobe,
-    accentColor: "#14F195",
+    accentColor: "#E8C547",
   },
   {
     title: "Portfolio Website",
@@ -132,7 +131,7 @@ const personalProjects = [
     tags: ["React", "Tailwind CSS", "Vite"],
     category: "frontend",
     icon: FaGlobe,
-    accentColor: "#7C3AED",
+    accentColor: "#FF6B35",
   },
   {
     title: "ejs-file-app",
@@ -143,7 +142,7 @@ const personalProjects = [
     tags: ["Node.js", "Express", "EJS"],
     category: "fullstack",
     icon: FaCode,
-    accentColor: "#00F5FF",
+    accentColor: "#E8C547",
   },
   {
     title: "Stock Price Predictor",
@@ -154,264 +153,230 @@ const personalProjects = [
     tags: ["Python", "Machine Learning", "Linear Regression"],
     category: "ai",
     icon: FaBrain,
-    accentColor: "#14F195",
+    accentColor: "#FF6B35",
   },
 ];
 
 const FILTERS = [
-  { key: "all",      label: "All Projects" },
-  { key: "ai",       label: "AI / ML" },
-  { key: "fullstack",label: "Full-Stack" },
-  { key: "frontend", label: "Frontend" },
+  { key: "all",       label: "All" },
+  { key: "ai",        label: "AI / ML" },
+  { key: "fullstack", label: "Full-Stack" },
+  { key: "frontend",  label: "Frontend" },
 ];
 
-/* ─── Project Card ─── */
-function ProjectCard({ project, featured = false }) {
-  const { title, subtitle, description, liveLink, codeLink, tags, icon: Icon, accentColor } = project;
-  const cardRef = useRef(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+/* ─── Project Card — Clean editorial style ─── */
+function ProjectCard({ project, index }) {
+  const { title, subtitle, description, liveLink, codeLink, tags, icon: Icon, accentColor, featured } = project;
   const [hovered, setHovered] = useState(false);
-
-  const onMouseMove = (e) => {
-    const card = cardRef.current;
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    setTilt({
-      x: -((e.clientY - cy) / (rect.height / 2)) * 6,
-      y:  ((e.clientX - cx) / (rect.width / 2)) * 6,
-    });
-  };
 
   return (
     <motion.div
-      ref={cardRef}
-      onMouseMove={onMouseMove}
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.06, duration: 0.45 }}
       onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => { setTilt({ x: 0, y: 0 }); setHovered(false); }}
-      style={{ rotateX: tilt.x, rotateY: tilt.y }}
-      animate={{ rotateX: tilt.x, rotateY: tilt.y, scale: hovered ? 1.02 : 1 }}
-      transition={{ type: "spring", stiffness: 260, damping: 22 }}
-      layout
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        background: hovered ? "#1E1E1E" : "#181818",
+        border: "1px solid",
+        borderColor: hovered ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.07)",
+        borderRadius: 12,
+        padding: "1.5rem",
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+        position: "relative",
+        overflow: "hidden",
+        transition: "background 0.2s, border-color 0.2s, box-shadow 0.2s",
+        boxShadow: hovered ? "0 8px 32px rgba(0,0,0,0.3)" : "none",
+      }}
     >
+      {/* Left accent border */}
       <div
         style={{
-          position: "relative",
-          height: "100%",
-          background: hovered
-            ? `rgba(${accentColor === "#00F5FF" ? "56,189,248" : accentColor === "#7C3AED" ? "139,92,246" : "16,185,129"},0.06)`
-            : "rgba(18,18,22,0.85)",
-          border: `1px solid ${hovered ? accentColor + "44" : "rgba(255,255,255,0.07)"}`,
-          borderRadius: 20,
-          padding: featured ? "2rem" : "1.5rem",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-          boxShadow: hovered
-            ? `0 20px 60px rgba(0,0,0,0.4), 0 0 40px ${accentColor}22`
-            : "0 4px 24px rgba(0,0,0,0.2)",
-          transition: "background 0.3s, border 0.3s, box-shadow 0.3s",
-          overflow: "hidden",
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem",
-          perspective: 1000,
-          transformStyle: "preserve-3d",
+          position: "absolute",
+          left: 0,
+          top: "16%",
+          bottom: "16%",
+          width: 3,
+          background: accentColor,
+          borderRadius: "0 2px 2px 0",
+          opacity: hovered ? 1 : 0.5,
+          transition: "opacity 0.2s",
         }}
-      >
-        {/* Top shimmer */}
+      />
+
+      {/* Header */}
+      <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
         <div
           style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: 1,
-            background: hovered
-              ? `linear-gradient(90deg, transparent, ${accentColor}88, transparent)`
-              : "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)",
-            transition: "background 0.3s",
-          }}
-        />
-
-        {/* Header */}
-        <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
-          {/* Icon */}
-          <div
-            style={{
-              width: 44,
-              height: 44,
-              borderRadius: 12,
-              background: `${accentColor}15`,
-              border: `1px solid ${accentColor}30`,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: accentColor,
-              fontSize: "1.1rem",
-              flexShrink: 0,
-              boxShadow: hovered ? `0 0 16px ${accentColor}44` : "none",
-              transition: "box-shadow 0.3s",
-            }}
-          >
-            <Icon />
-          </div>
-
-          <div style={{ flex: 1 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
-              <h3
-                style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontWeight: 700,
-                  fontSize: featured ? "1.2rem" : "1rem",
-                  color: hovered ? accentColor : "#fff",
-                  margin: 0,
-                  transition: "color 0.2s",
-                  textShadow: hovered ? `0 0 12px ${accentColor}66` : "none",
-                  lineHeight: 1.3,
-                }}
-              >
-                {title}
-              </h3>
-              {featured && (
-                <span
-                  style={{
-                    fontSize: "0.62rem",
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: 700,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    background: `linear-gradient(135deg, ${accentColor}22, ${accentColor}44)`,
-                    border: `1px solid ${accentColor}44`,
-                    color: accentColor,
-                    borderRadius: 50,
-                    padding: "2px 8px",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  ★ Featured
-                </span>
-              )}
-            </div>
-            {subtitle && (
-              <p
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.72rem",
-                  color: accentColor,
-                  margin: "2px 0 0",
-                  fontWeight: 500,
-                }}
-              >
-                {subtitle}
-              </p>
-            )}
-          </div>
-        </div>
-
-        {/* Description */}
-        <p
-          style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "0.84rem",
-            color: "#94A3B8",
-            lineHeight: 1.75,
-            margin: 0,
-            flex: 1,
+            width: 38,
+            height: 38,
+            borderRadius: 8,
+            background: "#222",
+            border: "1px solid rgba(255,255,255,0.07)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: accentColor,
+            fontSize: "1rem",
+            flexShrink: 0,
           }}
         >
-          {description}
-        </p>
-
-        {/* Tech tags */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
-          {tags.map((tag) => (
-            <span key={tag} className="tech-tag">
-              {tag}
-            </span>
-          ))}
+          <Icon />
         </div>
 
-        {/* Action buttons */}
-        <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap" }}>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
+            <h3
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontWeight: 600,
+                fontSize: "0.97rem",
+                color: hovered ? "#F5F5F0" : "#D4D4D4",
+                margin: 0,
+                lineHeight: 1.3,
+                transition: "color 0.2s",
+              }}
+            >
+              {title}
+            </h3>
+            {featured && (
+              <span
+                style={{
+                  fontSize: "0.6rem",
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  background: "rgba(255,107,53,0.12)",
+                  border: "1px solid rgba(255,107,53,0.3)",
+                  color: "#FF6B35",
+                  borderRadius: 4,
+                  padding: "2px 6px",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                Featured
+              </span>
+            )}
+          </div>
+          {subtitle && (
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.71rem",
+                color: "#6B6B6B",
+                margin: "3px 0 0",
+                fontWeight: 500,
+              }}
+            >
+              {subtitle}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Description */}
+      <p
+        style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.84rem",
+          color: "#A3A3A3",
+          lineHeight: 1.75,
+          margin: 0,
+          flex: 1,
+        }}
+      >
+        {description}
+      </p>
+
+      {/* Tech tags */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem" }}>
+        {tags.map((tag) => (
+          <span key={tag} className="tech-tag">
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      {/* Action buttons */}
+      <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+        <a
+          href={codeLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.35rem",
+            padding: "0.4rem 0.9rem",
+            borderRadius: 6,
+            background: "transparent",
+            border: "1px solid rgba(255,255,255,0.1)",
+            color: "#A3A3A3",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "0.77rem",
+            fontWeight: 500,
+            textDecoration: "none",
+            transition: "color 0.18s, border-color 0.18s",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = "#F5F5F0";
+            e.currentTarget.style.borderColor = "rgba(255,255,255,0.22)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = "#A3A3A3";
+            e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
+          }}
+        >
+          <FaGithub size={12} /> Source Code
+        </a>
+
+        {liveLink ? (
           <a
-            href={codeLink}
+            href={liveLink}
             target="_blank"
             rel="noopener noreferrer"
             style={{
               display: "inline-flex",
               alignItems: "center",
               gap: "0.35rem",
-              padding: "0.45rem 1rem",
-              borderRadius: 50,
-              background: `${accentColor}10`,
-              border: `1px solid ${accentColor}30`,
-              color: accentColor,
+              padding: "0.4rem 0.9rem",
+              borderRadius: 6,
+              background: "rgba(255,107,53,0.1)",
+              border: "1px solid rgba(255,107,53,0.25)",
+              color: "#FF6B35",
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.78rem",
-              fontWeight: 600,
+              fontSize: "0.77rem",
+              fontWeight: 500,
               textDecoration: "none",
-              transition: "all 0.2s",
+              transition: "background 0.18s",
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = `${accentColor}20`;
-              e.currentTarget.style.boxShadow = `0 0 16px ${accentColor}33`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = `${accentColor}10`;
-              e.currentTarget.style.boxShadow = "none";
+            onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,107,53,0.18)")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(255,107,53,0.1)")}
+          >
+            <FaExternalLinkAlt size={10} /> Live Demo
+          </a>
+        ) : (
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.35rem",
+              padding: "0.4rem 0.9rem",
+              borderRadius: 6,
+              background: "transparent",
+              border: "1px solid rgba(255,255,255,0.05)",
+              color: "rgba(255,255,255,0.2)",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.77rem",
+              fontWeight: 500,
             }}
           >
-            <FaGithub size={13} />
-            Source Code
-          </a>
-
-          {liveLink ? (
-            <a
-              href={liveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.35rem",
-                padding: "0.45rem 1rem",
-                borderRadius: 50,
-                background: "linear-gradient(135deg, #00F5FF22, #7C3AED22)",
-                border: "1px solid rgba(0,245,255,0.3)",
-                color: "#00F5FF",
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.78rem",
-                fontWeight: 600,
-                textDecoration: "none",
-                transition: "all 0.2s",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 0 16px rgba(0,245,255,0.3)")}
-              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
-            >
-              <FaExternalLinkAlt size={11} />
-              Live Demo
-            </a>
-          ) : (
-            <span
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.35rem",
-                padding: "0.45rem 1rem",
-                borderRadius: 50,
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.06)",
-                color: "rgba(255,255,255,0.25)",
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.78rem",
-                fontWeight: 500,
-              }}
-            >
-              Private / WIP
-            </span>
-          )}
-        </div>
+            Private / WIP
+          </span>
+        )}
       </div>
     </motion.div>
   );
@@ -420,12 +385,12 @@ function ProjectCard({ project, featured = false }) {
 /* ─── MAIN PROJECTS PAGE ─── */
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState("all");
-  const allPersonal = [...freelanceProjects, ...personalProjects];
+  const allProjects = [...freelanceProjects, ...personalProjects];
 
   const filtered =
     activeFilter === "all"
-      ? allPersonal
-      : allPersonal.filter((p) => p.category === activeFilter);
+      ? allProjects
+      : allProjects.filter((p) => p.category === activeFilter);
 
   return (
     <div
@@ -436,54 +401,63 @@ export default function Projects() {
         zIndex: 1,
       }}
     >
-      <FloatingDock />
+      <div
+        style={{
+          maxWidth: 1200,
+          margin: "0 auto",
+          padding: "7rem 2rem 5rem",
+        }}
+      >
+        <SectionHeading
+          num="03"
+          label="What I've Built"
+          title="Selected Work"
+        />
 
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "5rem 1.25rem 4rem" }}>
-        <SectionHeading label="What I've Built" title="Projects" />
-
-        {/* Filter tabs */}
+        {/* Filter tabs — minimal text style */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
           style={{
             display: "flex",
             flexWrap: "wrap",
-            gap: "0.6rem",
-            justifyContent: "center",
+            gap: "0",
             marginBottom: "3rem",
+            borderBottom: "1px solid rgba(255,255,255,0.07)",
           }}
         >
-          {FILTERS.map(({ key, label }) => (
-            <motion.button
-              key={key}
-              onClick={() => setActiveFilter(key)}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
-              style={{
-                padding: "0.5rem 1.4rem",
-                borderRadius: 50,
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.84rem",
-                fontWeight: 500,
-                cursor: "none",
-                transition: "all 0.2s ease",
-                background:
-                  activeFilter === key
-                    ? "linear-gradient(135deg, rgba(0,245,255,0.15), rgba(124,58,237,0.15))"
-                    : "rgba(255,255,255,0.03)",
-                border:
-                  activeFilter === key
-                    ? "1px solid rgba(0,245,255,0.4)"
-                    : "1px solid rgba(255,255,255,0.08)",
-                color: activeFilter === key ? "#00F5FF" : "rgba(255,255,255,0.5)",
-                boxShadow:
-                  activeFilter === key ? "0 0 16px rgba(0,245,255,0.15)" : "none",
-              }}
-            >
-              {label}
-            </motion.button>
-          ))}
+          {FILTERS.map(({ key, label }) => {
+            const isActive = activeFilter === key;
+            return (
+              <button
+                key={key}
+                onClick={() => setActiveFilter(key)}
+                style={{
+                  padding: "0.6rem 1.25rem",
+                  background: "transparent",
+                  border: "none",
+                  borderBottom: isActive ? "2px solid #FF6B35" : "2px solid transparent",
+                  marginBottom: "-1px",
+                  color: isActive ? "#FF6B35" : "#6B6B6B",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.84rem",
+                  fontWeight: isActive ? 600 : 400,
+                  cursor: "pointer",
+                  transition: "color 0.18s, border-color 0.18s",
+                  letterSpacing: "0.02em",
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive) e.currentTarget.style.color = "#A3A3A3";
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) e.currentTarget.style.color = "#6B6B6B";
+                }}
+              >
+                {label}
+              </button>
+            );
+          })}
         </motion.div>
 
         {/* Projects grid */}
@@ -493,38 +467,30 @@ export default function Projects() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.25 }}
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 340px), 1fr))",
-              gap: "1.5rem",
+              gap: "1.25rem",
             }}
           >
             {filtered.map((project, i) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.07, duration: 0.5 }}
-                style={{ display: "flex" }}
-              >
-                <ProjectCard project={project} featured={project.featured} />
-              </motion.div>
+              <ProjectCard key={project.title} project={project} index={i} />
             ))}
           </motion.div>
         </AnimatePresence>
 
-        {/* Empty state */}
         {filtered.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            style={{ textAlign: "center", padding: "4rem", color: "#94A3B8" }}
+          <div
+            style={{
+              textAlign: "center",
+              padding: "4rem",
+              color: "#6B6B6B",
+              fontFamily: "'Inter', sans-serif",
+            }}
           >
-            <p style={{ fontFamily: "'Inter', sans-serif" }}>
-              No projects in this category yet.
-            </p>
-          </motion.div>
+            No projects in this category yet.
+          </div>
         )}
       </div>
     </div>

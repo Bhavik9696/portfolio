@@ -1,10 +1,10 @@
-import { FaLinkedin, FaGithub, FaTwitter, FaHeart, FaArrowUp } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaEnvelope, FaArrowUp } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const socials = [
   { icon: FaGithub,   href: "https://github.com/Bhavik9696",  label: "GitHub" },
   { icon: FaLinkedin, href: "https://www.linkedin.com/in/bhavik-rai-438a70294?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", label: "LinkedIn" },
-  { icon: FaTwitter,  href: "https://twitter.com",            label: "Twitter" },
+  { icon: FaEnvelope, href: "mailto:bhavikrai.dev@gmail.com",  label: "Email" },
 ];
 
 const quickLinks = [
@@ -16,92 +16,55 @@ const quickLinks = [
 
 export default function Footer() {
   const year = new Date().getFullYear();
-
   const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
     <footer
       style={{
-        position: "relative",
-        background: "#000000",
-        borderTop: "1px solid rgba(255,255,255,0.08)",
-        marginTop: "4rem",
-        overflow: "hidden",
+        background: "#0D0D0D",
+        borderTop: "1px solid rgba(255,255,255,0.07)",
+        marginTop: "6rem",
       }}
     >
-      {/* Wave SVG top */}
-      <div style={{ position: "absolute", top: -1, left: 0, width: "100%", overflow: "hidden", lineHeight: 0 }}>
-        <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: 40 }}>
-          <path
-            d="M0 40 Q360 0 720 20 Q1080 40 1440 10 L1440 0 L0 0 Z"
-            fill="rgba(0,245,255,0.04)"
-          />
-          <path
-            d="M0 40 Q360 10 720 28 Q1080 46 1440 20 L1440 0 L0 0 Z"
-            fill="rgba(124,58,237,0.03)"
-          />
-        </svg>
-      </div>
-
-      {/* Glow blobs */}
-      <div style={{
-        position: "absolute",
-        width: 300,
-        height: 300,
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(0,245,255,0.04), transparent 70%)",
-        bottom: 0,
-        left: "10%",
-        filter: "blur(60px)",
-        pointerEvents: "none",
-      }} />
-      <div style={{
-        position: "absolute",
-        width: 300,
-        height: 300,
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(124,58,237,0.05), transparent 70%)",
-        bottom: 0,
-        right: "10%",
-        filter: "blur(60px)",
-        pointerEvents: "none",
-      }} />
-
       <div
         style={{
-          maxWidth: 1100,
+          maxWidth: 1200,
           margin: "0 auto",
-          padding: "3rem 1.5rem 1.5rem",
-          position: "relative",
-          zIndex: 1,
+          padding: "3.5rem 2rem 2rem",
         }}
       >
-        {/* Top grid */}
+        {/* Top row */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
             gap: "2.5rem",
-            marginBottom: "2.5rem",
+            marginBottom: "3rem",
           }}
         >
           {/* Brand */}
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "1rem" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.6rem",
+                marginBottom: "1rem",
+              }}
+            >
               <div
                 style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: "50%",
-                  background: "linear-gradient(135deg, #00F5FF, #7C3AED)",
+                  width: 34,
+                  height: 34,
+                  borderRadius: 7,
+                  background: "#FF6B35",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   fontFamily: "'Space Grotesk', sans-serif",
                   fontWeight: 700,
-                  fontSize: "0.85rem",
+                  fontSize: "0.78rem",
                   color: "#fff",
-                  boxShadow: "0 0 16px rgba(0,245,255,0.3)",
                 }}
               >
                 BR
@@ -109,43 +72,68 @@ export default function Footer() {
               <span
                 style={{
                   fontFamily: "'Space Grotesk', sans-serif",
-                  fontWeight: 700,
-                  fontSize: "1.1rem",
-                  background: "linear-gradient(135deg, #00F5FF, #7C3AED)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
+                  fontWeight: 600,
+                  fontSize: "1rem",
+                  color: "#F5F5F0",
                 }}
               >
                 Bhavik Rai
               </span>
             </div>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.85rem", color: "#94A3B8", lineHeight: 1.7, maxWidth: 220 }}>
-              Full-Stack Developer & AI Engineer. Building intelligent, scalable web applications.
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.83rem",
+                color: "#6B6B6B",
+                lineHeight: 1.7,
+                maxWidth: 220,
+                margin: 0,
+              }}
+            >
+              Full-Stack Developer &amp; AI Engineer building reliable, intelligent software.
             </p>
           </div>
 
           {/* Quick links */}
           <div>
-            <h4 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: "0.9rem", color: "#00F5FF", marginBottom: "1rem", letterSpacing: "0.08em", textTransform: "uppercase" }}>
-              Quick Links
+            <h4
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontWeight: 600,
+                fontSize: "0.78rem",
+                color: "#FF6B35",
+                marginBottom: "1rem",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+              }}
+            >
+              Navigation
             </h4>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.6rem" }}>
+            <ul
+              style={{
+                listStyle: "none",
+                padding: 0,
+                margin: 0,
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.5rem",
+              }}
+            >
               {quickLinks.map(({ label, href }) => (
                 <li key={label}>
                   <a
                     href={href}
                     style={{
                       fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.85rem",
-                      color: "#94A3B8",
+                      fontSize: "0.84rem",
+                      color: "#6B6B6B",
                       textDecoration: "none",
-                      transition: "color 0.2s",
+                      transition: "color 0.18s",
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = "#00F5FF")}
-                    onMouseLeave={(e) => (e.target.style.color = "#94A3B8")}
+                    onMouseEnter={(e) => (e.target.style.color = "#F5F5F0")}
+                    onMouseLeave={(e) => (e.target.style.color = "#6B6B6B")}
                   >
-                    → {label}
+                    {label}
                   </a>
                 </li>
               ))}
@@ -154,10 +142,20 @@ export default function Footer() {
 
           {/* Connect */}
           <div>
-            <h4 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: "0.9rem", color: "#00F5FF", marginBottom: "1rem", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+            <h4
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontWeight: 600,
+                fontSize: "0.78rem",
+                color: "#FF6B35",
+                marginBottom: "1rem",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+              }}
+            >
               Connect
             </h4>
-            <div style={{ display: "flex", gap: "0.75rem" }}>
+            <div style={{ display: "flex", gap: "0.6rem" }}>
               {socials.map(({ icon: Icon, href, label }) => (
                 <motion.a
                   key={label}
@@ -165,43 +163,56 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  whileHover={{ scale: 1.15, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ y: -2 }}
                   style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: "50%",
-                    background: "rgba(0,245,255,0.06)",
-                    border: "1px solid rgba(0,245,255,0.15)",
+                    width: 38,
+                    height: 38,
+                    borderRadius: 8,
+                    background: "#1A1A1A",
+                    border: "1px solid rgba(255,255,255,0.08)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    color: "#94A3B8",
-                    fontSize: "1rem",
-                    transition: "color 0.2s, box-shadow 0.2s",
+                    color: "#6B6B6B",
+                    fontSize: "0.95rem",
+                    transition: "color 0.18s, border-color 0.18s, background 0.18s",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = "#00F5FF";
-                    e.currentTarget.style.boxShadow = "0 0 16px rgba(0,245,255,0.3)";
+                    e.currentTarget.style.color = "#FF6B35";
+                    e.currentTarget.style.borderColor = "rgba(255,107,53,0.3)";
+                    e.currentTarget.style.background = "rgba(255,107,53,0.06)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.color = "#94A3B8";
-                    e.currentTarget.style.boxShadow = "none";
+                    e.currentTarget.style.color = "#6B6B6B";
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+                    e.currentTarget.style.background = "#1A1A1A";
                   }}
                 >
                   <Icon />
                 </motion.a>
               ))}
             </div>
-
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.78rem", color: "#94A3B8", marginTop: "1rem" }}>
-              📧 bhavikrai.dev@gmail.com
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.78rem",
+                color: "#6B6B6B",
+                marginTop: "1rem",
+              }}
+            >
+              bhavikrai.dev@gmail.com
             </p>
           </div>
         </div>
 
         {/* Divider */}
-        <div style={{ height: 1, background: "rgba(255,255,255,0.06)", marginBottom: "1.5rem" }} />
+        <div
+          style={{
+            height: 1,
+            background: "rgba(255,255,255,0.06)",
+            marginBottom: "1.5rem",
+          }}
+        />
 
         {/* Bottom bar */}
         <div
@@ -213,38 +224,47 @@ export default function Footer() {
             gap: "1rem",
           }}
         >
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8rem", color: "#94A3B8", margin: 0 }}>
-            © {year} Bhavik Rai. Made with{" "}
-            <FaHeart style={{ display: "inline", color: "#7C3AED", verticalAlign: "middle" }} />{" "}
-            &amp; lots of{" "}
-            <span style={{ color: "#00F5FF" }}>code</span>.
+          <p
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.78rem",
+              color: "#6B6B6B",
+              margin: 0,
+            }}
+          >
+            © {year} Bhavik Rai. All rights reserved.
           </p>
 
-          {/* Scroll to top */}
           <motion.button
             onClick={scrollTop}
-            whileHover={{ scale: 1.1, y: -2 }}
+            whileHover={{ y: -2 }}
             whileTap={{ scale: 0.95 }}
             aria-label="Scroll to top"
             style={{
-              background: "linear-gradient(135deg, rgba(0,245,255,0.1), rgba(124,58,237,0.1))",
-              border: "1px solid rgba(0,245,255,0.2)",
-              borderRadius: "50px",
+              background: "#1A1A1A",
+              border: "1px solid rgba(255,255,255,0.1)",
+              borderRadius: 8,
               padding: "0.45rem 1rem",
               display: "flex",
               alignItems: "center",
               gap: "0.4rem",
-              color: "#00F5FF",
+              color: "#A3A3A3",
               fontFamily: "'Inter', sans-serif",
-              fontSize: "0.78rem",
+              fontSize: "0.76rem",
               fontWeight: 500,
-              cursor: "none",
-              transition: "box-shadow 0.2s",
+              cursor: "pointer",
+              transition: "color 0.18s, border-color 0.18s",
             }}
-            onMouseEnter={(e) => e.currentTarget.style.boxShadow = "0 0 16px rgba(0,245,255,0.3)"}
-            onMouseLeave={(e) => e.currentTarget.style.boxShadow = "none"}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = "#FF6B35";
+              e.currentTarget.style.borderColor = "rgba(255,107,53,0.3)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = "#A3A3A3";
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
+            }}
           >
-            <FaArrowUp size={12} /> Back to top
+            <FaArrowUp size={11} /> Back to top
           </motion.button>
         </div>
       </div>

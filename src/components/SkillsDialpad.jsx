@@ -15,9 +15,9 @@ function SkillItem({ name, icon, desc, invert }) {
       animate={{ y: hovered ? -6 : 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
       style={{
-        background: hovered ? "#1e2231" : "#181b27",
+        background: hovered ? "#1E1E1E" : "#181818",
         border: hovered
-          ? "1px solid rgba(99,102,241,0.45)"
+          ? "1px solid rgba(255,107,53,0.45)"
           : "1px solid rgba(255,255,255,0.07)",
         borderRadius: 14,
         padding: "1.25rem 1rem",
@@ -39,7 +39,7 @@ function SkillItem({ name, icon, desc, invert }) {
           width: 52,
           height: 52,
           borderRadius: 12,
-          background: "#0f1120",
+          background: "#161616",
           border: "1px solid rgba(255,255,255,0.06)",
           display: "flex",
           alignItems: "center",
@@ -131,7 +131,7 @@ function CategorySection({ label, skills, index }) {
           style={{
             flex: 1,
             height: 1,
-            background: "linear-gradient(90deg, rgba(99,102,241,0.25), transparent)",
+            background: "linear-gradient(90deg, rgba(255,107,53,0.2), transparent)",
             borderRadius: 1,
           }}
         />

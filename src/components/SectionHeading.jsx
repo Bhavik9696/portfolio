@@ -2,18 +2,18 @@ import { useRef, useEffect } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 
 /**
- * SectionHeading — Reusable premium section title
+ * SectionHeading — Editorial section title
  * Props:
- *   label   — small uppercase label above (optional)
- *   title   — main heading text
- *   gradient — "cyan" | "purple" | "full" (default "full")
- *   align   — "center" | "left" (default "center")
+ *   num    — section number (e.g. "01")
+ *   label  — small eyebrow label above (optional)
+ *   title  — main heading text
+ *   align  — "center" | "left" (default "left")
  */
 export default function SectionHeading({
+  num,
   label,
   title,
-  gradient = "full",
-  align = "center",
+  align = "left",
 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -23,84 +23,102 @@ export default function SectionHeading({
     if (inView) controls.start("visible");
   }, [inView, controls]);
 
-  const gradients = {
-    cyan: "linear-gradient(135deg, var(--cyan), var(--purple))",
-    purple: "linear-gradient(135deg, var(--purple), var(--cyan))",
-    full: "linear-gradient(135deg, var(--cyan) 0%, var(--purple) 50%, var(--accent) 100%)",
-  };
-
   return (
     <motion.div
       ref={ref}
       initial="hidden"
       animate={controls}
       variants={{
-        hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+        hidden: { opacity: 0, y: 24 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
       }}
       style={{
         textAlign: align,
         marginBottom: "3rem",
       }}
     >
-      {label && (
-        <motion.p
+      {/* Eyebrow: number + label */}
+      {(num || label) && (
+        <motion.div
           variants={{
             hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { delay: 0.1 } },
+            visible: { opacity: 1, transition: { delay: 0.05 } },
           }}
           style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "0.75rem",
-            fontWeight: 600,
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-            color: "var(--cyan)",
-            marginBottom: "0.5rem",
+            display: "flex",
+            alignItems: "center",
+            gap: "0.6rem",
+            marginBottom: "0.7rem",
+            justifyContent: align === "center" ? "center" : "flex-start",
           }}
         >
-          ✦ {label} ✦
-        </motion.p>
+          {num && (
+            <span
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: "0.72rem",
+                fontWeight: 500,
+                letterSpacing: "0.12em",
+                color: "#6B6B6B",
+                textTransform: "uppercase",
+              }}
+            >
+              {num} /
+            </span>
+          )}
+          {label && (
+            <span
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.72rem",
+                fontWeight: 600,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "#FF6B35",
+              }}
+            >
+              {label}
+            </span>
+          )}
+        </motion.div>
       )}
 
+      {/* Main title */}
       <motion.h2
         variants={{
-          hidden: { opacity: 0, y: 20 },
-          visible: { opacity: 1, y: 0, transition: { delay: 0.15, duration: 0.6 } },
+          hidden: { opacity: 0, y: 16 },
+          visible: { opacity: 1, y: 0, transition: { delay: 0.1, duration: 0.55 } },
         }}
         style={{
           fontFamily: "'Space Grotesk', sans-serif",
-          fontSize: "clamp(2rem, 4vw, 3rem)",
+          fontSize: "clamp(1.9rem, 4vw, 2.75rem)",
           fontWeight: 700,
           lineHeight: 1.1,
-          background: gradients[gradient],
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
-          color: "transparent !important",
-          marginBottom: "1rem",
+          color: "#F5F5F0",
+          letterSpacing: "-0.01em",
+          margin: "0 0 1rem",
         }}
       >
         {title}
       </motion.h2>
 
-      {/* Animated underline */}
+      {/* Orange underline accent */}
       <motion.div
         variants={{
           hidden: { scaleX: 0, opacity: 0 },
           visible: {
             scaleX: 1,
             opacity: 1,
-            transition: { delay: 0.3, duration: 0.6, ease: "easeOut" },
+            transition: { delay: 0.25, duration: 0.45, ease: "easeOut" },
           },
         }}
         style={{
           height: 2,
-          width: 60,
-          margin: align === "center" ? "0 auto" : "0",
+          width: 36,
+          marginLeft: align === "center" ? "auto" : 0,
+          marginRight: align === "center" ? "auto" : 0,
           borderRadius: 2,
-          background: gradients[gradient],
-          boxShadow: "0 0 12px rgba(0,245,255,0.6)",
+          background: "#FF6B35",
           transformOrigin: align === "center" ? "center" : "left",
         }}
       />
