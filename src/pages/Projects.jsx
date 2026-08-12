@@ -46,12 +46,12 @@ const personalProjects = [
     accentColor: "#FF6B35",
   },
   {
-    title: "AI-Based Project Failure Analysis System",
+    title: "ProjectLens AI",
     description:
-      "A secure RAG-powered platform built with FastAPI, React, and MongoDB that classifies project reports as Passed or Failed and generates evidence-based root cause analysis. Designed a chunked document ingestion pipeline with vector search.",
-    liveLink: null,
+      "A RAG-powered platform that automatically extracts software requirements from SRS documents and verifies their implementation against real GitHub repositories using evidence-based AI analysis. Built intelligent requirement extraction, code retrieval, and traceability analysis to classify features as Implemented, Partial, Missing, or Not Verifiable. Features GitHub repository analysis, project health scoring, Traceability Matrix (RTM), AI Copilot, PDF report generation, and privacy-focused RAG with secret redaction.",
+    liveLink: "https://project-lens-ai-kappa.vercel.app/",
     codeLink: "https://github.com/Bhavik9696/secure-project-intelligence.git",
-    tags: ["RAG", "FastAPI", "React", "MongoDB", "LLM"],
+    tags: ["React", "Vite", "Node.js", "Express", "MongoDB", "RAG", "Gemini AI", "GitHub API"],
     category: "ai",
     icon: FaBrain,
     accentColor: "#E8C547",
