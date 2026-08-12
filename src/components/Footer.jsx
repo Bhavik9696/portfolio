@@ -1,5 +1,6 @@
 import { FaLinkedin, FaGithub, FaEnvelope, FaArrowUp } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const socials = [
   { icon: FaGithub,   href: "https://github.com/Bhavik9696",  label: "GitHub" },
@@ -121,8 +122,8 @@ export default function Footer() {
             >
               {quickLinks.map(({ label, href }) => (
                 <li key={label}>
-                  <a
-                    href={href}
+                  <Link
+                    to={href}
                     style={{
                       fontFamily: "'Inter', sans-serif",
                       fontSize: "0.84rem",
@@ -134,7 +135,7 @@ export default function Footer() {
                     onMouseLeave={(e) => (e.target.style.color = "#6B6B6B")}
                   >
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
