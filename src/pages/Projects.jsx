@@ -388,7 +388,11 @@ function ProjectCard({ project, index }) {
 /* ─── MAIN PROJECTS PAGE ─── */
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState("all");
-  const allProjects = [...personalProjects, ...freelanceProjects];
+  const allProjects = [
+    ...personalProjects.slice(0, 2),   // 1. ProjectLens AI, 2. ALLYVEX
+    ...freelanceProjects,              // 3. Career Recruit AI, 4. Silent Emergency
+    ...personalProjects.slice(2),      // rest of personal projects
+  ];
 
   const filtered =
     activeFilter === "all"
