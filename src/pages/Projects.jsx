@@ -160,10 +160,11 @@ const personalProjects = [
 ];
 
 const FILTERS = [
-  { key: "all",       label: "All" },
-  { key: "ai",        label: "AI / ML" },
-  { key: "fullstack", label: "Full-Stack" },
-  { key: "frontend",  label: "Frontend" },
+  { key: "all",        label: "All" },
+  { key: "freelance",  label: "Freelancing" },
+  { key: "ai",         label: "AI / ML" },
+  { key: "fullstack",  label: "Full-Stack" },
+  { key: "frontend",   label: "Frontend" },
 ];
 
 /* ─── Project Card — Clean editorial style ─── */
@@ -392,6 +393,8 @@ export default function Projects() {
   const filtered =
     activeFilter === "all"
       ? allProjects
+      : activeFilter === "freelance"
+      ? freelanceProjects
       : allProjects.filter((p) => p.category === activeFilter);
 
   return (
