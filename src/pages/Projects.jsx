@@ -35,17 +35,6 @@ const freelanceProjects = [
 
 const personalProjects = [
   {
-    title: "ALLYVEX – AI Sales Intelligence Engine",
-    description:
-      "A multi-agent AI sales intelligence platform built using Python, FastAPI, React, Groq LLaMA, Mistral, and SSE. Architected Bull, Bear, Detective, and Orchestrator agents that research companies, generate customer-vs-partner sales verdicts with confidence scores, and automatically draft outreach emails.",
-    liveLink: null,
-    codeLink: "https://github.com/Bhavik9696/ALLYVEX.git",
-    tags: ["Python", "FastAPI", "React", "LLaMA", "Groq", "SSE"],
-    category: "ai",
-    icon: FaBrain,
-    accentColor: "#FF6B35",
-  },
-  {
     title: "ProjectLens AI",
     description:
       "A RAG-powered platform that automatically extracts software requirements from SRS documents and verifies their implementation against real GitHub repositories using evidence-based AI analysis. Built intelligent requirement extraction, code retrieval, and traceability analysis to classify features as Implemented, Partial, Missing, or Not Verifiable. Features GitHub repository analysis, project health scoring, Traceability Matrix (RTM), AI Copilot, PDF report generation, and privacy-focused RAG with secret redaction.",
@@ -55,6 +44,17 @@ const personalProjects = [
     category: "ai",
     icon: FaBrain,
     accentColor: "#E8C547",
+  },
+  {
+    title: "ALLYVEX – AI Sales Intelligence Engine",
+    description:
+      "A multi-agent AI sales intelligence platform built using Python, FastAPI, React, Groq LLaMA, Mistral, and SSE. Architected Bull, Bear, Detective, and Orchestrator agents that research companies, generate customer-vs-partner sales verdicts with confidence scores, and automatically draft outreach emails.",
+    liveLink: null,
+    codeLink: "https://github.com/Bhavik9696/ALLYVEX.git",
+    tags: ["Python", "FastAPI", "React", "LLaMA", "Groq", "SSE"],
+    category: "ai",
+    icon: FaBrain,
+    accentColor: "#FF6B35",
   },
   {
     title: "CertiShield – AI & QR Certificate Fraud Verification",
