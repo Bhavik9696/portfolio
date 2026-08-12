@@ -22,10 +22,10 @@ const freelanceProjects = [
     title: "Career Recruit AI",
     subtitle: "Full-Stack & AI Developer — Freelance Project",
     description:
-      "AI-driven campus placement platform with Student, Admin, and Alumni portals, ML-based placement prediction, resume parsing, and automated shortlisting — serving 200+ students.",
+      "A full-stack campus placement platform with three role portals (Student, Admin, Alumni). Includes an AI microservice for ML-based placement prediction (RandomForest), resume parsing (pdfplumber + spaCy), skill-gap analysis, career path recommendations, mock interview practice, and a TF-IDF FAQ chatbot. Node.js/Express handles auth (JWT + RBAC) and proxies AI workloads to a FastAPI service, with results persisted in MongoDB. Features automated shortlisting with email/in-app notifications, Recharts analytics dashboards, and CSV/PDF export.",
     liveLink: null,
     codeLink: "https://github.com/Bhavik9696/AI-Based-Smart-Campus-Placement-and-Career-Intelligence-System-.git",
-    tags: ["Python", "ML", "React", "FastAPI", "MongoDB"],
+    tags: ["React", "Node.js", "Express", "MongoDB", "FastAPI", "Python", "scikit-learn", "spaCy", "JWT"],
     category: "ai",
     featured: true,
     icon: FaBrain,
