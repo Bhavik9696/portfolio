@@ -6,19 +6,6 @@ import SectionHeading from "../components/SectionHeading";
 /* ─── Project Data (preserved exactly) ─── */
 const freelanceProjects = [
   {
-    title: "ProjectLens AI",
-    subtitle: "Full-Stack & AI Developer — Personal Project",
-    description:
-      "A RAG-powered platform that automatically extracts software requirements from SRS documents and verifies their implementation against real GitHub repositories using evidence-based AI analysis. Built intelligent requirement extraction, code retrieval, and traceability analysis to classify features as Implemented, Partial, Missing, or Not Verifiable. Features GitHub repository analysis, project health scoring, Traceability Matrix (RTM), AI Copilot, PDF report generation, and privacy-focused RAG with secret redaction.",
-    liveLink: "https://project-lens-ai-kappa.vercel.app/",
-    codeLink: "https://github.com/Bhavik9696/ProjectLens.Ai.git",
-    tags: ["React", "Vite", "Node.js", "Express", "MongoDB", "RAG", "Gemini AI", "GitHub API"],
-    category: "ai",
-    featured: true,
-    icon: FaBrain,
-    accentColor: "#FF6B35",
-  },
-  {
     title: "Career Recruit AI",
     subtitle: "Full-Stack & AI Developer — Freelance Project",
     description:
@@ -29,7 +16,7 @@ const freelanceProjects = [
     category: "ai",
     featured: true,
     icon: FaBrain,
-    accentColor: "#E8C547",
+    accentColor: "#FF6B35",
   },
   {
     title: "Silent Emergency Communication System",
@@ -42,11 +29,24 @@ const freelanceProjects = [
     category: "ai",
     featured: true,
     icon: FaBrain,
-    accentColor: "#FF6B35",
+    accentColor: "#E8C547",
   },
 ];
 
 const personalProjects = [
+  {
+    title: "ProjectLens AI",
+    subtitle: "Full-Stack & AI Developer — Personal Project",
+    description:
+      "A RAG-powered platform that automatically extracts software requirements from SRS documents and verifies their implementation against real GitHub repositories using evidence-based AI analysis. Built intelligent requirement extraction, code retrieval, and traceability analysis to classify features as Implemented, Partial, Missing, or Not Verifiable. Features GitHub repository analysis, project health scoring, Traceability Matrix (RTM), AI Copilot, PDF report generation, and privacy-focused RAG with secret redaction.",
+    liveLink: "https://project-lens-ai-kappa.vercel.app/",
+    codeLink: "https://github.com/Bhavik9696/ProjectLens.Ai.git",
+    tags: ["React", "Vite", "Node.js", "Express", "MongoDB", "RAG", "Gemini AI", "GitHub API"],
+    category: "ai",
+    featured: true,
+    icon: FaBrain,
+    accentColor: "#E8C547",
+  },
   {
     title: "ALLYVEX – AI Sales Intelligence Engine",
     description:
