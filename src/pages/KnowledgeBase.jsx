@@ -6,26 +6,29 @@ import { FaGraduationCap, FaUniversity, FaSchool } from "react-icons/fa";
 const educationData = [
   {
     logo: "https://imgs.search.brave.com/rn2u9VZcGsi8Rd7WaApdSxQGEakQly5p-Ph4roXb7To/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWcu/eW91dHViZS5jb20v/dmkvQkZtdHRyOEI4/WHcvc2RkZWZhdWx0/LmpwZw",
-    title: "St Joseph Engineering College, Mangalore",
-    degree: "Bachelor of Engineering — Computer Science",
+    title: "St Joseph Engineering College, Mangaluru",
+    degree: "B.E. in Computer Science and Engineering",
     year: "2023 – 2027",
-    note: "Final year student · CGPA: Ongoing",
+    note: "Current Student",
+    score: "CGPA: 8.53 / 10",
     icon: FaGraduationCap,
   },
   {
     logo: "https://tse2.mm.bing.net/th/id/OIP.mEfz2KJP-r4o5lMLJg8e3QHaHa?pid=Api&P=0&h=180",
-    title: "Vivekananda Pre University College, Puttur",
-    degree: "Pre-University Education (Science)",
+    title: "Vivekananda PU College, Puttur",
+    degree: "Pre-University (Science)",
     year: "2021 – 2023",
     note: "PCM with Computer Science",
+    score: "91.5%",
     icon: FaUniversity,
   },
   {
     logo: "https://ashwithrai.me/Education/priyadarshini.png",
     title: "Priyadarshini English Medium School, Bettampady",
-    degree: "Secondary School Education (CBSE)",
+    degree: "SSLC",
     year: "2011 – 2021",
     note: "10 Years of Foundation",
+    score: "91.2%",
     icon: FaSchool,
   },
 ];
@@ -206,18 +209,38 @@ function TimelineCard({ edu, index }) {
         >
           {edu.degree}
         </p>
-        {edu.note && (
-          <p
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.75rem",
-              color: "#6B6B6B",
-              margin: 0,
-            }}
-          >
-            {edu.note}
-          </p>
-        )}
+        <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", flexWrap: "wrap", marginTop: "0.15rem" }}>
+          {edu.note && (
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.75rem",
+                color: "#6B6B6B",
+                margin: 0,
+              }}
+            >
+              {edu.note}
+            </p>
+          )}
+          {edu.score && (
+            <span
+              style={{
+                fontFamily: "'Space Grotesk', sans-serif",
+                fontSize: "0.72rem",
+                fontWeight: 700,
+                color: "#FF6B35",
+                background: "rgba(255,107,53,0.1)",
+                border: "1px solid rgba(255,107,53,0.25)",
+                borderRadius: 5,
+                padding: "0.15rem 0.55rem",
+                letterSpacing: "0.03em",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {edu.score}
+            </span>
+          )}
+        </div>
       </div>
     </motion.div>
   );
