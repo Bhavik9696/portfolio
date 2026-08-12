@@ -5,6 +5,7 @@ import profile from "../assets/images/myimageupdated.jpeg";
 import SkillsDialpad from "../components/SkillsDialpad";
 import SectionHeading from "../components/SectionHeading";
 import { FaDownload, FaGithub, FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 /* ─── Scroll reveal wrapper ─── */
 function Reveal({ children, delay = 0, direction = "up" }) {
@@ -199,13 +200,13 @@ export default function HomePage() {
                 marginBottom: "3rem",
               }}
             >
-              <a
-                href="/projects"
+              <Link
+                to="/projects"
                 className="btn-primary"
                 style={{ textDecoration: "none" }}
               >
                 View My Work <FaArrowRight size={12} />
-              </a>
+              </Link>
               <a
                 href="/Bhavik_Rai_Resume.pdf"
                 download
