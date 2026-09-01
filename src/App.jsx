@@ -1,15 +1,76 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import { ThemeProvider } from "./context/ThemeContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import PageWrapper from "./components/PageWrapper";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import KnowledgeBase from "./pages/KnowledgeBase";
+import CaseStudy from "./pages/CaseStudy";
 import LoadingScreen from "./components/LoadingScreen";
 import CustomCursor from "./components/CustomCursor";
 import ScrollProgress from "./components/ScrollProgress";
+import ChatWidget from "./components/ChatWidget";
+
+/* ── Animated Routes (needs useLocation inside Router) ── */
+function AnimatedRoutes() {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route
+          path="/"
+          element={
+            <PageWrapper>
+              <Home />
+            </PageWrapper>
+          }
+        />
+        <Route
+          path="/knowledge"
+          element={
+            <PageWrapper>
+              <KnowledgeBase />
+            </PageWrapper>
+          }
+        />
+        <Route
+          path="/projects"
+          element={
+            <PageWrapper>
+              <Projects />
+            </PageWrapper>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <PageWrapper>
+              <Contact />
+            </PageWrapper>
+          }
+        />
+        <Route
+          path="/case-study/:id"
+          element={
+            <PageWrapper>
+              <CaseStudy />
+            </PageWrapper>
+          }
+        />
+      </Routes>
+    </AnimatePresence>
+  );
+}
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -56,16 +117,14 @@ function App() {
                 paddingTop: "1rem",
               }}
             >
-              <Routes>
-                <Route path="/"          element={<Home />} />
-                <Route path="/knowledge" element={<KnowledgeBase />} />
-                <Route path="/projects"  element={<Projects />} />
-                <Route path="/contact"   element={<Contact />} />
-              </Routes>
+              <AnimatedRoutes />
             </main>
 
             <Footer />
           </div>
+
+          {/* ── AI Chat Widget (fixed position, renders over everything) ── */}
+          <ChatWidget />
         </div>
       </Router>
     </ThemeProvider>

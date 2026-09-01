@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt, FaBrain, FaLock, FaCode, FaGlobe } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import SectionHeading from "../components/SectionHeading";
 
 /* ─── Project Data (preserved exactly) ─── */
@@ -17,6 +18,7 @@ const freelanceProjects = [
     featured: true,
     icon: FaBrain,
     accentColor: "#FF6B35",
+    caseStudyId: "career-recruit-ai",
   },
   {
     title: "Silent Emergency Communication System",
@@ -46,6 +48,7 @@ const personalProjects = [
     featured: true,
     icon: FaBrain,
     accentColor: "#E8C547",
+    caseStudyId: "projectlens-ai",
   },
   {
     title: "ALLYVEX – AI Sales Intelligence Engine",
@@ -57,6 +60,7 @@ const personalProjects = [
     category: "ai",
     icon: FaBrain,
     accentColor: "#FF6B35",
+    caseStudyId: "allyvex",
   },
   {
     title: "CertiShield – AI & QR Certificate Fraud Verification",
@@ -169,7 +173,7 @@ const FILTERS = [
 
 /* ─── Project Card — Theme-aware editorial style ─── */
 function ProjectCard({ project, index }) {
-  const { title, subtitle, description, liveLink, codeLink, tags, icon: Icon, accentColor, featured } = project;
+  const { title, subtitle, description, liveLink, codeLink, tags, icon: Icon, accentColor, featured, caseStudyId } = project;
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -305,6 +309,31 @@ function ProjectCard({ project, index }) {
 
       {/* Action buttons */}
       <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+        {caseStudyId && (
+          <Link
+            to={`/case-study/${caseStudyId}`}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.35rem",
+              padding: "0.4rem 0.9rem",
+              borderRadius: 6,
+              background: "var(--accent)",
+              border: "none",
+              color: "#fff",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.77rem",
+              fontWeight: 600,
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+              transition: "background 0.18s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "#ff8a5e")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "var(--accent)")}
+          >
+            Case Study →
+          </Link>
+        )}
         <a
           href={codeLink}
           target="_blank"
