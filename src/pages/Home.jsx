@@ -97,7 +97,7 @@ export default function HomePage() {
                   width: 6,
                   height: 6,
                   borderRadius: "50%",
-                  background: "#FF6B35",
+                  background: "var(--accent)",
                   flexShrink: 0,
                 }}
               />
@@ -108,7 +108,7 @@ export default function HomePage() {
                   fontWeight: 600,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  color: "#A3A3A3",
+                  color: "var(--muted)",
                 }}
               >
                 Full-Stack Developer · Based in India
@@ -127,11 +127,11 @@ export default function HomePage() {
                 lineHeight: 1.05,
                 letterSpacing: "-0.025em",
                 marginBottom: "1.25rem",
-                color: "#F5F5F0",
+                color: "var(--text)",
               }}
             >
               Hi, I'm{" "}
-              <span style={{ color: "#FF6B35" }}>Bhavik Rai.</span>
+              <span style={{ color: "var(--accent)" }}>Bhavik Rai.</span>
             </motion.h1>
 
             {/* Statement */}
@@ -144,7 +144,7 @@ export default function HomePage() {
                 fontSize: "clamp(1.1rem, 2.5vw, 1.4rem)",
                 fontWeight: 500,
                 lineHeight: 1.45,
-                color: "#F5F5F0",
+                color: "var(--text)",
                 marginBottom: "1rem",
                 letterSpacing: "-0.01em",
               }}
@@ -152,7 +152,7 @@ export default function HomePage() {
               I build{" "}
               <span
                 style={{
-                  borderBottom: "2px solid #FF6B35",
+                  borderBottom: "2px solid var(--accent)",
                   paddingBottom: "1px",
                 }}
               >
@@ -161,7 +161,7 @@ export default function HomePage() {
               and{" "}
               <span
                 style={{
-                  borderBottom: "2px solid #E8C547",
+                  borderBottom: "2px solid var(--accent-amber)",
                   paddingBottom: "1px",
                 }}
               >
@@ -177,7 +177,7 @@ export default function HomePage() {
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "clamp(0.88rem, 1.8vw, 1rem)",
-                color: "#A3A3A3",
+                color: "var(--muted)",
                 lineHeight: 1.8,
                 marginBottom: "2.25rem",
                 maxWidth: 520,
@@ -226,7 +226,7 @@ export default function HomePage() {
                 display: "flex",
                 flexWrap: "wrap",
                 gap: "0",
-                borderTop: "1px solid rgba(255,255,255,0.07)",
+                borderTop: "1px solid var(--border)",
                 paddingTop: "1.5rem",
               }}
             >
@@ -240,7 +240,7 @@ export default function HomePage() {
                   style={{
                     flex: "1 1 140px",
                     padding: "0.75rem 1.25rem",
-                    borderLeft: i === 0 ? "none" : "1px solid rgba(255,255,255,0.07)",
+                    borderLeft: i === 0 ? "none" : "1px solid var(--border)",
                     paddingLeft: i === 0 ? "0" : "1.25rem",
                   }}
                 >
@@ -249,7 +249,7 @@ export default function HomePage() {
                       fontFamily: "'Space Grotesk', sans-serif",
                       fontSize: "0.65rem",
                       fontWeight: 500,
-                      color: "#6B6B6B",
+                      color: "var(--muted-dark)",
                       letterSpacing: "0.1em",
                       marginBottom: "0.25rem",
                     }}
@@ -261,7 +261,7 @@ export default function HomePage() {
                       fontFamily: "'Space Grotesk', sans-serif",
                       fontSize: "0.75rem",
                       fontWeight: 600,
-                      color: "#A3A3A3",
+                      color: "var(--muted)",
                       letterSpacing: "0.08em",
                       textTransform: "uppercase",
                     }}
@@ -289,7 +289,7 @@ export default function HomePage() {
                 right: "8%",
                 width: "60%",
                 height: "55%",
-                background: "#FF6B35",
+                background: "var(--accent)",
                 borderRadius: 12,
                 zIndex: 0,
                 opacity: 0.85,
@@ -304,7 +304,7 @@ export default function HomePage() {
                 left: "6%",
                 width: 3,
                 height: "45%",
-                background: "#E8C547",
+                background: "var(--accent-amber)",
                 borderRadius: 2,
                 zIndex: 3,
               }}
@@ -328,7 +328,7 @@ export default function HomePage() {
                   objectFit: "cover",
                   objectPosition: "top",
                   borderRadius: 12,
-                  border: "1px solid rgba(255,255,255,0.1)",
+                  border: "1px solid var(--border-md)",
                   display: "block",
                 }}
               />
@@ -342,14 +342,15 @@ export default function HomePage() {
                   position: "absolute",
                   bottom: -16,
                   left: -16,
-                  background: "#1A1A1A",
-                  border: "1px solid rgba(255,255,255,0.1)",
+                  background: "var(--surface)",
+                  border: "1px solid var(--border-md)",
                   borderRadius: 10,
                   padding: "0.6rem 0.9rem",
                   display: "flex",
                   alignItems: "center",
                   gap: "0.5rem",
                   zIndex: 4,
+                  boxShadow: "var(--shadow-card)",
                 }}
               >
                 <span
@@ -367,7 +368,7 @@ export default function HomePage() {
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "0.72rem",
                     fontWeight: 600,
-                    color: "#A3A3A3",
+                    color: "var(--muted)",
                     whiteSpace: "nowrap",
                   }}
                 >
@@ -398,7 +399,7 @@ export default function HomePage() {
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.6rem",
-              color: "#6B6B6B",
+              color: "var(--muted-dark)",
               letterSpacing: "0.16em",
               textTransform: "uppercase",
             }}
@@ -411,7 +412,7 @@ export default function HomePage() {
             style={{
               width: 1,
               height: 32,
-              background: "linear-gradient(to bottom, #FF6B35, transparent)",
+              background: "linear-gradient(to bottom, var(--accent), transparent)",
               borderRadius: 1,
             }}
           />
@@ -447,7 +448,7 @@ export default function HomePage() {
           padding: "6rem 2rem",
           maxWidth: 1200,
           margin: "0 auto",
-          borderTop: "1px solid rgba(255,255,255,0.06)",
+          borderTop: "1px solid var(--border)",
         }}
       >
         <div
@@ -468,7 +469,7 @@ export default function HomePage() {
                   fontWeight: 600,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  color: "#FF6B35",
+                  color: "var(--accent)",
                   display: "block",
                   marginBottom: "0.5rem",
                 }}
@@ -480,7 +481,7 @@ export default function HomePage() {
                   fontFamily: "'Space Grotesk', sans-serif",
                   fontWeight: 700,
                   fontSize: "clamp(1.6rem, 4vw, 2.4rem)",
-                  color: "#F5F5F0",
+                  color: "var(--text)",
                   letterSpacing: "-0.01em",
                   lineHeight: 1.15,
                   margin: 0,
@@ -500,7 +501,7 @@ export default function HomePage() {
                   fontFamily: "'Space Grotesk', sans-serif",
                   fontSize: "clamp(1.1rem, 2.2vw, 1.35rem)",
                   fontWeight: 500,
-                  color: "#F5F5F0",
+                  color: "var(--text)",
                   lineHeight: 1.55,
                   marginBottom: "1.25rem",
                   letterSpacing: "-0.01em",
@@ -514,13 +515,13 @@ export default function HomePage() {
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "clamp(0.9rem, 1.8vw, 1rem)",
-                  color: "#A3A3A3",
+                  color: "var(--muted)",
                   lineHeight: 1.85,
                   marginBottom: "1rem",
                 }}
               >
                 I'm a Computer Science Engineering student at{" "}
-                <span style={{ color: "#F5F5F0", fontWeight: 500 }}>
+                <span style={{ color: "var(--text)", fontWeight: 500 }}>
                   St Joseph Engineering College, Mangalore
                 </span>{" "}
                 with hands-on experience in full-stack development and AI engineering.
@@ -531,7 +532,7 @@ export default function HomePage() {
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "clamp(0.9rem, 1.8vw, 1rem)",
-                  color: "#A3A3A3",
+                  color: "var(--muted)",
                   lineHeight: 1.85,
                   marginBottom: "2rem",
                 }}
@@ -547,7 +548,7 @@ export default function HomePage() {
                   display: "flex",
                   flexWrap: "wrap",
                   gap: "2rem",
-                  borderTop: "1px solid rgba(255,255,255,0.07)",
+                  borderTop: "1px solid var(--border)",
                   paddingTop: "1.75rem",
                 }}
               >
@@ -562,7 +563,7 @@ export default function HomePage() {
                         fontFamily: "'Space Grotesk', sans-serif",
                         fontSize: "2rem",
                         fontWeight: 700,
-                        color: "#FF6B35",
+                        color: "var(--accent)",
                         lineHeight: 1,
                         marginBottom: "0.3rem",
                       }}
@@ -573,7 +574,7 @@ export default function HomePage() {
                       style={{
                         fontFamily: "'Inter', sans-serif",
                         fontSize: "0.78rem",
-                        color: "#6B6B6B",
+                        color: "var(--muted-dark)",
                         letterSpacing: "0.04em",
                       }}
                     >
@@ -606,7 +607,7 @@ export default function HomePage() {
           padding: "6rem 2rem",
           maxWidth: 1200,
           margin: "0 auto",
-          borderTop: "1px solid rgba(255,255,255,0.06)",
+          borderTop: "1px solid var(--border)",
         }}
       >
         <SectionHeading

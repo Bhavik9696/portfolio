@@ -9,19 +9,18 @@ import SectionHeading from '../components/SectionHeading';
 /* ─── Clean input with floating label ─── */
 function FormField({ label, name, type = "text", value, onChange, required, as }) {
   const [focused, setFocused] = useState(false);
-  const active = focused || !!value;
 
   const commonStyle = {
     width: "100%",
-    padding: as === "textarea" ? "0.85rem 1rem" : "0.85rem 1rem",
-    background: "#1A1A1A",
-    border: `1px solid ${focused ? "rgba(255,107,53,0.5)" : "rgba(255,255,255,0.08)"}`,
+    padding: "0.85rem 1rem",
+    background: "var(--bg-secondary)",
+    border: `1px solid ${focused ? "rgba(232,92,32,0.5)" : "var(--border)"}`,
     borderRadius: 8,
-    color: "#F5F5F0",
+    color: "var(--text)",
     fontFamily: "'Inter', sans-serif",
     fontSize: "0.9rem",
     outline: "none",
-    boxShadow: focused ? "0 0 0 2px rgba(255,107,53,0.08)" : "none",
+    boxShadow: focused ? "0 0 0 2px rgba(232,92,32,0.08)" : "none",
     transition: "border 0.2s, box-shadow 0.2s",
     resize: as === "textarea" ? "vertical" : undefined,
     minHeight: as === "textarea" ? 130 : undefined,
@@ -36,7 +35,7 @@ function FormField({ label, name, type = "text", value, onChange, required, as }
           fontWeight: 600,
           letterSpacing: "0.08em",
           textTransform: "uppercase",
-          color: focused ? "#FF6B35" : "#6B6B6B",
+          color: focused ? "var(--accent)" : "var(--muted-dark)",
           transition: "color 0.2s",
         }}
       >
@@ -146,7 +145,7 @@ export default function Contact() {
               fontWeight: 600,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "#FF6B35",
+              color: "var(--accent)",
               display: "block",
               marginBottom: "0.75rem",
             }}
@@ -160,19 +159,19 @@ export default function Contact() {
               fontWeight: 700,
               lineHeight: 1.05,
               letterSpacing: "-0.025em",
-              color: "#F5F5F0",
+              color: "var(--text)",
               marginBottom: "1rem",
             }}
           >
             Let's Build
             <br />
-            <span style={{ color: "#FF6B35" }}>Something Useful.</span>
+            <span style={{ color: "var(--accent)" }}>Something Useful.</span>
           </h1>
           <p
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "clamp(0.9rem, 1.8vw, 1.05rem)",
-              color: "#A3A3A3",
+              color: "var(--muted)",
               lineHeight: 1.7,
               maxWidth: 480,
               margin: 0,
@@ -205,8 +204,8 @@ export default function Contact() {
                 alignItems: "center",
                 gap: "0.75rem",
                 padding: "1rem 1.25rem",
-                background: "#1A1A1A",
-                border: "1px solid rgba(255,255,255,0.07)",
+                background: "var(--surface)",
+                border: "1px solid var(--border)",
                 borderRadius: 10,
               }}
             >
@@ -226,7 +225,7 @@ export default function Contact() {
                     fontFamily: "'Space Grotesk', sans-serif",
                     fontWeight: 600,
                     fontSize: "0.86rem",
-                    color: "#F5F5F0",
+                    color: "var(--text)",
                     margin: 0,
                   }}
                 >
@@ -236,7 +235,7 @@ export default function Contact() {
                   style={{
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "0.75rem",
-                    color: "#6B6B6B",
+                    color: "var(--muted-dark)",
                     margin: "2px 0 0",
                   }}
                 >
@@ -277,19 +276,19 @@ export default function Contact() {
                     alignItems: "center",
                     gap: "0.85rem",
                     padding: "1rem 1.25rem",
-                    background: "#181818",
-                    border: "1px solid rgba(255,255,255,0.07)",
+                    background: "var(--surface)",
+                    border: "1px solid var(--border)",
                     borderRadius: 10,
                     textDecoration: "none",
                     transition: "border-color 0.18s, background 0.18s",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(255,107,53,0.3)";
-                    e.currentTarget.style.background = "#1E1E1E";
+                    e.currentTarget.style.borderColor = "rgba(232,92,32,0.35)";
+                    e.currentTarget.style.background = "var(--surface-hi)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)";
-                    e.currentTarget.style.background = "#181818";
+                    e.currentTarget.style.borderColor = "var(--border)";
+                    e.currentTarget.style.background = "var(--surface)";
                   }}
                 >
                   <div
@@ -297,12 +296,12 @@ export default function Contact() {
                       width: 36,
                       height: 36,
                       borderRadius: 8,
-                      background: "#222",
-                      border: "1px solid rgba(255,255,255,0.07)",
+                      background: "var(--surface-hi)",
+                      border: "1px solid var(--border)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      color: "#FF6B35",
+                      color: "var(--accent)",
                       flexShrink: 0,
                     }}
                   >
@@ -314,7 +313,7 @@ export default function Contact() {
                         fontFamily: "'Space Grotesk', sans-serif",
                         fontWeight: 600,
                         fontSize: "0.84rem",
-                        color: "#F5F5F0",
+                        color: "var(--text)",
                         margin: 0,
                       }}
                     >
@@ -324,7 +323,7 @@ export default function Contact() {
                       style={{
                         fontFamily: "'Inter', sans-serif",
                         fontSize: "0.75rem",
-                        color: "#6B6B6B",
+                        color: "var(--muted-dark)",
                         margin: "1px 0 0",
                       }}
                     >
@@ -346,8 +345,8 @@ export default function Contact() {
               ref={formRef}
               onSubmit={handleSubmit}
               style={{
-                background: "#181818",
-                border: "1px solid rgba(255,255,255,0.07)",
+                background: "var(--surface)",
+                border: "1px solid var(--border)",
                 borderRadius: 12,
                 padding: "2rem",
                 display: "flex",
@@ -388,7 +387,7 @@ export default function Contact() {
                     fontWeight: 600,
                     letterSpacing: "0.08em",
                     textTransform: "uppercase",
-                    color: "#6B6B6B",
+                    color: "var(--muted-dark)",
                   }}
                 >
                   Subject *
@@ -401,25 +400,25 @@ export default function Contact() {
                   style={{
                     width: "100%",
                     padding: "0.85rem 1rem",
-                    background: "#1A1A1A",
-                    border: "1px solid rgba(255,255,255,0.08)",
+                    background: "var(--bg-secondary)",
+                    border: "1px solid var(--border)",
                     borderRadius: 8,
-                    color: "#F5F5F0",
+                    color: "var(--text)",
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "0.9rem",
                     outline: "none",
                     appearance: "none",
                     cursor: "pointer",
                   }}
-                  onFocus={(e) => (e.target.style.borderColor = "rgba(255,107,53,0.5)")}
-                  onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.08)")}
+                  onFocus={(e) => (e.target.style.borderColor = "rgba(232,92,32,0.5)")}
+                  onBlur={(e) => (e.target.style.borderColor = "var(--border)")}
                 >
-                  <option style={{ background: "#1A1A1A" }}>General Inquiry</option>
-                  <option style={{ background: "#1A1A1A" }}>Job Opportunity</option>
-                  <option style={{ background: "#1A1A1A" }}>Freelance Project</option>
-                  <option style={{ background: "#1A1A1A" }}>Collaboration</option>
-                  <option style={{ background: "#1A1A1A" }}>Feedback</option>
-                  <option style={{ background: "#1A1A1A" }}>Other</option>
+                  <option style={{ background: "var(--bg-secondary)" }}>General Inquiry</option>
+                  <option style={{ background: "var(--bg-secondary)" }}>Job Opportunity</option>
+                  <option style={{ background: "var(--bg-secondary)" }}>Freelance Project</option>
+                  <option style={{ background: "var(--bg-secondary)" }}>Collaboration</option>
+                  <option style={{ background: "var(--bg-secondary)" }}>Feedback</option>
+                  <option style={{ background: "var(--bg-secondary)" }}>Other</option>
                 </select>
               </div>
 
@@ -439,7 +438,7 @@ export default function Contact() {
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "0.72rem",
                     fontWeight: 600,
-                    color: "#6B6B6B",
+                    color: "var(--muted-dark)",
                     letterSpacing: "0.08em",
                     textTransform: "uppercase",
                     marginBottom: "0.6rem",
@@ -458,7 +457,7 @@ export default function Contact() {
                         cursor: "pointer",
                         fontFamily: "'Inter', sans-serif",
                         fontSize: "0.85rem",
-                        color: formData.contactMethod === method ? "#FF6B35" : "#6B6B6B",
+                        color: formData.contactMethod === method ? "var(--accent)" : "var(--muted-dark)",
                         transition: "color 0.18s",
                       }}
                     >
@@ -468,7 +467,7 @@ export default function Contact() {
                         value={method}
                         checked={formData.contactMethod === method}
                         onChange={handleChange}
-                        style={{ accentColor: "#FF6B35" }}
+                        style={{ accentColor: "var(--accent)" }}
                       />
                       {method}
                     </label>
@@ -491,8 +490,8 @@ export default function Contact() {
                   gap: "0.6rem",
                   cursor: "pointer",
                   padding: "0.75rem 1rem",
-                  background: "#1A1A1A",
-                  border: "1px solid rgba(255,255,255,0.07)",
+                  background: "var(--bg-secondary)",
+                  border: "1px solid var(--border)",
                   borderRadius: 8,
                 }}
               >
@@ -501,13 +500,13 @@ export default function Contact() {
                   name="isHuman"
                   checked={formData.isHuman}
                   onChange={handleChange}
-                  style={{ accentColor: "#FF6B35", width: 15, height: 15 }}
+                  style={{ accentColor: "var(--accent)", width: 15, height: 15 }}
                 />
                 <span
                   style={{
                     fontFamily: "'Inter', sans-serif",
                     fontSize: "0.84rem",
-                    color: "#A3A3A3",
+                    color: "var(--muted)",
                   }}
                 >
                   I'm a human, not a robot 🤖
@@ -523,9 +522,9 @@ export default function Contact() {
                 style={{
                   padding: "0.9rem 2rem",
                   borderRadius: 8,
-                  background: sending ? "#222" : "#FF6B35",
-                  border: sending ? "1px solid rgba(255,255,255,0.1)" : "none",
-                  color: sending ? "#6B6B6B" : "#fff",
+                  background: sending ? "var(--surface-hi)" : "var(--accent)",
+                  border: sending ? "1px solid var(--border)" : "none",
+                  color: sending ? "var(--muted)" : "#fff",
                   fontFamily: "'Space Grotesk', sans-serif",
                   fontWeight: 700,
                   fontSize: "0.92rem",
@@ -536,13 +535,13 @@ export default function Contact() {
                   justifyContent: "center",
                   gap: "0.5rem",
                   transition: "background 0.2s, box-shadow 0.2s",
-                  boxShadow: sending ? "none" : "0 4px 20px rgba(255,107,53,0.3)",
+                  boxShadow: sending ? "none" : "0 4px 20px rgba(232,92,32,0.3)",
                 }}
                 onMouseEnter={(e) => {
                   if (!sending) e.currentTarget.style.background = "#ff8a5e";
                 }}
                 onMouseLeave={(e) => {
-                  if (!sending) e.currentTarget.style.background = "#FF6B35";
+                  if (!sending) e.currentTarget.style.background = "var(--accent)";
                 }}
               >
                 <AnimatePresence mode="wait">
@@ -580,9 +579,9 @@ export default function Contact() {
         position="top-right"
         autoClose={4000}
         toastStyle={{
-          background: "#1A1A1A",
-          border: "1px solid rgba(255,255,255,0.1)",
-          color: "#F5F5F0",
+          background: "var(--surface)",
+          border: "1px solid var(--border-md)",
+          color: "var(--text)",
           fontFamily: "'Inter', sans-serif",
           fontSize: "0.85rem",
         }}

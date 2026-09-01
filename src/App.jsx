@@ -37,11 +37,12 @@ function App() {
           style={{
             width: "100%",
             minHeight: "100vh",
-            background: "#111111",
-            color: "#F5F5F0",
+            background: "var(--bg-primary)",
+            color: "var(--text)",
             fontFamily: "'Inter', sans-serif",
             position: "relative",
             zIndex: 1,
+            transition: "background 0.35s ease, color 0.35s ease",
           }}
         >
           {/* ── Content ── */}

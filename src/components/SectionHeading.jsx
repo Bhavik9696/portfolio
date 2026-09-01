@@ -59,7 +59,7 @@ export default function SectionHeading({
                 fontSize: "0.72rem",
                 fontWeight: 500,
                 letterSpacing: "0.12em",
-                color: "#6B6B6B",
+                color: "var(--muted-dark)",
                 textTransform: "uppercase",
               }}
             >
@@ -94,7 +94,7 @@ export default function SectionHeading({
           fontSize: "clamp(1.9rem, 4vw, 2.75rem)",
           fontWeight: 700,
           lineHeight: 1.1,
-          color: "#F5F5F0",
+          color: "var(--text)",
           letterSpacing: "-0.01em",
           margin: "0 0 1rem",
         }}

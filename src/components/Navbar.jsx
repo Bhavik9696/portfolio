@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { useTheme } from "../context/ThemeContext";
 
 const navLinks = [
   { to: "/",          label: "Home" },
@@ -17,6 +18,8 @@ export default function Navbar() {
   const [isMobile, setIsMobile] = useState(false);
   const lastY    = useRef(0);
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
 
   // Close menu on route change
   useEffect(() => setIsOpen(false), [location]);
@@ -44,8 +47,12 @@ export default function Navbar() {
   }, [isOpen]);
 
   const navBg = scrolled
-    ? "rgba(17,17,17,0.96)"
-    : "rgba(17,17,17,0.75)";
+    ? "var(--nav-bg-scrolled)"
+    : "var(--nav-bg-top)";
+
+  const navBorder = scrolled
+    ? "1px solid var(--nav-border)"
+    : "1px solid transparent";
 
   return (
     <>
@@ -63,9 +70,7 @@ export default function Navbar() {
           background: navBg,
           backdropFilter: "blur(16px)",
           WebkitBackdropFilter: "blur(16px)",
-          borderBottom: scrolled
-            ? "1px solid rgba(255,255,255,0.08)"
-            : "1px solid transparent",
+          borderBottom: navBorder,
           transition: "background 0.3s, border-color 0.3s",
         }}
       >
@@ -93,7 +98,7 @@ export default function Navbar() {
                   width: 32,
                   height: 32,
                   borderRadius: 6,
-                  background: "#FF6B35",
+                  background: "var(--accent)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -113,7 +118,7 @@ export default function Navbar() {
                     fontFamily: "'Space Grotesk', sans-serif",
                     fontWeight: 600,
                     fontSize: "0.95rem",
-                    color: "#F5F5F0",
+                    color: "var(--text)",
                     letterSpacing: "0.01em",
                   }}
                 >
@@ -146,15 +151,15 @@ export default function Navbar() {
                           fontFamily: "'Inter', sans-serif",
                           fontSize: "0.87rem",
                           fontWeight: isActive ? 600 : 400,
-                          color: isActive ? "#FF6B35" : "#A3A3A3",
+                          color: isActive ? "var(--accent)" : "var(--muted)",
                           transition: "color 0.2s ease",
                           letterSpacing: "0.01em",
                         }}
                         onMouseEnter={(e) => {
-                          if (!isActive) e.currentTarget.style.color = "#F5F5F0";
+                          if (!isActive) e.currentTarget.style.color = "var(--text)";
                         }}
                         onMouseLeave={(e) => {
-                          if (!isActive) e.currentTarget.style.color = "#A3A3A3";
+                          if (!isActive) e.currentTarget.style.color = "var(--muted)";
                         }}
                       >
                         {label}
@@ -168,7 +173,7 @@ export default function Navbar() {
                               left: "1rem",
                               right: "1rem",
                               height: 2,
-                              background: "#FF6B35",
+                              background: "var(--accent)",
                               borderRadius: 2,
                             }}
                           />
@@ -181,29 +186,35 @@ export default function Navbar() {
             </ul>
           )}
 
-          {/* ── Mobile hamburger ── */}
-          {isMobile && (
-            <motion.button
-              whileTap={{ scale: 0.92 }}
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle menu"
-              aria-expanded={isOpen}
-              style={{
-                background: "transparent",
-                border: "1px solid rgba(255,255,255,0.12)",
-                borderRadius: 8,
-                width: 38,
-                height: 38,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#F5F5F0",
-                cursor: "pointer",
-              }}
-            >
-              {isOpen ? <X size={18} /> : <Menu size={18} />}
-            </motion.button>
-          )}
+          {/* ── Right controls ── */}
+          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+            {/* Theme toggle */}
+            <ThemeToggleButton isDark={isDark} onToggle={toggleTheme} />
+
+            {/* Mobile hamburger */}
+            {isMobile && (
+              <motion.button
+                whileTap={{ scale: 0.92 }}
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label="Toggle menu"
+                aria-expanded={isOpen}
+                style={{
+                  background: "transparent",
+                  border: "1px solid var(--border-md)",
+                  borderRadius: 8,
+                  width: 38,
+                  height: 38,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "var(--text)",
+                  cursor: "pointer",
+                }}
+              >
+                {isOpen ? <X size={18} /> : <Menu size={18} />}
+              </motion.button>
+            )}
+          </div>
         </nav>
       </motion.header>
 
@@ -221,7 +232,7 @@ export default function Navbar() {
               left: 0,
               right: 0,
               bottom: 0,
-              background: "#111111",
+              background: "var(--mobile-menu-bg)",
               zIndex: 998,
               display: "flex",
               flexDirection: "column",
@@ -240,14 +251,14 @@ export default function Navbar() {
                 top: "1.1rem",
                 right: "1.25rem",
                 background: "transparent",
-                border: "1px solid rgba(255,255,255,0.12)",
+                border: "1px solid var(--border-md)",
                 borderRadius: 8,
                 width: 38,
                 height: 38,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                color: "#F5F5F0",
+                color: "var(--text)",
                 cursor: "pointer",
               }}
             >
@@ -266,7 +277,7 @@ export default function Navbar() {
                   width: 40,
                   height: 40,
                   borderRadius: 8,
-                  background: "#FF6B35",
+                  background: "var(--accent)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -283,7 +294,7 @@ export default function Navbar() {
                   fontFamily: "'Space Grotesk', sans-serif",
                   fontWeight: 700,
                   fontSize: "1.1rem",
-                  color: "#F5F5F0",
+                  color: "var(--text)",
                 }}
               >
                 Bhavik Rai
@@ -313,8 +324,8 @@ export default function Navbar() {
                         padding: "1rem 1.25rem",
                         margin: "0.15rem 0",
                         borderRadius: 10,
-                        background: isActive ? "rgba(255,107,53,0.08)" : "transparent",
-                        borderLeft: isActive ? "2px solid #FF6B35" : "2px solid transparent",
+                        background: isActive ? "rgba(232,92,32,0.08)" : "transparent",
+                        borderLeft: isActive ? "2px solid var(--accent)" : "2px solid transparent",
                         transition: "all 0.2s",
                       }}
                     >
@@ -323,14 +334,14 @@ export default function Navbar() {
                           fontFamily: "'Space Grotesk', sans-serif",
                           fontSize: "1.4rem",
                           fontWeight: 600,
-                          color: isActive ? "#FF6B35" : "rgba(245,245,240,0.5)",
+                          color: isActive ? "var(--accent)" : "var(--muted)",
                           letterSpacing: "-0.01em",
                         }}
                       >
                         {label}
                       </span>
                       {isActive && (
-                        <span style={{ color: "#FF6B35", fontSize: "1rem" }}>→</span>
+                        <span style={{ color: "var(--accent)", fontSize: "1rem" }}>→</span>
                       )}
                     </div>
                   )}
@@ -345,7 +356,7 @@ export default function Navbar() {
                 bottom: "2rem",
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.7rem",
-                color: "rgba(255,255,255,0.2)",
+                color: "var(--muted-dark)",
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
               }}
@@ -356,5 +367,45 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </>
+  );
+}
+
+/* ─── Animated Theme Toggle Button ─── */
+function ThemeToggleButton({ isDark, onToggle }) {
+  return (
+    <motion.button
+      onClick={onToggle}
+      whileTap={{ scale: 0.88 }}
+      aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+      title={isDark ? "Switch to light theme" : "Switch to dark theme"}
+      className="theme-toggle"
+      style={{ cursor: "pointer" }}
+    >
+      <AnimatePresence mode="wait" initial={false}>
+        {isDark ? (
+          <motion.span
+            key="sun"
+            initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
+            animate={{ rotate: 0,   opacity: 1, scale: 1   }}
+            exit={{    rotate:  90, opacity: 0, scale: 0.6 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+          >
+            <Sun size={16} strokeWidth={1.8} />
+          </motion.span>
+        ) : (
+          <motion.span
+            key="moon"
+            initial={{ rotate: 90,  opacity: 0, scale: 0.6 }}
+            animate={{ rotate: 0,   opacity: 1, scale: 1   }}
+            exit={{    rotate: -90, opacity: 0, scale: 0.6 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+          >
+            <Moon size={16} strokeWidth={1.8} />
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </motion.button>
   );
 }

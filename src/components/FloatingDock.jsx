@@ -78,15 +78,15 @@ export default function FloatingDock() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              background: "rgba(11,17,32,0.8)",
-              border: `1px solid rgba(255,255,255,0.1)`,
+              background: "var(--surface)",
+              border: `1px solid var(--border-md)`,
               backdropFilter: "blur(12px)",
               WebkitBackdropFilter: "blur(12px)",
-              color: hovered === label ? color : "rgba(255,255,255,0.5)",
+              color: hovered === label ? color : "var(--muted)",
               boxShadow:
                 hovered === label
                   ? `0 0 20px ${glow}, 0 0 40px ${glow}`
-                  : "0 4px 16px rgba(0,0,0,0.3)",
+                  : "var(--shadow-card)",
               transition: "color 0.2s, box-shadow 0.2s",
               fontSize: "1.1rem",
             }}
@@ -107,16 +107,17 @@ export default function FloatingDock() {
                   right: "54px",
                   top: "50%",
                   transform: "translateY(-50%)",
-                  background: "rgba(11,17,32,0.95)",
-                  border: "1px solid rgba(0,245,255,0.2)",
+                  background: "var(--surface)",
+                  border: "1px solid var(--border-md)",
                   borderRadius: 8,
                   padding: "4px 10px",
                   fontSize: "0.72rem",
                   fontFamily: "'Inter', sans-serif",
-                  color: "#fff",
+                  color: "var(--text)",
                   whiteSpace: "nowrap",
                   pointerEvents: "none",
                   backdropFilter: "blur(10px)",
+                  boxShadow: "var(--shadow-card)",
                 }}
               >
                 {label}

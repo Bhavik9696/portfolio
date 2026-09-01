@@ -167,7 +167,7 @@ const FILTERS = [
   { key: "frontend",   label: "Frontend" },
 ];
 
-/* ─── Project Card — Clean editorial style ─── */
+/* ─── Project Card — Theme-aware editorial style ─── */
 function ProjectCard({ project, index }) {
   const { title, subtitle, description, liveLink, codeLink, tags, icon: Icon, accentColor, featured } = project;
   const [hovered, setHovered] = useState(false);
@@ -180,9 +180,9 @@ function ProjectCard({ project, index }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        background: hovered ? "#1E1E1E" : "#181818",
+        background: hovered ? "var(--surface-hi)" : "var(--surface)",
         border: "1px solid",
-        borderColor: hovered ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.07)",
+        borderColor: hovered ? "var(--border-md)" : "var(--border)",
         borderRadius: 12,
         padding: "1.5rem",
         display: "flex",
@@ -191,7 +191,7 @@ function ProjectCard({ project, index }) {
         position: "relative",
         overflow: "hidden",
         transition: "background 0.2s, border-color 0.2s, box-shadow 0.2s",
-        boxShadow: hovered ? "0 8px 32px rgba(0,0,0,0.3)" : "none",
+        boxShadow: hovered ? "var(--shadow-card)" : "none",
       }}
     >
       {/* Left accent border */}
@@ -216,8 +216,8 @@ function ProjectCard({ project, index }) {
             width: 38,
             height: 38,
             borderRadius: 8,
-            background: "#222",
-            border: "1px solid rgba(255,255,255,0.07)",
+            background: "var(--surface-hi)",
+            border: "1px solid var(--border)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -236,7 +236,7 @@ function ProjectCard({ project, index }) {
                 fontFamily: "'Space Grotesk', sans-serif",
                 fontWeight: 600,
                 fontSize: "0.97rem",
-                color: hovered ? "#F5F5F0" : "#D4D4D4",
+                color: hovered ? "var(--text)" : "var(--muted)",
                 margin: 0,
                 lineHeight: 1.3,
                 transition: "color 0.2s",
@@ -252,9 +252,9 @@ function ProjectCard({ project, index }) {
                   fontWeight: 700,
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
-                  background: "rgba(255,107,53,0.12)",
-                  border: "1px solid rgba(255,107,53,0.3)",
-                  color: "#FF6B35",
+                  background: "rgba(232,92,32,0.12)",
+                  border: "1px solid rgba(232,92,32,0.3)",
+                  color: "var(--accent)",
                   borderRadius: 4,
                   padding: "2px 6px",
                   whiteSpace: "nowrap",
@@ -269,7 +269,7 @@ function ProjectCard({ project, index }) {
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.71rem",
-                color: "#6B6B6B",
+                color: "var(--muted-dark)",
                 margin: "3px 0 0",
                 fontWeight: 500,
               }}
@@ -285,7 +285,7 @@ function ProjectCard({ project, index }) {
         style={{
           fontFamily: "'Inter', sans-serif",
           fontSize: "0.84rem",
-          color: "#A3A3A3",
+          color: "var(--muted)",
           lineHeight: 1.75,
           margin: 0,
           flex: 1,
@@ -316,8 +316,8 @@ function ProjectCard({ project, index }) {
             padding: "0.4rem 0.9rem",
             borderRadius: 6,
             background: "transparent",
-            border: "1px solid rgba(255,255,255,0.1)",
-            color: "#A3A3A3",
+            border: "1px solid var(--border-md)",
+            color: "var(--muted)",
             fontFamily: "'Inter', sans-serif",
             fontSize: "0.77rem",
             fontWeight: 500,
@@ -325,12 +325,12 @@ function ProjectCard({ project, index }) {
             transition: "color 0.18s, border-color 0.18s",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.color = "#F5F5F0";
-            e.currentTarget.style.borderColor = "rgba(255,255,255,0.22)";
+            e.currentTarget.style.color = "var(--text)";
+            e.currentTarget.style.borderColor = "var(--border-md)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.color = "#A3A3A3";
-            e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
+            e.currentTarget.style.color = "var(--muted)";
+            e.currentTarget.style.borderColor = "var(--border-md)";
           }}
         >
           <FaGithub size={12} /> Source Code
@@ -347,17 +347,17 @@ function ProjectCard({ project, index }) {
               gap: "0.35rem",
               padding: "0.4rem 0.9rem",
               borderRadius: 6,
-              background: "rgba(255,107,53,0.1)",
-              border: "1px solid rgba(255,107,53,0.25)",
-              color: "#FF6B35",
+              background: "rgba(232,92,32,0.1)",
+              border: "1px solid rgba(232,92,32,0.25)",
+              color: "var(--accent)",
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.77rem",
               fontWeight: 500,
               textDecoration: "none",
               transition: "background 0.18s",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,107,53,0.18)")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(255,107,53,0.1)")}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(232,92,32,0.18)")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(232,92,32,0.1)")}
           >
             <FaExternalLinkAlt size={10} /> Live Demo
           </a>
@@ -370,8 +370,8 @@ function ProjectCard({ project, index }) {
               padding: "0.4rem 0.9rem",
               borderRadius: 6,
               background: "transparent",
-              border: "1px solid rgba(255,255,255,0.05)",
-              color: "rgba(255,255,255,0.2)",
+              border: "1px solid var(--border)",
+              color: "var(--muted-dark)",
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.77rem",
               fontWeight: 500,
@@ -389,9 +389,9 @@ function ProjectCard({ project, index }) {
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState("all");
   const allProjects = [
-    ...personalProjects.slice(0, 2),   // 1. ProjectLens AI, 2. ALLYVEX
-    ...freelanceProjects,              // 3. Career Recruit AI, 4. Silent Emergency
-    ...personalProjects.slice(2),      // rest of personal projects
+    ...personalProjects.slice(0, 2),
+    ...freelanceProjects,
+    ...personalProjects.slice(2),
   ];
 
   const filtered =
@@ -423,7 +423,7 @@ export default function Projects() {
           title="Selected Work"
         />
 
-        {/* Filter tabs — minimal text style */}
+        {/* Filter tabs */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -433,7 +433,7 @@ export default function Projects() {
             flexWrap: "wrap",
             gap: "0",
             marginBottom: "3rem",
-            borderBottom: "1px solid rgba(255,255,255,0.07)",
+            borderBottom: "1px solid var(--border)",
           }}
         >
           {FILTERS.map(({ key, label }) => {
@@ -446,9 +446,9 @@ export default function Projects() {
                   padding: "0.6rem 1.25rem",
                   background: "transparent",
                   border: "none",
-                  borderBottom: isActive ? "2px solid #FF6B35" : "2px solid transparent",
+                  borderBottom: isActive ? "2px solid var(--accent)" : "2px solid transparent",
                   marginBottom: "-1px",
-                  color: isActive ? "#FF6B35" : "#6B6B6B",
+                  color: isActive ? "var(--accent)" : "var(--muted-dark)",
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "0.84rem",
                   fontWeight: isActive ? 600 : 400,
@@ -457,10 +457,10 @@ export default function Projects() {
                   letterSpacing: "0.02em",
                 }}
                 onMouseEnter={(e) => {
-                  if (!isActive) e.currentTarget.style.color = "#A3A3A3";
+                  if (!isActive) e.currentTarget.style.color = "var(--muted)";
                 }}
                 onMouseLeave={(e) => {
-                  if (!isActive) e.currentTarget.style.color = "#6B6B6B";
+                  if (!isActive) e.currentTarget.style.color = "var(--muted-dark)";
                 }}
               >
                 {label}
@@ -494,7 +494,7 @@ export default function Projects() {
             style={{
               textAlign: "center",
               padding: "4rem",
-              color: "#6B6B6B",
+              color: "var(--muted-dark)",
               fontFamily: "'Inter', sans-serif",
             }}
           >

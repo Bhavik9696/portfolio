@@ -15,10 +15,10 @@ function SkillItem({ name, icon, desc, invert }) {
       animate={{ y: hovered ? -6 : 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
       style={{
-        background: hovered ? "#1E1E1E" : "#181818",
+        background: hovered ? "var(--surface-hi)" : "var(--surface)",
         border: hovered
-          ? "1px solid rgba(255,107,53,0.45)"
-          : "1px solid rgba(255,255,255,0.07)",
+          ? "1px solid rgba(232,92,32,0.45)"
+          : "1px solid var(--border)",
         borderRadius: 14,
         padding: "1.25rem 1rem",
         display: "flex",
@@ -26,8 +26,8 @@ function SkillItem({ name, icon, desc, invert }) {
         alignItems: "center",
         gap: "0.65rem",
         boxShadow: hovered
-          ? "0 8px 28px rgba(0,0,0,0.35)"
-          : "0 2px 12px rgba(0,0,0,0.2)",
+          ? "var(--shadow-card)"
+          : "0 2px 8px rgba(0,0,0,0.05)",
         transition: "background 0.2s ease, border 0.2s ease, box-shadow 0.2s ease",
         cursor: "default",
         userSelect: "none",
@@ -39,8 +39,8 @@ function SkillItem({ name, icon, desc, invert }) {
           width: 52,
           height: 52,
           borderRadius: 12,
-          background: "#161616",
-          border: "1px solid rgba(255,255,255,0.06)",
+          background: "var(--bg-secondary)",
+          border: "1px solid var(--border)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -67,7 +67,7 @@ function SkillItem({ name, icon, desc, invert }) {
           fontFamily: "'Space Grotesk', sans-serif",
           fontWeight: 600,
           fontSize: "0.82rem",
-          color: hovered ? "#e2e8f0" : "#c8d0e0",
+          color: hovered ? "var(--text)" : "var(--muted)",
           textAlign: "center",
           margin: 0,
           letterSpacing: "0.01em",
@@ -82,7 +82,7 @@ function SkillItem({ name, icon, desc, invert }) {
         style={{
           fontFamily: "'Inter', sans-serif",
           fontSize: "0.72rem",
-          color: "#64748b",
+          color: "var(--muted-dark)",
           textAlign: "center",
           margin: 0,
           lineHeight: 1.5,
@@ -120,7 +120,7 @@ function CategorySection({ label, skills, index }) {
             fontFamily: "'Space Grotesk', sans-serif",
             fontWeight: 600,
             fontSize: "1rem",
-            color: "#94a3b8",
+            color: "var(--muted)",
             margin: 0,
             letterSpacing: "0.02em",
           }}

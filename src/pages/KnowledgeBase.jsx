@@ -78,12 +78,12 @@ function TimelineCard({ edu, index }) {
             width: 36,
             height: 36,
             borderRadius: 8,
-            background: "#1A1A1A",
-            border: "1px solid rgba(255,255,255,0.1)",
+            background: "var(--surface)",
+            border: "1px solid var(--border-md)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            color: "#FF6B35",
+            color: "var(--accent)",
             fontSize: "0.9rem",
             flexShrink: 0,
             zIndex: 2,
@@ -98,7 +98,7 @@ function TimelineCard({ edu, index }) {
             style={{
               width: 1,
               flex: 1,
-              background: "rgba(255,255,255,0.07)",
+              background: "var(--border)",
               marginTop: "0.5rem",
             }}
           />
@@ -109,21 +109,22 @@ function TimelineCard({ edu, index }) {
       <div
         style={{
           flex: 1,
-          background: "#181818",
-          border: "1px solid rgba(255,255,255,0.07)",
+          background: "var(--surface)",
+          border: "1px solid var(--border)",
           borderRadius: 10,
           padding: "1.25rem 1.5rem",
           marginBottom: "0.5rem",
           position: "relative",
           overflow: "hidden",
+          transition: "border-color 0.2s, background 0.2s",
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)";
-          e.currentTarget.style.background = "#1E1E1E";
+          e.currentTarget.style.borderColor = "var(--border-md)";
+          e.currentTarget.style.background = "var(--surface-hi)";
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)";
-          e.currentTarget.style.background = "#181818";
+          e.currentTarget.style.borderColor = "var(--border)";
+          e.currentTarget.style.background = "var(--surface)";
         }}
       >
         {/* Top orange accent line */}
@@ -134,7 +135,7 @@ function TimelineCard({ edu, index }) {
             left: 0,
             width: "30%",
             height: 2,
-            background: "#FF6B35",
+            background: "var(--accent)",
             borderRadius: "0 2px 0 0",
           }}
         />
@@ -155,7 +156,7 @@ function TimelineCard({ edu, index }) {
               fontSize: "0.7rem",
               fontWeight: 700,
               letterSpacing: "0.1em",
-              color: "#FF6B35",
+              color: "var(--accent)",
               textTransform: "uppercase",
             }}
           >
@@ -166,10 +167,10 @@ function TimelineCard({ edu, index }) {
               width: 36,
               height: 36,
               borderRadius: 7,
-              border: "1px solid rgba(255,255,255,0.07)",
+              border: "1px solid var(--border)",
               overflow: "hidden",
               flexShrink: 0,
-              background: "#222",
+              background: "var(--surface-hi)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -191,7 +192,7 @@ function TimelineCard({ edu, index }) {
             fontFamily: "'Space Grotesk', sans-serif",
             fontWeight: 600,
             fontSize: "0.97rem",
-            color: "#F5F5F0",
+            color: "var(--text)",
             margin: "0 0 0.3rem",
             lineHeight: 1.35,
           }}
@@ -202,7 +203,7 @@ function TimelineCard({ edu, index }) {
           style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: "0.84rem",
-            color: "#A3A3A3",
+            color: "var(--muted)",
             margin: "0 0 0.25rem",
             fontWeight: 500,
           }}
@@ -215,7 +216,7 @@ function TimelineCard({ edu, index }) {
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.75rem",
-                color: "#6B6B6B",
+                color: "var(--muted-dark)",
                 margin: 0,
               }}
             >
@@ -228,9 +229,9 @@ function TimelineCard({ edu, index }) {
                 fontFamily: "'Space Grotesk', sans-serif",
                 fontSize: "0.72rem",
                 fontWeight: 700,
-                color: "#FF6B35",
-                background: "rgba(255,107,53,0.1)",
-                border: "1px solid rgba(255,107,53,0.25)",
+                color: "var(--accent)",
+                background: "rgba(232,92,32,0.1)",
+                border: "1px solid rgba(232,92,32,0.25)",
                 borderRadius: 5,
                 padding: "0.15rem 0.55rem",
                 letterSpacing: "0.03em",

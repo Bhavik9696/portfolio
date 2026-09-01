@@ -22,8 +22,8 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: "#0D0D0D",
-        borderTop: "1px solid rgba(255,255,255,0.07)",
+        background: "var(--bg-secondary)",
+        borderTop: "1px solid var(--border)",
         marginTop: "6rem",
       }}
     >
@@ -58,7 +58,7 @@ export default function Footer() {
                   width: 34,
                   height: 34,
                   borderRadius: 7,
-                  background: "#FF6B35",
+                  background: "var(--accent)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -75,7 +75,7 @@ export default function Footer() {
                   fontFamily: "'Space Grotesk', sans-serif",
                   fontWeight: 600,
                   fontSize: "1rem",
-                  color: "#F5F5F0",
+                  color: "var(--text)",
                 }}
               >
                 Bhavik Rai
@@ -85,7 +85,7 @@ export default function Footer() {
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.83rem",
-                color: "#6B6B6B",
+                color: "var(--muted-dark)",
                 lineHeight: 1.7,
                 maxWidth: 220,
                 margin: 0,
@@ -102,7 +102,7 @@ export default function Footer() {
                 fontFamily: "'Space Grotesk', sans-serif",
                 fontWeight: 600,
                 fontSize: "0.78rem",
-                color: "#FF6B35",
+                color: "var(--accent)",
                 marginBottom: "1rem",
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
@@ -127,12 +127,12 @@ export default function Footer() {
                     style={{
                       fontFamily: "'Inter', sans-serif",
                       fontSize: "0.84rem",
-                      color: "#6B6B6B",
+                      color: "var(--muted-dark)",
                       textDecoration: "none",
                       transition: "color 0.18s",
                     }}
-                    onMouseEnter={(e) => (e.target.style.color = "#F5F5F0")}
-                    onMouseLeave={(e) => (e.target.style.color = "#6B6B6B")}
+                    onMouseEnter={(e) => (e.target.style.color = "var(--text)")}
+                    onMouseLeave={(e) => (e.target.style.color = "var(--muted-dark)")}
                   >
                     {label}
                   </Link>
@@ -148,7 +148,7 @@ export default function Footer() {
                 fontFamily: "'Space Grotesk', sans-serif",
                 fontWeight: 600,
                 fontSize: "0.78rem",
-                color: "#FF6B35",
+                color: "var(--accent)",
                 marginBottom: "1rem",
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
@@ -169,24 +169,24 @@ export default function Footer() {
                     width: 38,
                     height: 38,
                     borderRadius: 8,
-                    background: "#1A1A1A",
-                    border: "1px solid rgba(255,255,255,0.08)",
+                    background: "var(--surface)",
+                    border: "1px solid var(--border)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    color: "#6B6B6B",
+                    color: "var(--muted-dark)",
                     fontSize: "0.95rem",
                     transition: "color 0.18s, border-color 0.18s, background 0.18s",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = "#FF6B35";
-                    e.currentTarget.style.borderColor = "rgba(255,107,53,0.3)";
-                    e.currentTarget.style.background = "rgba(255,107,53,0.06)";
+                    e.currentTarget.style.color = "var(--accent)";
+                    e.currentTarget.style.borderColor = "rgba(232,92,32,0.3)";
+                    e.currentTarget.style.background = "rgba(232,92,32,0.06)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.color = "#6B6B6B";
-                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
-                    e.currentTarget.style.background = "#1A1A1A";
+                    e.currentTarget.style.color = "var(--muted-dark)";
+                    e.currentTarget.style.borderColor = "var(--border)";
+                    e.currentTarget.style.background = "var(--surface)";
                   }}
                 >
                   <Icon />
@@ -197,7 +197,7 @@ export default function Footer() {
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.78rem",
-                color: "#6B6B6B",
+                color: "var(--muted-dark)",
                 marginTop: "1rem",
               }}
             >
@@ -210,7 +210,7 @@ export default function Footer() {
         <div
           style={{
             height: 1,
-            background: "rgba(255,255,255,0.06)",
+            background: "var(--border)",
             marginBottom: "1.5rem",
           }}
         />
@@ -229,7 +229,7 @@ export default function Footer() {
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.78rem",
-              color: "#6B6B6B",
+              color: "var(--muted-dark)",
               margin: 0,
             }}
           >
@@ -242,14 +242,14 @@ export default function Footer() {
             whileTap={{ scale: 0.95 }}
             aria-label="Scroll to top"
             style={{
-              background: "#1A1A1A",
-              border: "1px solid rgba(255,255,255,0.1)",
+              background: "var(--surface)",
+              border: "1px solid var(--border-md)",
               borderRadius: 8,
               padding: "0.45rem 1rem",
               display: "flex",
               alignItems: "center",
               gap: "0.4rem",
-              color: "#A3A3A3",
+              color: "var(--muted)",
               fontFamily: "'Inter', sans-serif",
               fontSize: "0.76rem",
               fontWeight: 500,
@@ -257,12 +257,12 @@ export default function Footer() {
               transition: "color 0.18s, border-color 0.18s",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.color = "#FF6B35";
-              e.currentTarget.style.borderColor = "rgba(255,107,53,0.3)";
+              e.currentTarget.style.color = "var(--accent)";
+              e.currentTarget.style.borderColor = "rgba(232,92,32,0.3)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.color = "#A3A3A3";
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
+              e.currentTarget.style.color = "var(--muted)";
+              e.currentTarget.style.borderColor = "var(--border-md)";
             }}
           >
             <FaArrowUp size={11} /> Back to top
