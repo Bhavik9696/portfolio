@@ -2,33 +2,29 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Bot, User, Sparkles } from "lucide-react";
 
-/* ── Direct REST call to Gemini v1 (bypasses SDK versioning issues) ── */
-const GEMINI_MODELS = [
-  "gemini-1.5-flash",
-  "gemini-1.5-pro",
-  "gemini-pro",
-];
+/* ── Groq REST API call (llama-3.3-70b-versatile via Groq) ── */
+async function callGroq(apiKey, messages) {
+  const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: "openai/gpt-oss-120b",
+      messages,
+      max_tokens: 512,
+      temperature: 0.7,
+    }),
+  });
 
-async function callGemini(apiKey, prompt) {
-  for (const model of GEMINI_MODELS) {
-    const url = `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent?key=${apiKey}`;
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { maxOutputTokens: 512, temperature: 0.7 },
-      }),
-    });
-    if (res.status === 404) continue; // try next model
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      throw new Error(err?.error?.message || `HTTP ${res.status}`);
-    }
-    const data = await res.json();
-    return data?.candidates?.[0]?.content?.parts?.[0]?.text || "(no response)";
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err?.error?.message || `HTTP ${res.status}`);
   }
-  throw new Error("No available Gemini model found for this API key.");
+
+  const data = await res.json();
+  return data?.choices?.[0]?.message?.content || "(no response)";
 }
 
 /* ── System prompt — Bhavik's portfolio AI ── */
@@ -140,6 +136,7 @@ function MessageBubble({ msg }) {
           fontSize: "0.84rem",
           lineHeight: 1.65,
           boxShadow: isUser ? "0 2px 12px rgba(232,92,32,0.2)" : "var(--shadow-card)",
+          whiteSpace: "pre-wrap",
         }}
       >
         {msg.content}
@@ -163,10 +160,10 @@ export default function ChatWidget() {
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
-  // Store API key on mount
+  // Store Groq API key on mount
   useEffect(() => {
-    const key = import.meta.env.VITE_GEMINI_API_KEY;
-    if (key && key !== "your_gemini_api_key_here") {
+    const key = import.meta.env.VITE_GROQ_API_KEY;
+    if (key && key !== "your_groq_api_key_here") {
       apiKey.current = key;
       setApiReady(true);
     }
@@ -191,12 +188,12 @@ export default function ChatWidget() {
     setMessages(newMessages);
     setLoading(true);
 
-    if (!apiReady || !geminiModel.current) {
+    if (!apiReady) {
       setMessages((prev) => [
         ...prev,
         {
           role: "assistant",
-          content: "⚠️ Add your VITE_GEMINI_API_KEY to the .env file and restart the dev server.",
+          content: "⚠️ Add your VITE_GROQ_API_KEY to the .env file and restart the dev server.",
         },
       ]);
       setLoading(false);
@@ -204,15 +201,20 @@ export default function ChatWidget() {
     }
 
     try {
-      const history = newMessages
-        .slice(1)
-        .map((m) => `${m.role === "user" ? "User" : "Assistant"}: ${m.content}`)
-        .join("\n");
-      const prompt = `${SYSTEM_PROMPT}\n\n${history}\nAssistant:`;
-      const reply = await callGemini(apiKey.current, prompt);
+      // Build message array for Groq (OpenAI-compatible format)
+      const groqMessages = [
+        { role: "system", content: SYSTEM_PROMPT },
+        // Include conversation history (skip the initial greeting)
+        ...newMessages.slice(1).map((m) => ({
+          role: m.role === "assistant" ? "assistant" : "user",
+          content: m.content,
+        })),
+      ];
+
+      const reply = await callGroq(apiKey.current, groqMessages);
       setMessages((prev) => [...prev, { role: "assistant", content: reply.trim() }]);
     } catch (err) {
-      console.error("Gemini error:", err?.message || err);
+      console.error("Groq error:", err?.message || err);
       setMessages((prev) => [
         ...prev,
         { role: "assistant", content: `⚠️ ${err?.message || "Unknown error"}` },
@@ -295,6 +297,17 @@ export default function ChatWidget() {
                   }}
                 >
                   Portfolio Assistant
+                </div>
+                <div
+                  style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: "0.7rem",
+                    color: "var(--muted)",
+                    lineHeight: 1.2,
+                    marginTop: "0.1rem",
+                  }}
+                >
+                  Powered by Groq · GPT-OSS 120B
                 </div>
               </div>
               <button
