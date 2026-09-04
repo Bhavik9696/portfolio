@@ -4,7 +4,8 @@ import { useInView as useIOInView } from "react-intersection-observer";
 import profile from "../assets/images/myimageupdated.jpeg";
 import SkillsDialpad from "../components/SkillsDialpad";
 import SectionHeading from "../components/SectionHeading";
-import { FaDownload, FaGithub, FaArrowRight } from "react-icons/fa";
+import ResumeModal from "../components/ResumeModal";
+import { FaDownload, FaGithub, FaArrowRight, FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 /* ─── Scroll reveal wrapper ─── */
@@ -42,6 +43,7 @@ function Reveal({ children, delay = 0, direction = "up" }) {
 
 /* ─── MAIN HOME PAGE ─── */
 export default function HomePage() {
+  const [resumeOpen, setResumeOpen] = useState(false);
   return (
     <div
       style={{
@@ -207,14 +209,20 @@ export default function HomePage() {
               >
                 View My Work <FaArrowRight size={12} />
               </Link>
-              <a
-                href="/Bhavik_Rai_Resume.pdf"
-                download
+              <button
+                onClick={() => setResumeOpen(true)}
                 className="btn-outline"
-                style={{ textDecoration: "none" }}
+                style={{
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.4rem",
+                  cursor: "pointer",
+                  background: "transparent",
+                }}
               >
-                <FaDownload size={12} /> Download Resume
-              </a>
+                <FaEye size={12} /> View Resume
+              </button>
             </motion.div>
 
             {/* Info row */}
@@ -618,6 +626,7 @@ export default function HomePage() {
         <SkillsDialpad />
       </section>
 
+      <ResumeModal isOpen={resumeOpen} onClose={() => setResumeOpen(false)} />
     </div>
   );
 }

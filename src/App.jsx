@@ -6,6 +6,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import { HelmetProvider, Helmet } from "react-helmet-async";
 import { ThemeProvider } from "./context/ThemeContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -31,6 +32,14 @@ function AnimatedRoutes() {
           path="/"
           element={
             <PageWrapper>
+              <Helmet>
+                <title>Bhavik Rai | Full-Stack Developer & AI Engineer</title>
+                <meta name="description" content="Bhavik Rai is a Full-Stack Developer & AI Engineer specializing in MERN stack, Node.js, FastAPI, and intelligent AI systems powered by LLMs and RAG. Based in India, open to work." />
+                <meta property="og:title" content="Bhavik Rai | Full-Stack Developer & AI Engineer" />
+                <meta property="og:description" content="Full-Stack Developer & AI Engineer building reliable web apps and intelligent software. MERN, Node.js, FastAPI, LLMs, RAG." />
+                <meta property="og:url" content="https://bhavikrai-portfolio.netlify.app/" />
+                <link rel="canonical" href="https://bhavikrai-portfolio.netlify.app/" />
+              </Helmet>
               <Home />
             </PageWrapper>
           }
@@ -39,6 +48,13 @@ function AnimatedRoutes() {
           path="/knowledge"
           element={
             <PageWrapper>
+              <Helmet>
+                <title>Education & Knowledge | Bhavik Rai</title>
+                <meta name="description" content="Explore Bhavik Rai's education, certifications, and technical knowledge base — Computer Science Engineering at St Joseph Engineering College, Mangalore." />
+                <meta property="og:title" content="Education & Knowledge | Bhavik Rai" />
+                <meta property="og:url" content="https://bhavikrai-portfolio.netlify.app/knowledge" />
+                <link rel="canonical" href="https://bhavikrai-portfolio.netlify.app/knowledge" />
+              </Helmet>
               <KnowledgeBase />
             </PageWrapper>
           }
@@ -47,6 +63,13 @@ function AnimatedRoutes() {
           path="/projects"
           element={
             <PageWrapper>
+              <Helmet>
+                <title>Projects | Bhavik Rai — Full-Stack & AI Developer</title>
+                <meta name="description" content="Browse Bhavik Rai's portfolio of 10+ projects — AI platforms, MERN stack apps, RAG systems, computer vision tools, and freelance work." />
+                <meta property="og:title" content="Projects | Bhavik Rai" />
+                <meta property="og:url" content="https://bhavikrai-portfolio.netlify.app/projects" />
+                <link rel="canonical" href="https://bhavikrai-portfolio.netlify.app/projects" />
+              </Helmet>
               <Projects />
             </PageWrapper>
           }
@@ -55,6 +78,13 @@ function AnimatedRoutes() {
           path="/contact"
           element={
             <PageWrapper>
+              <Helmet>
+                <title>Contact Bhavik Rai | Hire a Full-Stack & AI Developer</title>
+                <meta name="description" content="Get in touch with Bhavik Rai for full-time roles, freelance projects, or collaborations. Open to opportunities in full-stack and AI development." />
+                <meta property="og:title" content="Contact | Bhavik Rai" />
+                <meta property="og:url" content="https://bhavikrai-portfolio.netlify.app/contact" />
+                <link rel="canonical" href="https://bhavikrai-portfolio.netlify.app/contact" />
+              </Helmet>
               <Contact />
             </PageWrapper>
           }
@@ -63,6 +93,11 @@ function AnimatedRoutes() {
           path="/case-study/:id"
           element={
             <PageWrapper>
+              <Helmet>
+                <title>Case Study | Bhavik Rai</title>
+                <meta name="description" content="In-depth case study of a project built by Bhavik Rai — architecture, technology choices, and outcomes." />
+                <link rel="canonical" href="https://bhavikrai-portfolio.netlify.app/projects" />
+              </Helmet>
               <CaseStudy />
             </PageWrapper>
           }
@@ -76,6 +111,7 @@ function App() {
   const [loaded, setLoaded] = useState(false);
 
   return (
+    <HelmetProvider>
     <ThemeProvider>
       {/* Google Fonts */}
       <link
@@ -128,6 +164,7 @@ function App() {
         </div>
       </Router>
     </ThemeProvider>
+    </HelmetProvider>
   );
 }
 

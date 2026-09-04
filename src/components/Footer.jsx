@@ -1,4 +1,5 @@
-import { FaLinkedin, FaGithub, FaEnvelope, FaArrowUp } from "react-icons/fa";
+import { useState } from "react";
+import { FaLinkedin, FaGithub, FaEnvelope, FaArrowUp, FaCopy, FaCheck } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -18,6 +19,14 @@ const quickLinks = [
 export default function Footer() {
   const year = new Date().getFullYear();
   const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText("bhavikrai.dev@gmail.com").then(() => {
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    });
+  };
 
   return (
     <footer
@@ -193,16 +202,32 @@ export default function Footer() {
                 </motion.a>
               ))}
             </div>
-            <p
+            <motion.button
+              onClick={copyEmail}
+              whileHover={{ y: -1 }}
+              whileTap={{ scale: 0.95 }}
+              title="Copy email address"
               style={{
+                marginTop: "0.85rem",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.45rem",
+                padding: "0.38rem 0.8rem",
+                background: emailCopied ? "rgba(34,197,94,0.1)" : "var(--surface-hi)",
+                border: `1px solid ${emailCopied ? "rgba(34,197,94,0.35)" : "var(--border-md)"}`,
+                borderRadius: 7,
+                color: emailCopied ? "#22c55e" : "var(--muted-dark)",
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "0.78rem",
-                color: "var(--muted-dark)",
-                marginTop: "1rem",
+                fontSize: "0.76rem",
+                fontWeight: 500,
+                cursor: "pointer",
+                transition: "all 0.2s",
+                whiteSpace: "nowrap",
               }}
             >
-              bhavikrai.dev@gmail.com
-            </p>
+              {emailCopied ? <FaCheck size={10} /> : <FaCopy size={10} />}
+              {emailCopied ? "Copied!" : "bhavikrai.dev@gmail.com"}
+            </motion.button>
           </div>
         </div>
 

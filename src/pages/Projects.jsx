@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt, FaBrain, FaLock, FaCode, FaGlobe } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -171,18 +171,49 @@ const FILTERS = [
   { key: "frontend",   label: "Frontend" },
 ];
 
-/* ─── Project Card — Theme-aware editorial style ─── */
+/* ─── Project Card — 3D Tilt + Editorial style ─── */
 function ProjectCard({ project, index }) {
   const { title, subtitle, description, liveLink, codeLink, tags, icon: Icon, accentColor, featured, caseStudyId } = project;
   const [hovered, setHovered] = useState(false);
+  const cardRef = useRef(null);
+  const glareRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const rotateX = ((y - cy) / cy) * -7;
+    const rotateY = ((x - cx) / cx) * 7;
+    card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02,1.02,1.02)`;
+    if (glareRef.current) {
+      const glareX = (x / rect.width) * 100;
+      const glareY = (y / rect.height) * 100;
+      glareRef.current.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.1) 0%, transparent 65%)`;
+      glareRef.current.style.opacity = "1";
+    }
+  };
+
+  const handleMouseLeave = () => {
+    const card = cardRef.current;
+    if (!card) return;
+    card.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)";
+    if (glareRef.current) glareRef.current.style.opacity = "0";
+    setHovered(false);
+  };
 
   return (
     <motion.div
+      ref={cardRef}
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.06, duration: 0.45 }}
       onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       style={{
         background: hovered ? "var(--surface-hi)" : "var(--surface)",
         border: "1px solid",
@@ -194,10 +225,27 @@ function ProjectCard({ project, index }) {
         gap: "1rem",
         position: "relative",
         overflow: "hidden",
-        transition: "background 0.2s, border-color 0.2s, box-shadow 0.2s",
-        boxShadow: hovered ? "var(--shadow-card)" : "none",
+        transition: "background 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.35s cubic-bezier(0.03,0.98,0.52,0.99)",
+        boxShadow: hovered
+          ? `0 20px 60px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.05), 0 8px 24px rgba(232,92,32,0.15)`
+          : "none",
+        willChange: "transform",
+        transformStyle: "preserve-3d",
       }}
     >
+      {/* Glare overlay */}
+      <div
+        ref={glareRef}
+        style={{
+          position: "absolute",
+          inset: 0,
+          borderRadius: 12,
+          pointerEvents: "none",
+          zIndex: 10,
+          opacity: 0,
+          transition: "opacity 0.2s",
+        }}
+      />
       {/* Left accent border */}
       <div
         style={{

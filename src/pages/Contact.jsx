@@ -3,7 +3,7 @@ import emailjs from '@emailjs/browser';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaEnvelope, FaLinkedin, FaGithub, FaPaperPlane, FaCheckCircle } from "react-icons/fa";
+import { FaEnvelope, FaLinkedin, FaGithub, FaPaperPlane, FaCheckCircle, FaCopy, FaCheck } from "react-icons/fa";
 import SectionHeading from '../components/SectionHeading';
 
 /* ─── Clean input with floating label ─── */
@@ -80,6 +80,15 @@ export default function Contact() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText("bhavikrai.dev@gmail.com").then(() => {
+      setEmailCopied(true);
+      toast.success("Email copied to clipboard!", { autoClose: 2000 });
+      setTimeout(() => setEmailCopied(false), 2000);
+    });
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -252,6 +261,7 @@ export default function Contact() {
                   label: "Email",
                   sub: "bhavikrai.dev@gmail.com",
                   href: "mailto:bhavikrai.dev@gmail.com",
+                  showCopy: true,
                 },
                 {
                   icon: FaLinkedin,
@@ -265,72 +275,98 @@ export default function Contact() {
                   sub: "Bhavik9696",
                   href: "https://github.com/Bhavik9696",
                 },
-              ].map(({ icon: Icon, label, sub, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("mailto") ? undefined : "_blank"}
-                  rel="noopener noreferrer"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.85rem",
-                    padding: "1rem 1.25rem",
-                    background: "var(--surface)",
-                    border: "1px solid var(--border)",
-                    borderRadius: 10,
-                    textDecoration: "none",
-                    transition: "border-color 0.18s, background 0.18s",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(232,92,32,0.35)";
-                    e.currentTarget.style.background = "var(--surface-hi)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "var(--border)";
-                    e.currentTarget.style.background = "var(--surface)";
-                  }}
-                >
-                  <div
+              ].map(({ icon: Icon, label, sub, href, showCopy }) => (
+                <div key={label} style={{ position: "relative" }}>
+                  <a
+                    href={href}
+                    target={href.startsWith("mailto") ? undefined : "_blank"}
+                    rel="noopener noreferrer"
                     style={{
-                      width: 36,
-                      height: 36,
-                      borderRadius: 8,
-                      background: "var(--surface-hi)",
-                      border: "1px solid var(--border)",
                       display: "flex",
                       alignItems: "center",
-                      justifyContent: "center",
-                      color: "var(--accent)",
-                      flexShrink: 0,
+                      gap: "0.85rem",
+                      padding: "1rem 1.25rem",
+                      background: "var(--surface)",
+                      border: "1px solid var(--border)",
+                      borderRadius: 10,
+                      textDecoration: "none",
+                      transition: "border-color 0.18s, background 0.18s",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = "rgba(232,92,32,0.35)";
+                      e.currentTarget.style.background = "var(--surface-hi)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = "var(--border)";
+                      e.currentTarget.style.background = "var(--surface)";
                     }}
                   >
-                    <Icon size={15} />
-                  </div>
-                  <div>
-                    <p
+                    <div
                       style={{
-                        fontFamily: "'Space Grotesk', sans-serif",
-                        fontWeight: 600,
-                        fontSize: "0.84rem",
-                        color: "var(--text)",
-                        margin: 0,
+                        width: 36,
+                        height: 36,
+                        borderRadius: 8,
+                        background: "var(--surface-hi)",
+                        border: "1px solid var(--border)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "var(--accent)",
+                        flexShrink: 0,
                       }}
                     >
-                      {label}
-                    </p>
-                    <p
-                      style={{
-                        fontFamily: "'Inter', sans-serif",
-                        fontSize: "0.75rem",
-                        color: "var(--muted-dark)",
-                        margin: "1px 0 0",
-                      }}
-                    >
-                      {sub}
-                    </p>
-                  </div>
-                </a>
+                      <Icon size={15} />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <p
+                        style={{
+                          fontFamily: "'Space Grotesk', sans-serif",
+                          fontWeight: 600,
+                          fontSize: "0.84rem",
+                          color: "var(--text)",
+                          margin: 0,
+                        }}
+                      >
+                        {label}
+                      </p>
+                      <p
+                        style={{
+                          fontFamily: "'Inter', sans-serif",
+                          fontSize: "0.75rem",
+                          color: "var(--muted-dark)",
+                          margin: "1px 0 0",
+                        }}
+                      >
+                        {sub}
+                      </p>
+                    </div>
+                    {/* Copy button for email */}
+                    {showCopy && (
+                      <motion.button
+                        onClick={(e) => { e.preventDefault(); copyEmail(); }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        title="Copy email"
+                        style={{
+                          width: 30,
+                          height: 30,
+                          borderRadius: 7,
+                          background: emailCopied ? "rgba(34,197,94,0.12)" : "var(--bg-secondary)",
+                          border: `1px solid ${emailCopied ? "rgba(34,197,94,0.35)" : "var(--border-md)"}`,
+                          color: emailCopied ? "#22c55e" : "var(--muted-dark)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          cursor: "pointer",
+                          flexShrink: 0,
+                          transition: "all 0.2s",
+                        }}
+                      >
+                        {emailCopied ? <FaCheck size={11} /> : <FaCopy size={11} />}
+                      </motion.button>
+                    )}
+                  </a>
+                </div>
               ))}
             </div>
           </motion.div>
