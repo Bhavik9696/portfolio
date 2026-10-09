@@ -37,8 +37,8 @@ function AnimatedRoutes() {
                 <meta name="description" content="Bhavik Rai is a Full-Stack Developer & AI Engineer specializing in MERN stack, Node.js, FastAPI, and intelligent AI systems powered by LLMs and RAG. Based in India, open to work." />
                 <meta property="og:title" content="Bhavik Rai | Full-Stack Developer & AI Engineer" />
                 <meta property="og:description" content="Full-Stack Developer & AI Engineer building reliable web apps and intelligent software. MERN, Node.js, FastAPI, LLMs, RAG." />
-                <meta property="og:url" content="https://bhavikrai-portfolio.netlify.app/" />
-                <link rel="canonical" href="https://bhavikrai-portfolio.netlify.app/" />
+                <meta property="og:url" content="https://raibhavik.me/" />
+                <link rel="canonical" href="https://raibhavik.me/" />
               </Helmet>
               <Home />
             </PageWrapper>
@@ -52,8 +52,8 @@ function AnimatedRoutes() {
                 <title>Education & Knowledge | Bhavik Rai</title>
                 <meta name="description" content="Explore Bhavik Rai's education, certifications, and technical knowledge base — Computer Science Engineering at St Joseph Engineering College, Mangalore." />
                 <meta property="og:title" content="Education & Knowledge | Bhavik Rai" />
-                <meta property="og:url" content="https://bhavikrai-portfolio.netlify.app/knowledge" />
-                <link rel="canonical" href="https://bhavikrai-portfolio.netlify.app/knowledge" />
+                <meta property="og:url" content="https://raibhavik.me/knowledge" />
+                <link rel="canonical" href="https://raibhavik.me/knowledge" />
               </Helmet>
               <KnowledgeBase />
             </PageWrapper>
@@ -67,8 +67,8 @@ function AnimatedRoutes() {
                 <title>Projects | Bhavik Rai — Full-Stack & AI Developer</title>
                 <meta name="description" content="Browse Bhavik Rai's portfolio of 10+ projects — AI platforms, MERN stack apps, RAG systems, computer vision tools, and freelance work." />
                 <meta property="og:title" content="Projects | Bhavik Rai" />
-                <meta property="og:url" content="https://bhavikrai-portfolio.netlify.app/projects" />
-                <link rel="canonical" href="https://bhavikrai-portfolio.netlify.app/projects" />
+                <meta property="og:url" content="https://raibhavik.me/projects" />
+                <link rel="canonical" href="https://raibhavik.me/projects" />
               </Helmet>
               <Projects />
             </PageWrapper>
@@ -82,8 +82,8 @@ function AnimatedRoutes() {
                 <title>Contact Bhavik Rai | Hire a Full-Stack & AI Developer</title>
                 <meta name="description" content="Get in touch with Bhavik Rai for full-time roles, freelance projects, or collaborations. Open to opportunities in full-stack and AI development." />
                 <meta property="og:title" content="Contact | Bhavik Rai" />
-                <meta property="og:url" content="https://bhavikrai-portfolio.netlify.app/contact" />
-                <link rel="canonical" href="https://bhavikrai-portfolio.netlify.app/contact" />
+                <meta property="og:url" content="https://raibhavik.me/contact" />
+                <link rel="canonical" href="https://raibhavik.me/contact" />
               </Helmet>
               <Contact />
             </PageWrapper>
@@ -96,7 +96,7 @@ function AnimatedRoutes() {
               <Helmet>
                 <title>Case Study | Bhavik Rai</title>
                 <meta name="description" content="In-depth case study of a project built by Bhavik Rai — architecture, technology choices, and outcomes." />
-                <link rel="canonical" href="https://bhavikrai-portfolio.netlify.app/projects" />
+                <link rel="canonical" href="https://raibhavik.me/projects" />
               </Helmet>
               <CaseStudy />
             </PageWrapper>
