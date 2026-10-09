@@ -41,7 +41,7 @@ const personalProjects = [
     subtitle: "Full-Stack & AI Developer — Personal Project",
     description:
       "A RAG-powered platform that automatically extracts software requirements from SRS documents and verifies their implementation against real GitHub repositories using evidence-based AI analysis. Built intelligent requirement extraction, code retrieval, and traceability analysis to classify features as Implemented, Partial, Missing, or Not Verifiable. Features GitHub repository analysis, project health scoring, Traceability Matrix (RTM), AI Copilot, PDF report generation, and privacy-focused RAG with secret redaction.",
-    liveLink: "https://project-lens-ai-kappa.vercel.app/",
+    liveLink: "https://projectlens.me/",
     codeLink: "https://github.com/Bhavik9696/ProjectLens.Ai",
     tags: ["React", "Vite", "Node.js", "Express", "MongoDB", "RAG", "Gemini AI", "GitHub API"],
     category: "ai",
@@ -111,7 +111,7 @@ const personalProjects = [
     description:
       "A customizable password generator with adjustable length, special characters, and clipboard copy. Built with React Hooks (useState, useEffect, useRef).",
     liveLink: "https://soft-starlight-7cc2ce.netlify.app/",
-    codeLink: "https://github.com/Bhavik9696/passward-generator.git",
+    codeLink: "https://github.com/Bhavik9696/passward-generator",
     tags: ["React", "Vite", "Hooks"],
     category: "frontend",
     icon: FaCode,
@@ -122,7 +122,7 @@ const personalProjects = [
     description:
       "A visually appealing and responsive home page website built using Tailwind CSS. Fully mobile-friendly with modern design and smooth UI transitions.",
     liveLink: "https://pwlandpage.netlify.app/",
-    codeLink: "https://github.com/Bhavik9696/pw-landingpage_clone.git",
+    codeLink: "https://github.com/Bhavik9696/pw-landingpage_clone",
     tags: ["HTML", "CSS", "Tailwind CSS"],
     category: "frontend",
     icon: FaGlobe,
@@ -132,7 +132,7 @@ const personalProjects = [
     title: "Portfolio Website",
     description:
       "A responsive personal portfolio built with React and Tailwind CSS, showcasing projects, skills, and experience with interactive UI and smooth navigation.",
-    liveLink: "https://bhavikrai-portfolio.netlify.app",
+    liveLink: "https://raibhavik.me",
     codeLink: "https://github.com/Bhavik9696/portfolio.git",
     tags: ["React", "Tailwind CSS", "Vite"],
     category: "frontend",
@@ -144,7 +144,7 @@ const personalProjects = [
     description:
       "View, create, and manage text files on the server with a simple web interface. Built using Node.js, Express, and EJS.",
     liveLink: null,
-    codeLink: "https://github.com/Bhavik9696/ejs-file-app.git",
+    codeLink: "https://github.com/Bhavik9696/ejs-file-app",
     tags: ["Node.js", "Express", "EJS"],
     category: "fullstack",
     icon: FaCode,
@@ -155,7 +155,7 @@ const personalProjects = [
     description:
       "Stock prediction using linear regression in Python with an integrated frontend for user interaction.",
     liveLink: null,
-    codeLink: "https://github.com/Bhavik9696/python-miniproject.git",
+    codeLink: "https://github.com/Bhavik9696/python-miniproject",
     tags: ["Python", "Machine Learning", "Linear Regression"],
     category: "ai",
     icon: FaBrain,
