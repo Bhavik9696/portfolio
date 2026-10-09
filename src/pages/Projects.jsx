@@ -12,7 +12,7 @@ const freelanceProjects = [
     description:
       "A full-stack campus placement platform with three role portals (Student, Admin, Alumni). Includes an AI microservice for ML-based placement prediction (RandomForest), resume parsing (pdfplumber + spaCy), skill-gap analysis, career path recommendations, mock interview practice, and a TF-IDF FAQ chatbot. Node.js/Express handles auth (JWT + RBAC) and proxies AI workloads to a FastAPI service, with results persisted in MongoDB. Features automated shortlisting with email/in-app notifications, Recharts analytics dashboards, and CSV/PDF export.",
     liveLink: null,
-    codeLink: "https://github.com/Bhavik9696/AI-Based-Smart-Campus-Placement-and-Career-Intelligence-System-.git",
+    codeLink: "https://github.com/Bhavik9696/AI-Based-Smart-Campus-Placement-and-Career-Intelligence-System-",
     tags: ["React", "Node.js", "Express", "MongoDB", "FastAPI", "Python", "scikit-learn", "spaCy", "JWT"],
     category: "ai",
     featured: true,
@@ -42,7 +42,7 @@ const personalProjects = [
     description:
       "A RAG-powered platform that automatically extracts software requirements from SRS documents and verifies their implementation against real GitHub repositories using evidence-based AI analysis. Built intelligent requirement extraction, code retrieval, and traceability analysis to classify features as Implemented, Partial, Missing, or Not Verifiable. Features GitHub repository analysis, project health scoring, Traceability Matrix (RTM), AI Copilot, PDF report generation, and privacy-focused RAG with secret redaction.",
     liveLink: "https://project-lens-ai-kappa.vercel.app/",
-    codeLink: "https://github.com/Bhavik9696/ProjectLens.Ai.git",
+    codeLink: "https://github.com/Bhavik9696/ProjectLens.Ai",
     tags: ["React", "Vite", "Node.js", "Express", "MongoDB", "RAG", "Gemini AI", "GitHub API"],
     category: "ai",
     featured: true,
@@ -55,7 +55,7 @@ const personalProjects = [
     description:
       "A multi-agent AI sales intelligence platform built using Python, FastAPI, React, Groq LLaMA, Mistral, and SSE. Architected Bull, Bear, Detective, and Orchestrator agents that research companies, generate customer-vs-partner sales verdicts with confidence scores, and automatically draft outreach emails.",
     liveLink: null,
-    codeLink: "https://github.com/Bhavik9696/ALLYVEX.git",
+    codeLink: "https://github.com/Bhavik9696/AllyVex",
     tags: ["Python", "FastAPI", "React", "LLaMA", "Groq", "SSE"],
     category: "ai",
     icon: FaBrain,
@@ -78,7 +78,7 @@ const personalProjects = [
     description:
       "An innovative MERN-Stack web platform connecting customers who want to avoid long queues with individuals willing to stand in line on their behalf. Includes booking, live tracking, secure payments, and a rating system.",
     liveLink: null,
-    codeLink: "https://github.com/Bhavik9696/Queue-Swap.git",
+    codeLink: "https://github.com/Bhavik9696/Queue-Swap",
     tags: ["MongoDB", "Express", "React", "Node.js"],
     category: "fullstack",
     icon: FaCode,
@@ -89,7 +89,7 @@ const personalProjects = [
     description:
       "A full-stack fitness tracking app with JWT-based authentication, React Context for state management, and CRUD features for managing workouts with MongoDB Atlas.",
     liveLink: null,
-    codeLink: "https://github.com/Bhavik9696/Gym-buddy.git",
+    codeLink: "https://github.com/Bhavik9696/Gym-buddy",
     tags: ["MongoDB", "Express", "React", "Node.js", "JWT"],
     category: "fullstack",
     icon: FaCode,
@@ -100,7 +100,7 @@ const personalProjects = [
     description:
       "A full-stack web application serving as the website for a college. Built with React, Tailwind CSS, and Firebase for real-time database and authentication. Features course info, events, news, and personalized dashboards.",
     liveLink: "https://bbcdclg.netlify.app",
-    codeLink: "https://github.com/Bhavik9696/college-website.git",
+    codeLink: "https://github.com/Bhavik9696/college-website",
     tags: ["React", "Firebase", "Tailwind CSS"],
     category: "fullstack",
     icon: FaGlobe,
