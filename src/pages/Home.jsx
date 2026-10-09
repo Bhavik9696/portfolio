@@ -113,7 +113,7 @@ export default function HomePage() {
                   color: "var(--muted)",
                 }}
               >
-                Full-Stack Developer · Based in India
+                Full-Stack & AI Developer · Mangalore, India
               </span>
             </motion.div>
 
@@ -185,9 +185,7 @@ export default function HomePage() {
                 maxWidth: 520,
               }}
             >
-              Computer Science Engineering student focused on MERN stack,
-              backend development, and intelligent software systems.
-              I care about clean code, fast performance, and useful products.
+              Final-year Computer Science Engineering student (2027) building full-stack products and AI tools. I work across React, Node.js, Python, and retrieval-augmented generation—from user-facing interfaces to evidence-driven backend systems.
             </motion.p>
 
             {/* CTA Buttons */}
